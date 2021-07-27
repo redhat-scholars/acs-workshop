@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://redhat-scholars.github.io/course-template/template-tutorial/01-setup.html">
     <link rel="prev" href="index.html">
     <link rel="next" href="02-deploy.html">
-    <meta name="generator" content="Antora 2.3.3">
+    <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -129,7 +129,7 @@
     <li><a href="01-setup.html">1. Setup</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/courseware-template/edit/master/documentation/modules/ROOT/pages/01-setup.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-iberia/acs-workshop/edit/master/documentation/modules/ROOT/pages/01-setup.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
@@ -190,7 +190,7 @@ Please have them installed and configured before you get started with any of the
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/wercker/stern">stern</a></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><code>brew install stern</code></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/wercker/stern/releases/download/1.6.0/stern_linux_amd64">Download</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64">Download</a></p></td>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/wercker/stern/releases/download/1.11.0/stern_windows_amd64.exe">Download</a></p></td>
 </tr>
 <tr>
@@ -283,9 +283,28 @@ Although they are used in the tutorial, you could use others without any problem
 <div class="paragraph">
 <p>Having <code>minikube</code> installed and in your <code>PATH</code>, then run:</p>
 </div>
+<div class="paragraph">
+<p><strong>MacOS</strong></p>
+</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube start --memory=8192 --cpus=3 --kubernetes-version=v1.18.6 --vm-driver=virtualbox -p my_profile</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Linux</strong></p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube start --memory=8192 --cpus=3 --kubernetes-version=v1.18.6 --vm-driver=kvm2 -p my_profile</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Windows:</strong></p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">minikube start --memory=8192 --cpus=3 --kubernetes-version=v1.18.6 --vm-driver=hyperv -p my_profile</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -293,13 +312,13 @@ Although they are used in the tutorial, you could use others without any problem
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">❌  profile "my_profile" not found
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">😄  [my_profile] minikube v1.20.0 on Darwin 11.3
 ✅  Created a new profile : my_profile
 ✅  minikube profile was successfully set to my_profile
-😄  [default] minikube v1.12.1 on Darwin 10.15.2
+😄  [default] minikube v1.12.1 on Darwin 11.3
 ✨  Selecting 'virtualbox' driver from user configuration (alternates: [hyperkit])
 🔥  Creating virtualbox VM (CPUs=2, Memory=8192MB, Disk=50000MB) ...
-🐳  Preparing Kubernetes v1.18.6 on Docker '19.03.5' ...
+🐳  Preparing Kubernetes v1.18.6 on Docker '20.10.6' ...
     ▪ apiserver.enable-admission-plugins=LimitRanger,NamespaceExists,NamespaceLifecycle,ResourceQuota,ServiceAccount,DefaultStorageClass,MutatingAdmissionWebhook
 🚜  Pulling images ...
 🚀  Launching Kubernetes ...
@@ -335,11 +354,11 @@ Once you have your cluster, you can download the latest OpenShift client(oc) fro
 </div>
 </div>
 <div class="paragraph">
-<p>The output should show oc version &gt;=4.2:</p>
+<p>The output should show oc version &gt;=4.7:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: openshift-clients-4.3.0-201910250623-88-g6a937dfe
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: 4.7.0-202102130115.p0-c66c03f
 Kubernetes Version: v1.18.6</code></pre>
 </div>
 </div>
