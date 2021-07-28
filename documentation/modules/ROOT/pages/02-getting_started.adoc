@@ -4,6 +4,13 @@ include::_attributes.adoc[]
 
 TBD
 
+[#acs_architecture]
+== ACS Architecture
+
+image::architecture_acs.png[ACS Architecture, 400]
+
+TBD
+
 [#connect_acs]
 == Connecting to ACS Cluster
 

@@ -15,6 +15,8 @@ These security features represent the primary work any developer or administrato
 
 == RHACS Features
 
+image::acs_features.png[ACS Features, 400]
+
 Using Red Hat Advanced Cluster Security for Kubernetes (Red Hat Advanced Cluster Security), you can gain comprehensive Kubernetes security that includes the following use cases:
 
 * **Visibility**:  See your entire landscape of images, registries, containers, deployments, and runtime behavior.
