@@ -34,3 +34,7 @@
 ** xref:12-platform_configuration.adoc#access_control[ACS Access Control]
 
 * xref:13-cicd.adoc[DevSecOps Pipelines]
+
+* xref:14-apicli.adoc[ACS API and CLI]
+** xref:14-apicli.adoc#api[ACS API]
+** xref:14-apicli.adoc#roxctl[ACS RoxCTL]

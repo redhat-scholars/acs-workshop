@@ -7,7 +7,7 @@ TBD
 [#acs_architecture]
 == ACS Architecture
 
-image::architecture_acs.png[ACS Architecture, 400]
+image::architecture_acs.png[ACS Architecture, 800]
 
 TBD
 
