@@ -220,11 +220,11 @@ image::06_acs_integrations.png[ACS Operator 7, 800]
 
 Generate the bundle with a unique cluster name.
 
-image::06_acs_integrations.png[ACS Operator 7, 800]
+image::07_generate_cluster_init_bundle.png[ACS Operator 8, 800]
 
 Download the cluster init bundle secret.
 
-image::07_generate_cluster_init_bundle.png[ACS Operator 8, 800]
+image::08_download_cluster_init_bundle_secret.png[ACS Operator 9, 800]
 
 Apply the cluster init bundle secret on the target secured cluster
 
@@ -277,4 +277,4 @@ oc get pods -n stackrox -w
 
 At the end of the installation, go to the central console and check the correct attachment of the secured cluster. 
 
-image::07_generate_cluster_init_bundle.png[ACS Operator 8, 800]
+image::09_verify_cluster_list.png[ACS Operator 10, 800]
