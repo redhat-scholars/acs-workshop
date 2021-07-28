@@ -130,7 +130,7 @@ Create a new ``stackrox`` namespace. We will install our components here.
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-oc new-project {profile}	
+oc new-project stackrox	
 ----
 
 The following is an example of the central custom resource:
