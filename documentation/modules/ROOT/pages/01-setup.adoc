@@ -62,7 +62,7 @@ Although they are used in the tutorial, you could use others without any problem
 == Get tutorial sources
 
 :tutorial-url: https://github.com/redhat-iberia/acs-workshop.git
-:folder: gitops
+:folder: acs-workshop
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/download-sources.adoc[]
 
 
@@ -71,9 +71,8 @@ include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-c
 
 :profile: acs
 
-o run OpenShift4, you need to have one provisioned using https://try.openshift.com[try.openshift.com] or can use any existing OpenShift4 cluster.	
+To run OpenShift4, you need to have one provisioned using https://try.openshift.com[try.openshift.com] or can use any existing OpenShift4 cluster.	
 Once you have your cluster, you can download the latest OpenShift client(oc) from https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/[here] and add to your path.	
-
 
 You can check the OpenShift version using:
 
@@ -81,7 +80,7 @@ You can check the OpenShift version using:
 [source,bash,subs="attributes+,+macros"]	
 ----	
 oc version	
-----	
+----
 
 The output should show oc version >=4.7:	
 
@@ -90,29 +89,187 @@ The output should show oc version >=4.7:
 ----	
 Client Version: 4.7.0-202102130115.p0-c66c03f	
 Kubernetes Version: {kubernetes-version}	
-----	
+----
 
-Then login into the cluster and run:	
-
-[.console-input]
-[source,bash,subs="attributes+,+macros"]	
-----	
-oc new-project {profile}	
-----	
 And then you are ready for installing RHACS on Openshift.
 
 [#setup_acs_operator]
 == ACS Operator Setup
 
-TBD
+Find and the Advanced Cluster Security Operator from the Operator Hub.
+
+image::00_operator_hub.png[ACS Operator 1, 800]
+
+Install the selected operator by clicking on the ``Install`` button.
+
+image::01_select_acs_operator.png[ACS Operator 2, 800]
+
+Confirm default installation parameters (auto update, latest channel, ``openshift-operators`` namespace).
+
+image::02_install_acs_operator.png[ACS Operator 3, 800]
+
+Wait for completion, the installation will take a few seconds.
+
+image::03_wait_for_completion.png[ACS Operator 4, 800]
+
+Access the now ready operator by clicking on the ``View Operator`` button.
+
+image::04_operator_ready.png[ACS Operator 5, 800]
 
 [#install_acs_central]
 == ACS Central Cluster Installation
 
-TBD
+In this section we will deploy the Central component in the lab cluster. The Central is made up two main deployments:
+
+* The ``central`` service, which exposes api and console and communicates with Sensors on secured clusters.
+
+* The ``scanner`` service, which has the role of scanning the deployed pods images.
+
+Create a new ``stackrox`` namespace. We will install our components here.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc new-project {profile}	
+----
+
+The following is an example of the central custom resource:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: platform.stackrox.io/v1alpha1
+kind: Central
+metadata:
+  name: stackrox-central-services
+  namespace: stackrox
+spec:
+  central:
+    exposure:
+      loadBalancer:
+        enabled: false
+        port: 443
+      nodePort:
+        enabled: false
+      route:
+        enabled: true
+    persistence:
+      persistentVolumeClaim:
+        claimName: stackrox-db
+  egress:
+    connectivityPolicy: Online
+  scanner:
+    analyzer:
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 5
+        minReplicas: 2
+        replicas: 3
+    scannerComponent: Enabled	
+----
+
+Create the ``central`` custom resource using the template file provided in this repository.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f stackrox-central-services.yaml -n stackrox
+----
+
+Monitor the installation using the watch option:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get pods -n stackrox -w
+----
+
+Once the installation is complete obtain the generated admin password from the ``central-htpasswd`` secret.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'
+----
+
+Extract the hostname of the generated route.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get routes/central -n stackrox -o jsonpath='{.spec.host}'
+----
+
+Login to https://<route_hostname> using the ``admin`` username and the password extracted before.
+
+image::05_login.png[ACS Operator 6, 800]
 
 [#config_acs_securedcluster]
 == ACS Secured Cluster Configuration
 
-TBD
+To join a cluster to ACS it is necessary to generate a cluster init bundle containing TLS secrets for Sensor, Collectors and Admission Controllers.
 
+Generate the cluster init bundle by accessing the Integration subsection in the ``Platform Configuration`` section 
+
+image::06_acs_integrations.png[ACS Operator 7, 800]
+
+Generate the bundle with a unique cluster name.
+
+image::06_acs_integrations.png[ACS Operator 7, 800]
+
+Download the cluster init bundle secret.
+
+image::07_generate_cluster_init_bundle.png[ACS Operator 8, 800]
+
+Apply the cluster init bundle secret on the target secured cluster
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f ~/Downloads/demo-cluster-cluster-init-secrets.yaml -n stackrox
+----
+
+NOTE: This workshop uses the same cluster as central and secured cluster. In a real time scenario there will be many different secured clusters. Please ensure to install the ACS Operator in all the secured cluster in order to manage the SecuredCluster CR.
+
+The SecuredCluster custom resource is quite simple. The following example shows the configuration for a ``demo-cluster`` target. Notice the ``collector`` configuration, with the collection method set to ``KernelModule``. The alternative collection approach would be ``eBPF``. The ``TolerateTaints`` lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: platform.stackrox.io/v1alpha1
+kind: SecuredCluster
+metadata:
+  name: stackrox-secured-cluster-services
+  namespace: stackrox
+spec:
+  admissionControl:
+    listenOnCreates: false
+    listenOnEvents: true
+    listenOnUpdates: false
+  clusterName: demo-cluster
+  perNode:
+    collector:
+      collection: KernelModule
+      imageFlavor: Regular
+    taintToleration: TolerateTaints
+----
+
+Create the Secured Cluster custom Resource using (and optionally custumizing) the example provided in the repository.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f stackrox-secured-cluster-services.yaml -n stackrox
+----
+
+Monitor the installation using the watch option:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get pods -n stackrox -w
+----
+
+At the end of the installation, go to the central console and check the correct attachment of the secured cluster. 
+
+image::07_generate_cluster_init_bundle.png[ACS Operator 8, 800]
