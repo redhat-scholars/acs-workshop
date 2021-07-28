@@ -6,7 +6,6 @@
 
 * xref:02-getting_started.adoc[Getting Started]
 ** xref:02-getting_started.adoc#acs_architecture[ACS Architecture]
-** xref:02-getting_started.adoc#connect_acs[Connecting to ACS]
 ** xref:02-getting_started.adoc#deploy_demo_acs[Deploying Demo in ACS]
 
 * xref:04-vulnerabilities.adoc[Vulnerability Management]
