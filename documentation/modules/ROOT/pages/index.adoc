@@ -1,9 +1,26 @@
-= Welcome to Red Hat Advanced Cluster Management workshop
+= Welcome to Red Hat Advanced Cluster Security Workshop
 :page-layout: home
 :!sectids:
 
 [.text-center.strong]
-== Red Hat Advanced Cluster Management for Kubernetes
+== Red Hat Advanced Cluster Security for Kubernetes
 
-TBD
+Red Hat Advanced Cluster Security for Kubernetes (Red Hat Advanced Cluster Security or ACS) provides the tools and capabilities to address the security needs of a cloud-native development approach on Kubernetes. 
+
+The ACS solution offers visibility into the security of your cluster, vulnerability management, and security compliance through auditing, network segmentation awareness and configuration, security risk profiling, security-related configuration management, threat detection, and incident response. In addition, ACS grants an ability to pull the actions from that tooling deep into the application code development process through APIs.
+
+These security features represent the primary work any developer or administrator faces as they work across a range of environments, including multiple datacenters, private clouds, or public clouds that run Kubernetes clusters.
+
+== RHACS Features
+
+Using Red Hat Advanced Cluster Security for Kubernetes (Red Hat Advanced Cluster Security), you can gain comprehensive Kubernetes security that includes the following use cases:
+
+* **Visibility**:  See your entire landscape of images, registries, containers, deployments, and runtime behavior.
+* **Vulnerability Management**: Identify and remediate vulnerabilities in both container images and Kubernetes across the entire software development life cycle.
+* **Compliance**: Audit your systems against CIS Benchmarks, NIST, PCI, and HIPAA, with interactive dashboards and one-click audit reports.
+* **Network Segmentation**: Visualize existing connections and enforce tighter segmentation using Kubernetes-native controls to reduce your blast radius.
+* **Risk Profiling**: See all your deployments ranked by risk level, using context from Kubernetes’ declarative data, to prioritize remediation.
+* **Configuration Management**: Apply best practices for Docker and Kubernetes to harden your environment for a more secure and stable application.
+* **Threat Detection**: Use rules, automated allow lists, and baselining to accurately identify suspicious activity in your running applications.
+* **Incident Response**: Take action, from failing builds and blocking deployments to killing pods and thwarting attacks, using Kubernetes for enforcement.
 
