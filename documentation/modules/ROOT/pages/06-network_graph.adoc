@@ -2,4 +2,13 @@
 include::_attributes.adoc[]
 :profile: acs
 
-TBD
+[#network_graph_overview]
+== Network Graph Overview
+
+The Network Graph is a flow diagram, firewall diagram, and firewall rule builder in one.
+
+In the upper left you’ll see the dropdown for clusters so I can easily navigate between any of the clusters that are connected to ACS.
+
+The default view, Active, shows me actual traffic for the Past Hour between the deployments in all of the namespaces.
+
+You can change the time frame in the upper right dropdown, and the legend at bottom left 

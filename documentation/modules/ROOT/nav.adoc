@@ -16,6 +16,7 @@
 ** xref:05-risk.adoc#risk_dashboard[Review Risk Dashboard]
 
 * xref:06-network_graph.adoc[Network Graph]
+* xref:06-network_graph.adoc#network_graph_overview[Network Graph Overview]
 
 * xref:07-violations.adoc[Violations]
 
