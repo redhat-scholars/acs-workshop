@@ -2,6 +2,8 @@
 :page-layout: home
 :!sectids:
 
+image::acs-logo.svg[ACS Logo, 400]
+
 [.text-center.strong]
 == Red Hat Advanced Cluster Security for Kubernetes
 
