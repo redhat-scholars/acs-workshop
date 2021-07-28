@@ -1,0 +1,58 @@
+= ACS Secure Cluster Management
+include::_attributes.adoc[]
+:profile: acs
+
+TBD
+
+[#clusters]
+== ACS Secured Clusters
+
+TBD
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc version	
+----	
+
+The output should show oc version >=4.7:	
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+Client Version: 4.7.0-202102130115.p0-c66c03f	
+Kubernetes Version: {kubernetes-version}	
+----
+
+[#system_configuration]
+== ACS System Configuration
+
+TBD
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc version	
+----
+
+[#system_health]
+== ACS System Health
+
+TBD
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc version	
+----
+
+[#access_control]
+== ACS Access Control
+
+TBD
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc version	
+----

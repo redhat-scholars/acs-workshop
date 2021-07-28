@@ -14,3 +14,23 @@
 
 * xref:05-risk.adoc[Risk]
 ** xref:05-risk.adoc#risk_dashboard[Review Risk Dashboard]
+
+* xref:06-network_graph.adoc[Network Graph]
+
+* xref:07-violations.adoc[Violations]
+
+* xref:08-compliance.adoc[Compliance]
+
+* xref:09-configuration_management.adoc[Configuration Management]
+
+* xref:10-system_policies.adoc[System Policies]
+
+* xref:11-integrations.adoc[ACS Integrations]
+
+* xref:12-platform_configuration.adoc[ACS Secure Cluster Management]
+** xref:12-platform_configuration.adoc#clusters[ACS Secured Clusters]
+** xref:12-platform_configuration.adoc#system_configuration[ACS System Configuration]
+** xref:12-platform_configuration.adoc#system_health[ACS System Health]
+** xref:12-platform_configuration.adoc#access_control[ACS Access Control]
+
+* xref:13-cicd.adoc[DevSecOps Pipelines]
