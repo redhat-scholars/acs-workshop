@@ -97,9 +97,6 @@
     <a class="nav-link" href="#acs_architecture">ACS Architecture</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#connect_acs">Connecting to ACS</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#deploy_demo_acs">Deploying Demo in ACS</a>
   </li>
 </ul>
@@ -222,21 +219,32 @@
 <div class="sect1">
 <h2 id="acs_architecture"><a class="anchor" href="#acs_architecture"></a>ACS Architecture</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The StackRox Kubernetes Security Platform installs as a set of pods in your Kubernetes or OpenShift cluster and includes the following components:</p>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/architecture_acs.png" alt="ACS Architecture" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>TBD</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="connect_acs"><a class="anchor" href="#connect_acs"></a>Connecting to ACS Cluster</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>TBD</p>
+<div class="ulist">
+<ul>
+<li>
+<p>[<strong>Central</strong>](<a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#central" class="bare">https://help.stackrox.com/docs/system-info/stackrox-architecture/#central</a>): Gathers and displays information from other components (1 for multiple clusters).</p>
+</li>
+<li>
+<p>[<strong>Sensor</strong>(<a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor" class="bare">https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor</a>)]: Collects and augments data from the Collector (1 for each cluster.)</p>
+</li>
+<li>
+<p>[<strong>Scanner</strong>](<a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor" class="bare">https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor</a>): Scans images for vulnerabilities (1 for multiple clusters)</p>
+</li>
+<li>
+<p>[<strong>Collector</strong>](<a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor" class="bare">https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor</a>): Collects and monitors container activities (1 on each node)</p>
+</li>
+<li>
+<p>[<strong>Admission controller</strong>](<a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor" class="bare">https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor</a>): Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
