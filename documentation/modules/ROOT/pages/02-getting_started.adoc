@@ -11,11 +11,11 @@ The StackRox Kubernetes Security Platform installs as a set of pods in your Kube
 
 image::architecture_acs.png[ACS Architecture, 800]
 
-* [**Central**](https://help.stackrox.com/docs/system-info/stackrox-architecture/#central): Gathers and displays information from other components (1 for multiple clusters).
-* [**Sensor**(https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor)]: Collects and augments data from the Collector (1 for each cluster.)
-* [**Scanner**](https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor): Scans images for vulnerabilities (1 for multiple clusters)
-* [**Collector**](https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor): Collects and monitors container activities (1 on each node)
-* [**Admission controller**](https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor): Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#central[**Central**]: Gathers and displays information from other components (1 for multiple clusters).
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Sensor**]: Collects and augments data from the Collector (1 for each cluster.)
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Scanner**]: Scans images for vulnerabilities (1 for multiple clusters)
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Collector**]: Collects and monitors container activities (1 on each node)
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Admission controller**]: Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)
 
 [#deploy_demo_acs]
 == Deploying Demo in ACS
