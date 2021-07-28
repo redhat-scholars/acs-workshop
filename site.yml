@@ -2,9 +2,9 @@ runtime:
   cache_dir: ./.cache/antora
 
 site:
-  title: Template Tutorial
-  url: https://redhat-scholars.github.io/course-template
-  start_page: template-tutorial::index.adoc
+  title: ACS Workshop
+  url: https://redhat-iberia.github.io/acs-workshop
+  start_page: acs-workshop::index.adoc
 
 content:
   sources:

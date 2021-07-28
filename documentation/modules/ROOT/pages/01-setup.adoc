@@ -4,26 +4,90 @@ include::_attributes.adoc[]
 [#prerequisite]
 == Prerequisite CLI tools
 
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/prerequisites-kubernetes.adoc[]
+The following CLI tools are required for running the exercises in this workshop. 
+Please have them installed and configured before you get started with any of the workshop chapters.
+
+[cols="4*^,4*.",options="header,+attributes"]
+|===
+|**Tool**|**macOS**|**Fedora**|**windows**
+
+| `Git`
+| https://git-scm.com/download/mac[Download]
+| https://git-scm.com/download/linux[Download]
+| https://git-scm.com/download/win[Download]
+
+| `Docker`
+| https://docs.docker.com/docker-for-mac/install[Docker for Mac]
+| `dnf install podman podman-docker`
+| https://docs.docker.com/docker-for-windows/install[Docker for Windows]
+
+| `kubectl {kubernetes-version}`
+| https://storage.googleapis.com/kubernetes-release/release/{kubernetes-version}/bin/darwin/amd64/kubectl[Download]
+| https://storage.googleapis.com/kubernetes-release/release/{kubernetes-version}/bin/linux/amd64/kubectl[Download]
+| https://storage.googleapis.com/kubernetes-release/release/{kubernetes-version}/bin/windows/amd64/kubectl.exe[Download]
+
+| `kustomize {kustomize-version}`
+| https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.1.2/kustomize_{kustomize-version}_darwin_amd64.tar.gz[Download]
+| https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.1.2/kustomize_{kustomize-version}_linux_amd64.tar.gz[Download]
+| https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.1.2/kustomize_{kustomize-version}_windows_amd64.tar.gz[Download]
+
 |===
 
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/optional-requisites.adoc[]
+The following CLI tools are optional for running the exercises in this tutorial.
+Although they are used in the tutorial, you could use others without any problem.
+
+[cols="4*^,4*.",options="header,+attributes"]
+|===
+|**Tool**|**macOS**|**Fedora**|**windows**
+
+| https://github.com/mikefarah/yq[yq v2.4.1]
+| https://github.com/mikefarah/yq/releases/download/2.4.1/yq_darwin_amd64[Download]
+| https://github.com/mikefarah/yq/releases/download/2.4.1/yq_linux_amd64[Download]
+| https://github.com/mikefarah/yq/releases/download/2.4.1/yq_windows_amd64.exe[Download]
+
+| https://github.com/stedolan/jq[jq v1.6.0]
+| https://github.com/stedolan/jq/releases/download/jq-1.6/jq-osx-amd64[Download]
+| https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64[Download]
+| https://github.com/stedolan/jq/releases/download/jq-1.6/jq-win64.exe[Download]
+
+| watch
+| `brew install watch`
+| `dnf install procps-ng`
+|
+
 |===
 
-[#minikube]
-== Setup Kubernetes
-
-:profile: my_profile
-
-include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/kubernetes-setup.adoc[]
-
-And then you are ready for start using Kubernetes:
-
-image::kubelogo.png[]
 
 [#downloadtutorial]
 == Get tutorial sources
 
-:tutorial-url: https://github.com/redhat-developer-demos/rhd-tutorial-common.git
-:folder: my_folder
+:tutorial-url: https://github.com/redhat-iberia/acs-workshop.git
+:folder: gitops
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/download-sources.adoc[]
+
+
+[#kubernetes]
+== Setup OpenShift / Kubernetes Cluster
+
+:profile: acs
+
+include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/kubernetes-setup.adoc[]
+
+And then you are ready for installing RHACS on Openshift.
+
+
+[#setup_acs_operator]
+== ACS Operator Setup
+
+TBD
+
+[#install_acs_central]
+== ACS Central Cluster Installation
+
+TBD
+
+[#config_acs_securedcluster]
+== ACS Secured Cluster Configuration
+
+TBD
+

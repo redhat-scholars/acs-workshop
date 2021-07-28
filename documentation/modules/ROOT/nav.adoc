@@ -1,7 +1,12 @@
-* xref:01-setup.adoc[1. Setup]
+* xref:01-setup.adoc[Setup]
 ** xref:01-setup.adoc#prerequisite[Prerequisites]
-** xref:01-setup.adoc#minikube[Setup Minikube]
+** xref:01-setup.adoc#setup_acs_operator[Setup ACS Operator]
+** xref:01-setup.adoc#install_acs_central[Install ACS Central Cluster]
+** xref:01-setup.adoc#config_acs_securedcluster[Configuration of the ACS Secured Cluster ]
 
-* xref:02-deploy.adoc[2. Deploy Service]
-** xref:02-deploy.adoc#package[Build Service]
-** xref:02-deploy.adoc#deploy[Deploy Dervice]
+* xref:02-getting_started.adoc[Getting Started]
+** xref:02-getting_started.adoc#connect_acs[Connecting to ACS]
+** xref:02-getting_started.adoc#deploy_demo_acs[Deploying Demo in ACS]
+
+* xref:04-vulnerabilities.adoc[Vulnerability Management]
+** xref:04-vulnerabilities#vulnerability_management_panel[Review Vulnerability Management Dashboard]
