@@ -1,1 +1,3 @@
-https://redhat-iberia.github.io/acs-workshop
+# Advanced Cluster Security for Kubernetes Workshop
+
+This is the repository for the ACS Workshop available in [ACS Workshop Guide](https://redhat-iberia.github.io/acs-workshop/).
