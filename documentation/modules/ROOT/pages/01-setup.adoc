@@ -31,6 +31,11 @@ Please have them installed and configured before you get started with any of the
 | https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.1.2/kustomize_{kustomize-version}_linux_amd64.tar.gz[Download]
 | https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2Fv4.1.2/kustomize_{kustomize-version}_windows_amd64.tar.gz[Download]
 
+| `Ansible`
+| `python -m pip install --user ansible`
+| `sudo dnf install ansible`
+| 
+
 |===
 
 The following CLI tools are optional for running the exercises in this tutorial.

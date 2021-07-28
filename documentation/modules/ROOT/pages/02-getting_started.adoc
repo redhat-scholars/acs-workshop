@@ -17,6 +17,15 @@ image::architecture_acs.png[ACS Architecture, 800]
 * https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Collector**]: Collects and monitors container activities (1 on each node)
 * https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Admission controller**]: Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)
 
+[#deploy_demo_ansible]
+== Deploying ACS with Ansible
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+git clone https://github.com/ralvares/ansible-demo.git ansible-demo
+----	
+
 [#deploy_demo_acs]
 == Deploying Demo in ACS
 

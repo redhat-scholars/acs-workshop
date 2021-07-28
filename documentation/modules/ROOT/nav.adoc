@@ -6,6 +6,7 @@
 
 * xref:02-getting_started.adoc[Getting Started]
 ** xref:02-getting_started.adoc#acs_architecture[ACS Architecture]
+** xref:02-getting_started.adoc#deploy_acs_automated[Deploying ACS with Ansible]
 ** xref:02-getting_started.adoc#deploy_demo_acs[Deploying Demo in ACS]
 
 * xref:04-vulnerabilities.adoc[Vulnerability Management]
