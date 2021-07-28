@@ -10,3 +10,6 @@
 
 * xref:04-vulnerabilities.adoc[Vulnerability Management]
 ** xref:04-vulnerabilities#vulnerability_management_panel[Review Vulnerability Management Dashboard]
+
+* xref:05-risk.adoc[Risk]
+** xref:05-risk.adoc#risk_dashboard[Review Risk Dashboard]

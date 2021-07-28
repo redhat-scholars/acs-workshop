@@ -1,0 +1,16 @@
+= Risk Management in ACS
+include::_attributes.adoc[]
+:profile: acs
+
+TBD
+
+[#risk_dashboard]
+== Risks main dashboard
+
+You can check the OpenShift version using:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc version	
+----	
