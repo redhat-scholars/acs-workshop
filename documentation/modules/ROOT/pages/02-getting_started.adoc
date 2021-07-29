@@ -58,16 +58,22 @@ In the left part of the dashboard we can see the different sections we can acces
 
 Later we will go deeper in each of them. For the time being, we will introduce each of these:
 
-    * **Dashboard**, where we are in this moment. We can get a summarize vision of our environment.
-    * **Network Graph**, we can get information about the configured network flows and the real ones. We can use to create Network Policies to implement network segmentation.
-    * **Violations**, we can get all the events that do not match the defined security policies.
-    * **Compliance**, we can get the compliance of out environment according to several indistry and regulatory security standards such as **PCI DSS**.
-    * **Vulnerability Management**, get information about known vulnerabilities which are affecting your environment. Not only deployed workloads but infrastructure as well.
-    * **Configuration Management**, review configuration to prevent possible misconfigurations which can lead to security issues.
-    * **Risk**,
-    * **Platform Configuration**,
+* **Dashboard**, where we are in this moment. We can get a summarize vision of our environment.
+* **Network Graph**, we can get information about the configured network flows and the real ones. We can use to create Network Policies to implement network segmentation.
+* **Violations**, we can get all the events that do not match the defined security policies.
+* **Compliance**, we can get the compliance of out environment according to several indistry and regulatory security standards such as **PCI DSS**.
+* **Vulnerability Management**, get information about known vulnerabilities which are affecting your environment. Not only deployed workloads but infrastructure as well.
+* **Configuration Management**, review configuration to prevent possible misconfigurations which can lead to security issues.
+* **Risk**, review risks affecting your environment such as suspicious executions.
+* **Platform Configuration**, ACS configuration and integrations.
 
 [#dashboard_acs_information]
 === Dashboard Information
 
 image::dashboard/acs_dashboard_information.png[ACS Dashboard, 800]
+
+We can get a summary about the security state of the whole environment.
+
+You can browse and click in each part to get more information.
+
+You can spend a time browsing the information in Dashboard to get familiarized to. In the following sections we will go deeper in each one of them.
