@@ -54,6 +54,10 @@ image::dashboard/acs_dashboard_header.png[ACS Dashboard, 800]
 
 image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 150, role=left]
 
+++++
+<img align="left" role="left" src="dashboard/acs_dashboard_menu.png?raw=true"/>
+++++
+
 In the left we can see the different sections we can access in ACS to gather information about the security in the clusters we have configured in ACS.
 
 * **Dashboard**, where we are in this moment. We can get a summarize vision of our environment.
