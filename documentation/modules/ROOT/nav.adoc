@@ -5,9 +5,9 @@
 ** xref:01-setup.adoc#config_acs_securedcluster[Configuration of the ACS Secured Cluster ]
 
 * xref:02-getting_started.adoc[Getting Started]
-** xref:02-getting_started.adoc#acs_architecture[ACS Architecture]
 ** xref:02-getting_started.adoc#deploy_acs_automated[Deploying ACS with Ansible]
 ** xref:02-getting_started.adoc#deploy_demo_acs[Deploying Demo in ACS]
+** xref:02-getting_started.adoc#acs_architecture[ACS Architecture]
 ** xref:02-getting_started.adoc#dashboard_acs[ACS Dashboard]
 *** xref:02-getting_started.adoc#dashboard_acs_header[Dashboard Header]
 *** xref:02-getting_started.adoc#dashboard_acs_menu[Dashboard Menu]
