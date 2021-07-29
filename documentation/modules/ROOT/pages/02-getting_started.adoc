@@ -2,7 +2,11 @@
 include::_attributes.adoc[]
 :profile: acs
 
-TBD
+In this section we will face the following:
+
+* How to deploy ACS.
+* ACS Architecture.
+* The ACS Dashboard.
 
 [#deploy_demo_ansible]
 == Deploying ACS with Ansible
