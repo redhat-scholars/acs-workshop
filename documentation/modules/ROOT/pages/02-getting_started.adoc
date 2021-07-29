@@ -38,20 +38,23 @@ When login in ACS we get the ACS Dashboard:
 
 image::acs_dashboard.png[ACS Dashboard, 800]
 
-In the ACS Dashboard we have three main parts:
+In the ACS Dashboard we have three main sections:
 
 * The header
 * The menu
 * The information
 
+[#dashboard_acs_header]
 === The Header
 
 image::acs_dashboard_header.png[ACS Dashboard, 800]
 
+[#dashboard_acs_menu]
 === The Menu
 
-image::acs_dashboard_menu.png[ACS Dashboard, 800]
+image::acs_dashboard_menu.png[ACS Dashboard, 100]
 
+[#dashboard_acs_information]
 === The Information
 
 image::acs_dashboard_information.png[ACS Dashboard, 800]
