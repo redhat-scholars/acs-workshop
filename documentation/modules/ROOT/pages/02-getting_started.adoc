@@ -4,19 +4,6 @@ include::_attributes.adoc[]
 
 TBD
 
-[#acs_architecture]
-== ACS Architecture
-
-The StackRox Kubernetes Security Platform installs as a set of pods in your Kubernetes or OpenShift cluster and includes the following components:
-
-image::architecture_acs.png[ACS Architecture, 800]
-
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#central[**Central**]: Gathers and displays information from other components (1 for multiple clusters).
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Sensor**]: Collects and augments data from the Collector (1 for each cluster.)
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Scanner**]: Scans images for vulnerabilities (1 for multiple clusters)
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Collector**]: Collects and monitors container activities (1 on each node)
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Admission controller**]: Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)
-
 [#deploy_demo_ansible]
 == Deploying ACS with Ansible
 
@@ -31,12 +18,25 @@ git clone https://github.com/ralvares/ansible-demo.git ansible-demo
 
 TBD
 
+[#acs_architecture]
+== ACS Architecture
+
+The StackRox Kubernetes Security Platform installs as a set of pods in your Kubernetes or OpenShift cluster and includes the following components:
+
+image::architecture_acs.png[ACS Architecture, 800]
+
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#central[**Central**]: Gathers and displays information from other components (1 for multiple clusters).
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Sensor**]: Collects and augments data from the Collector (1 for each cluster.)
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Scanner**]: Scans images for vulnerabilities (1 for multiple clusters)
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Collector**]: Collects and monitors container activities (1 on each node)
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Admission controller**]: Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)
+
 [#dashboard_acs]
 == ACS Dashboard
 
-When login in ACS we get the ACS Dashboard:
+When login in ACS we will get the ACS Dashboard:
 
-image::acs_dashboard.png[ACS Dashboard, 800]
+image::dashboard/acs_dashboard.png[ACS Dashboard, 800]
 
 In the ACS Dashboard we have three main sections:
 
@@ -47,14 +47,14 @@ In the ACS Dashboard we have three main sections:
 [#dashboard_acs_header]
 === Dashboard Header
 
-image::acs_dashboard_header.png[ACS Dashboard, 800]
+image::dashboard/acs_dashboard_header.png[ACS Dashboard, 800]
 
 [#dashboard_acs_menu]
 === Dashboard Menu
 
-image::acs_dashboard_menu.png[ACS Dashboard, 100]
+image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 100]
 
 [#dashboard_acs_information]
 === Dashboard Information
 
-image::acs_dashboard_information.png[ACS Dashboard, 800]
+image::dashboard/acs_dashboard_information.png[ACS Dashboard, 800]
