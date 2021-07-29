@@ -30,3 +30,28 @@ git clone https://github.com/ralvares/ansible-demo.git ansible-demo
 == Deploying Demo in ACS
 
 TBD
+
+[#dashboard_acs]
+== ACS Dashboard
+
+When login in ACS we get the ACS Dashboard:
+
+image::acs_dashboard.png[ACS Dashboard, 800]
+
+In the ACS Dashboard we have three main parts:
+
+* The header
+* The menu
+* The information
+
+=== The Header
+
+image::acs_dashboard_header.png[ACS Dashboard, 800]
+
+=== The Menu
+
+image::acs_dashboard_menu.png[ACS Dashboard, 800]
+
+=== The Information
+
+image::acs_dashboard_information.png[ACS Dashboard, 800]
