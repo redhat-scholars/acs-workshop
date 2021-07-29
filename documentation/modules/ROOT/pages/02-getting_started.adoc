@@ -50,24 +50,22 @@ In the ACS Dashboard we have three main sections:
 image::dashboard/acs_dashboard_header.png[ACS Dashboard, 800]
 
 [#dashboard_acs_menu]
-=== Dashboard Menu
+=== Dashboard Lef Menu
 
 image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 150, role=left]
 
-#++++
-#<img align="left" role="left" src="dashboard/acs_dashboard_menu.png?raw=true"/>
-#++++
+In the left part of the dashboard we can see the different sections we can access in ACS to gather information about the security in the clusters we have configured in ACS.
 
-In the left we can see the different sections we can access in ACS to gather information about the security in the clusters we have configured in ACS.
+Later we will go deeper in each of them. For the time being, we will introduce each of these:
 
-* **Dashboard**, where we are in this moment. We can get a summarize vision of our environment.
-* **Network Graph**, we can get information about the configured network flows and the real ones. We can use to create Network Policies to implement network segmentation.
-* **Violations**, we can get all the events that do not match the defined security policies.
-* **Compliance**, we can get the compliance of out environment according to several indistry and regulatory security standards such as **PCI DSS**.
-* **Vulnerability Management**,
-* **Configuration Management**,
-* **Risk**,
-* **Platform Configuration**,
+    * **Dashboard**, where we are in this moment. We can get a summarize vision of our environment.
+    * **Network Graph**, we can get information about the configured network flows and the real ones. We can use to create Network Policies to implement network segmentation.
+    * **Violations**, we can get all the events that do not match the defined security policies.
+    * **Compliance**, we can get the compliance of out environment according to several indistry and regulatory security standards such as **PCI DSS**.
+    * **Vulnerability Management**, get information about known vulnerabilities which are affecting your environment. Not only deployed workloads but infrastructure as well.
+    * **Configuration Management**, review configuration to prevent possible misconfigurations which can lead to security issues.
+    * **Risk**,
+    * **Platform Configuration**,
 
 [#dashboard_acs_information]
 === Dashboard Information

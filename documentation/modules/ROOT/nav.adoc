@@ -10,7 +10,7 @@
 ** xref:02-getting_started.adoc#acs_architecture[ACS Architecture]
 ** xref:02-getting_started.adoc#dashboard_acs[ACS Dashboard]
 *** xref:02-getting_started.adoc#dashboard_acs_header[Dashboard Header]
-*** xref:02-getting_started.adoc#dashboard_acs_menu[Dashboard Menu]
+*** xref:02-getting_started.adoc#dashboard_acs_menu[Dashboard Left Menu]
 *** xref:02-getting_started.adoc#dashboard_acs_information[Dashboard Information]
 
 * xref:04-vulnerabilities.adoc[Vulnerability Management]
