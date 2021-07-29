@@ -52,7 +52,7 @@ image::dashboard/acs_dashboard_header.png[ACS Dashboard, 800]
 [#dashboard_acs_menu]
 === Dashboard Menu
 
-image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 150]
+image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 150, role=left]
 
 In the left we can see the different sections we can access in ACS to gather information about the security in the clusters we have configured in ACS.
 
