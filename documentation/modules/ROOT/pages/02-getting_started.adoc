@@ -54,7 +54,7 @@ In the ACS Dashboard we have three main sections:
 image::dashboard/acs_dashboard_header.png[ACS Dashboard, 800]
 
 [#dashboard_acs_menu]
-=== Dashboard Lef Menu
+=== Dashboard Left Menu
 
 image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 150, role=left]
 
