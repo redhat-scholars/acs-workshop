@@ -2,6 +2,24 @@
 include::_attributes.adoc[]
 :profile: acs
 
+In this section we will face the following:
+
+* How to deploy ACS.
+* ACS Architecture.
+* The ACS Dashboard.
+
+[#deploy_demo_ansible]
+== Deploying ACS with Ansible
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+git clone https://github.com/ralvares/ansible-demo.git ansible-demo
+----	
+
+[#deploy_demo_acs]
+== Deploying Demo in ACS
+
 TBD
 
 [#acs_architecture]
@@ -17,16 +35,49 @@ image::architecture_acs.png[ACS Architecture, 800]
 * https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Collector**]: Collects and monitors container activities (1 on each node)
 * https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Admission controller**]: Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)
 
-[#deploy_demo_ansible]
-== Deploying ACS with Ansible
+[#dashboard_acs]
+== ACS Dashboard
 
-[.console-input]
-[source,bash,subs="attributes+,+macros"]	
-----	
-git clone https://github.com/ralvares/ansible-demo.git ansible-demo
-----	
+When login in ACS we will get the ACS Dashboard:
 
-[#deploy_demo_acs]
-== Deploying Demo in ACS
+image::dashboard/acs_dashboard.png[ACS Dashboard, 800]
 
-TBD
+In the ACS Dashboard we have three main sections:
+
+* The header.
+* The menu.
+* The information.
+
+[#dashboard_acs_header]
+=== Dashboard Header
+
+image::dashboard/acs_dashboard_header.png[ACS Dashboard, 800]
+
+[#dashboard_acs_menu]
+=== Dashboard Lef Menu
+
+image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 150, role=left]
+
+In the left part of the dashboard we can see the different sections we can access in ACS to gather information about the security in the clusters we have configured in ACS.
+
+Later we will go deeper in each of them. For the time being, we will introduce each of these:
+
+* **Dashboard**, where we are in this moment. We can get a summarize vision of our environment.
+* **Network Graph**, we can get information about the configured network flows and the real ones. We can use to create Network Policies to implement network segmentation.
+* **Violations**, we can get all the events that do not match the defined security policies.
+* **Compliance**, we can get the compliance of out environment according to several indistry and regulatory security standards such as **PCI DSS**.
+* **Vulnerability Management**, get information about known vulnerabilities which are affecting your environment. Not only deployed workloads but infrastructure as well.
+* **Configuration Management**, review configuration to prevent possible misconfigurations which can lead to security issues.
+* **Risk**, review risks affecting your environment such as suspicious executions.
+* **Platform Configuration**, ACS configuration and integrations.
+
+[#dashboard_acs_information]
+=== Dashboard Information
+
+image::dashboard/acs_dashboard_information.png[ACS Dashboard, 800]
+
+We can get a summary about the security state of the whole environment.
+
+You can browse and click in each part to get more information.
+
+You can spend a time browsing the information in Dashboard to get familiarized to. In the following sections we will go deeper in each one of them.
