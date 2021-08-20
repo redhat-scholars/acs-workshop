@@ -126,6 +126,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#vulnerability_management_panel">Review Vulnerability Management Dashboard</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#image_overview_image_details">Image overview and image details</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -246,14 +249,48 @@
 <div class="paragraph">
 <p>The overview provides several important reports - where the vulnerabilities are, which are the most widespread or the most recent, where my Docker images are coming from, and important vulnerabilities in OpenShift itself.</p>
 </div>
-<div class="imageblock left">
+<div class="imageblock">
 <div class="content">
-<img src="_images/vulnerabilities/40_vuln.png" alt="ACS Vulnerabilities" width="450">
+<img src="_images/vulnerabilities/40_vuln.png" alt="ACS Vulnerabilities" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>More important than fixing any one vulnerability is establishing a process to keep container images updated and to prevent the promotion through the pipeline for images that have serious, fixable vulnerabilities.
-In the upper right, you’ll see buttons to link you to all policies, CVEs, and images, and a menu to bring you to reports by cluster, namespace, deployment, and component.</p>
+<p>More important than fixing any one vulnerability is establishing a process to keep container images updated and to prevent the promotion through the pipeline for images that have serious, fixable vulnerabilities.</p>
+</div>
+<div class="paragraph">
+<p>In the upper right, you’ll see buttons to link you to all policies, CVEs, and images, and a menu to bring you to reports by cluster, namespace, deployment, and component.</p>
+</div>
+<div class="paragraph">
+<p>Point out the Top Riskiest Images panel in the upper right</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="image_overview_image_details"><a class="anchor" href="#image_overview_image_details"></a>Image overview and image details</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In Top Riskiest Images, images are listed here in order of risk, based on the number and severity of the vulnerabilities present in the components in the images.</p>
+</div>
+<div class="paragraph">
+<p>In the Top Riskiest Images, click on #4, mastercard-processor:latest</p>
+</div>
+<div class="paragraph">
+<p>ACS’ built-in vulnerability scanner breaks down images into layers and components - where components can be operating-system installed packages, or dependencies installed by programming languages like Python, Javascript, or Java.</p>
+</div>
+<div class="paragraph">
+<p>The Image Summary provides the important security details of the image overall, with links to the components.</p>
+</div>
+<div class="paragraph">
+<p>You can also see, at the top, the warning that CVE data is stale - that this image has a base OS version whose distribution has stopped providing security information on, and has likely stopped publishing security fixes for.</p>
+</div>
+<div class="paragraph">
+<p>At the bottom, the Image Findings section focuses on Fixable vulnerabilities, sorted by CVSS.
+Under the Image Findings section, Click on Dockerfile tab</p>
+</div>
+<div class="paragraph">
+<p>The Dockerfile tab view shows the layer-by-layer view, starting from the base image.
+This image shows us a serious security problem - the base image was imported more than three years ago and even the most recent layers are more than two years old.
+Time is not kind to images and components - as vulnerabilities are discovered, ACS will display newly discovered CVEs.</p>
 </div>
 </div>
 </div>
