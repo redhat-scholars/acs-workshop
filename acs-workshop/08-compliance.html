@@ -160,6 +160,18 @@
     <a class="nav-link" href="#compliance_dashboard">Review Compliance Dashboard</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#compliance_dashboard_scan">Execute the first Compliance Scan</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#compliance_dashboard_review">Review the Compliance Reports in the Compliance Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#compliance_dashboard_ns">Namespace Compliance Details</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#compliance_dashboard_report">Evidence Export</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#compliance_operator">Integrating Compliance Operator with ACS </a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -263,8 +275,13 @@
 <div class="sect1">
 <h2 id="compliance_dashboard"><a class="anchor" href="#compliance_dashboard"></a>Review Compliance Dashboard</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="compliance_dashboard_scan"><a class="anchor" href="#compliance_dashboard_scan"></a>Execute the first Compliance Scan</h3>
 <div class="paragraph">
-<p>Compliance Dashboard</p>
+<p>Once the RHACS is installed the first compliance scan needs to be executed to ensure that the Compliance results are available. So let&#8217;s execute our first Compliance Scan.</p>
+</div>
+<div class="paragraph">
+<p>Compliance Dashboard without the First Compliance Scan</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -284,7 +301,100 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/compliance/02_compliance_result.png" alt="ACS 3" width="300">
+<img src="_images/compliance/02_compliance_result.png" alt="ACS 3" width="800">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compliance_dashboard_review"><a class="anchor" href="#compliance_dashboard_review"></a>Review the Compliance Reports in the Compliance Dashboard</h3>
+<div class="paragraph">
+<p>The compliance reports gather information for configuration, industry standards, and best practices for container-based workloads running in OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>In many ways, you’ve already seen the compliance features - because they’re tied to controls that we saw in Risk, in the Network Graph, and in Policies</p>
+</div>
+<div class="paragraph">
+<p>Each standard represents a series of controls, with guidance provided by StackRox on the specific OpenShift configuration or DevOps process required to meet that control.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on PCI, or the PCI percentage bar, in the upper-left “Passing Standards Across Clusters” graph</p>
+</li>
+<li>
+<p>Click on Control 1.1.4, “Requirements for a firewall…”</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/00_compliance_pci.png" alt="ACS 4" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>For example, PCI-DSS has controls that refer to firewalls and DMZ - not exactly cloud-native</p>
+</div>
+<div class="paragraph">
+<p>In OpenShift, that requirement, and other isolation requirements, is met by Network Policies, and the 32% compliance score here indicates that only about one third of my deployments have correctly defined policies.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on Compliance tab from the left hand side menu</p>
+</li>
+<li>
+<p>Click on NIST SP 800-190. Click on Control 4.1.1, “Image vulnerabilities…”</p>
+</li>
+<li>
+<p>Similarly - NIST 800-190, the application containers security standard, requires a pipeline-based build approach to mitigating vulnerabilities in images.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/00_compliance_pci2.png" alt="ACS 4_2" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Because we added enforcement to the CVSS &gt;7 policy, we now meet the requirement dictated by control 4.1.1, and the 0% score changes to 100% because we now have the control in place to prevent known vulnerabilities from being deployed</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compliance_dashboard_ns"><a class="anchor" href="#compliance_dashboard_ns"></a>Namespace Compliance Details</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on Compliance tab on the left hand side menu</p>
+</li>
+<li>
+<p>Click on Namespaces in the top toolbar of the compliance page</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Of course, like every other report - it’s also valuable to break this data down by Clusters, Namespaces, and Deployments.</p>
+</div>
+<div class="paragraph">
+<p>Namespaces in particular - being able to see, application-by-application, or team-by-team, where the gaps in compliance are.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compliance_dashboard_report"><a class="anchor" href="#compliance_dashboard_report"></a>Evidence Export</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on Compliance tab on the left hand side menu</p>
+</li>
+<li>
+<p>Last thing about compliance - you’re only as compliant as you can prove!</p>
+</li>
+<li>
+<p>Click on the Export button in the upper right to show the “Evidence as CSV” option</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This is the evidence export that your auditors will want to see for proof that the security controls mandated are actually in place.</p>
 </div>
 </div>
 </div>
@@ -293,7 +403,10 @@
 <h2 id="compliance_operator"><a class="anchor" href="#compliance_operator"></a>Integrating Compliance Operator with ACS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Red Hat Advanced Cluster Security for Kubernetes supports OpenShift Container Platform configuration compliance standards through an integration with the OpenShift Container Platform Compliance Operator. In addition, it allows you to measure and report on configuration security best practices for OpenShift Container Platform.</p>
+<p>Red Hat Advanced Cluster Security for Kubernetes supports OpenShift Container Platform configuration compliance standards through an integration with the OpenShift Container Platform Compliance Operator.</p>
+</div>
+<div class="paragraph">
+<p>In addition, it allows you to measure and report on configuration security best practices for OpenShift Container Platform.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -674,12 +787,26 @@ deployed."</p>
 </div>
 <div class="paragraph">
 <p>Navigate to Platform Configuration &#8594; System Policies
-Find and click on the policy named, "90-day Image Age" which by default is second in the list. Click Edit to get to the Policy settings.
-Click Next at the upper right to get to the Policy Criteria page.
-Click Next at the upper right to get to the Violations Preview page.
-Click Next at the upper right to get to the Enforcement Options page.
-On the enforcement options, click Off for both Build and Deploy enforcement. Click Save, and then X to close.
-At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to disable enforcement and save the policy.</p>
+Find and click on the policy named, "90-day Image Age" which by default is second in the list. Click Edit to get to the Policy settings.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click Next at the upper right to get to the Policy Criteria page.</p>
+</li>
+<li>
+<p>Click Next at the upper right to get to the Violations Preview page.</p>
+</li>
+<li>
+<p>Click Next at the upper right to get to the Enforcement Options page.</p>
+</li>
+<li>
+<p>On the enforcement options, click Off for both Build and Deploy enforcement. Click Save, and then X to close.</p>
+</li>
+<li>
+<p>At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to disable enforcement and save the policy.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
