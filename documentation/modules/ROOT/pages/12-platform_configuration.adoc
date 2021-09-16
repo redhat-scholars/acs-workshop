@@ -4,12 +4,18 @@ include::_attributes.adoc[]
 
 TBD
 
-[#clusters]
-== ACS Secured Clusters
+[#secured_clusters]
+== Install additional ACS Secured Clusters
+
+To monitor a cluster, you must deploy a Sensor. The following steps describe adding a sensor by using the StackRox portal
+
+* On the StackRox portal, navigate to Platform Configuration > Clusters.
+* Select + New Cluster.
+* Specify a name for the cluster - production
 
 image::multicluster/0_multi.png[ACS Multi 1, 800]
 
-Download the zip and execute in the bastion of the lab:
+* Click Next and download the zip:
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
@@ -19,7 +25,17 @@ unzip -d sensor sensor-[cluster-name].zip
 ./sensor/sensor.sh
 ----	
 
-The output should show oc version >=4.7:	
+NOTE: the installation of the sensor will ask you to your dockerhub account, just use one dummy account if you want to avoid the integration with dockerhub registry.
+
+* Once the process finished without errors, check the pods:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get pod -n stackrox
+----	
+
+The pods of the admission controllers (one per master), the collectors and the sensor, will be in Running state:
 
 [.console-output]
 [source,bash,subs="attributes+,+macros"]	
@@ -38,7 +54,6 @@ collector-vr8h6                      2/2     Running   0          76s
 collector-z2frz                      2/2     Running   0          76s
 sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s
 ----
-
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
@@ -66,7 +81,26 @@ collector-z2frz                      2/2     Running   0          76s
 sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s
 ----
 
+* Return to the ACS portal and check if the deployment is successful. If it’s successful, a green checkmark appears under section #2.
+
+image::multicluster/01_multi.png[ACS Multi 2, 800]
+
 https://help.stackrox.com/docs/get-started/quick-start/#install-a-sensor
+
+[#secured_clusters_add_vuln]
+=== Add vulnerabilities to the Secured Cluster
+
+Deploy vulnerability in the development Demo
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc new-project suspicious
+oc run shell --labels=app=shellshock,team=test-team --image=vulnerables/cve-2014-6271 -n suspicious
+oc run samba --labels=app=rce --image=vulnerables/cve-2017-7494 -n suspicious
+oc run phpunit --labels=app=phpunit --image=vulhub/phpunit:5.6.2 -n suspicious 
+oc run couchdb --labels=app=couchdb --image=vulhub/couchdb:1.6.0 -n suspicious
+----	
 
 [#system_configuration]
 == ACS System Configuration
