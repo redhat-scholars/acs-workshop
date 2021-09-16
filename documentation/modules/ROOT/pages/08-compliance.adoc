@@ -2,4 +2,281 @@
 include::_attributes.adoc[]
 :profile: acs
 
-TBD
+[#compliance_dashboard]
+== Review Compliance Dashboard
+
+Compliance Dashboard
+
+image::compliance/00_compliance_dash.png[ACS 1, 800]
+
+Run compliance scanner
+
+image::compliance/01_compliance_scan.png[ACS 2, 300]
+
+Compliance Result
+
+image::compliance/02_compliance_result.png[ACS 3, 300]
+
+[#compliance_operator]
+== Integrating Compliance Operator with ACS 
+
+Red Hat Advanced Cluster Security for Kubernetes supports OpenShift Container Platform configuration compliance standards through an integration with the OpenShift Container Platform Compliance Operator. In addition, it allows you to measure and report on configuration security best practices for OpenShift Container Platform.
+
+* Create a Namespace object YAML file by running:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f co-ns.yaml
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-compliance	
+----
+
+* Create the Compliance Operator OperatorGroup object YAML file by running:
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: compliance-operator
+  namespace: openshift-compliance
+spec:
+  targetNamespaces:
+  - openshift-compliance	
+----
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f co-og.yaml
+----
+
+* Create the Compliance Operator Subscription object YAML file by running:
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: compliance-operator-sub
+  namespace: openshift-compliance
+spec:
+  channel: "release-0.1"
+  installPlanApproval: Automatic
+  name: compliance-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+----
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f co-subs.yaml
+----
+
+* Verify the installation succeeded by inspecting the CSV file:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get csv -n openshift-compliance | grep compliance
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+# oc get csv -n openshift-compliance | grep compliance
+compliance-operator.v0.1.39   Compliance Operator   0.1.39   Succeeded
+----
+
+* Verify that the Compliance Operator is up and running:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+# oc get pod -n openshift-compliance
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+# oc get pod -n openshift-compliance
+NAME                                            READY   STATUS    RESTARTS   AGE
+compliance-operator-5989ff994b-mrhc9            1/1     Running   1          4m42s
+ocp4-openshift-compliance-pp-6d7c7db4bd-2gnrf   1/1     Running   0          3m2s
+rhcos4-openshift-compliance-pp-c7b548bd-k4sz2   1/1     Running   0          3m2s
+----
+
+[#compliance_operator_scan]
+=== Running compliance scans
+
+We now want to make sure that the nodes are scanned appropiately. For this, we’ll need a ScanSettingsBinding, this bind a profile with scan settings in order to get scans to run.
+
+* Create a ScanSettingBinding object that binds to the default ScanSetting object and scans the cluster using the cis and cis-node profiles.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+# oc apply -f co-scan.yaml
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: compliance.openshift.io/v1alpha1
+kind: ScanSettingBinding
+metadata:
+  name: cis-scan
+  namespace: openshift-compliance
+profiles:
+- apiGroup: compliance.openshift.io/v1alpha1
+  kind: Profile
+  name: ocp4-cis
+settingsRef:
+  apiGroup: compliance.openshift.io/v1alpha1
+  kind: ScanSetting
+  name: default
+----
+
+* Check the scansettingbinding generated:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+# oc get scansettingbinding cis-scan -n openshift-compliance -o yaml
+----
+
+* With this the scan will start as you can check with the CRD of ComplianceScan.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+# oc get compliancescan -n openshift-compliance ocp4-cis
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+ oc get compliancescan -n openshift-compliance
+NAME       PHASE     RESULT
+ocp4-cis   RUNNING   NOT-AVAILABLE
+----
+
+* After the scan is done, you'll see it was persistent in the relevant namespace:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+# oc get compliancescan -n openshift-compliance
+
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+NAME       PHASE   RESULT
+ocp4-cis   DONE    NON-COMPLIANT
+----
+
+[#compliance_operator_acs_review]
+=== Review Compliance Scans of the Compliance Operator in ACS
+
+* If ACS was installed prior to the Compliance Operator, we'll need to restart the ACS sensor in the OpenShift cluster to see these results.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+#  oc delete pods -l app.kubernetes.io/component=sensor -n stackrox
+----
+
+* With the Sensor restarted, kick off a compliance scan in ACS to see the updated results:
+
+image::compliance/01_compliance_scan.png[ACS 4, 300]
+
+In the ACS User Interface, select Compliance from the left menu, and click Scan Environment in the top menu bar.
+The scan should only take a few seconds; once it's complete you should see entries for both the ACS built-in and compliance operator standards:
+
+* Check that the ocp4-cis report from the Compliance Operator is shown in ACS Compliance Dashboard:
+
+image::compliance/03_compliance_operator_in_acs.png[ACS 5, 500]
+
+* To see the detailed results, click on the name or bar of any of the standards. To investigate the results of the OpenShift CIS benchmark scan, for example, click ocp4-cis: 
+
+image::compliance/04_co_acs_detail.png[ACS 6, 500]
+
+
+https://docs.openshift.com/container-platform/4.8/security/compliance_operator/compliance-scans.html
+
+[#acs_policy_compliance]
+== Configure Policy in ACS to Invoke Compliance related Controls
+
+The Built-in standards in ACS Compliance provide guidance on required configurations to meet each individual control. Standards like PCI, HIPAA, and NIST 800-190 are focused on workloads visible to ACS, and apply to all workloads running in any Kubernetes cluster that ACS is installed in.
+
+Much of the control guidance can be implemented using ACS policies, and providing appropriate policy with enforcement in ACS can change compliance scores.
+
+As an example, we'll look at a control in the NIST 800-190 that requires that container images be kept up to date, and to use meaningful version tags: "practices should emphasize accessing images using immutable names that specify discrete versions of images to be used."
+
+WARNING: This configuration will change the behavior of your Kubernetes clusters and possibly result in preventing new deployments from being created. After testing, you can quickly revert the changes using the instructions at the end of this section.
+
+* Inspect the NIST 800-190 Guidance for Control 4.2.2
+* Navigate back to the ACS Compliance page.
+* In the section labeled "PASSING STANDARDS ACROSS CLUSTERS", click on NIST 800-190.
+* Scroll down to control 4.2.2 and examine the control guidance on the right.
+
+The control guidance reads:
+"StackRox continuously monitors the images being used by active deployments. StackRox provides
+built-in policies that detects if images with insecure tags are being used or if the image being used is pretty old.
+Therefore, the cluster is compliant if there are policies that are being enforced that discourages such images from being
+deployed."
+
+image::compliance/05_nist0.png[ACS 7, 500]
+
+[#acs_policy_compliance_nist]
+=== Enforce Policies that Meet Guidance for NIST Control 4.2.2
+
+There are two separate default system policies that, together, meet this control's guidance, "90-day Image Age," and "Latest tag". Both must have enforcement enabled for this control to be satisfied.
+
+* Navigate to Platform Configuration -> System Policies
+* Find and click on the policy named, "90-day Image Age" which by default is second in the list. We're not going to change this policy other than to enable enforcement.
+* Click Edit to get to the Policy settings.
+* Click Next at the upper right to get to the Policy Criteria page.
+* Click Next at the upper right to get to the Violations Preview page.
+* Click Next at the upper right to get to the Enforcement Options page.
+* On the enforcement options, click On for both Build and Deploy enforcement. Click Save, and then X to close.
+* At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to enable enforcement and save the policy.
+
+image::compliance/06_nist1.png[ACS 8, 400]
+
+[#acs_policy_compliance_nist_view]
+=== View Updated Compliance Scan Results in ACS
+
+* In order to see the impact on NIST 800-190 scores:
+* Navigate back to the compliance page.
+* Click "Scan Environment" in the upper right.
+* In the section labeled "PASSING STANDARDS ACROSS CLUSTERS", click on NIST 800-190.
+* Scroll down to control 4.2.2 and verify that the control now reports 100% compliance.
+
+image::compliance/07_nist2.png[ACS 9, 400]
+
+[#acs_policy_compliance_nist_revert]
+=== Revert the Policy Changes
+
+To avoid rejecting any other deployments to the cluster, you should disable the enforcement after viewing the updated ACS results.
+
+Navigate to Platform Configuration -> System Policies
+Find and click on the policy named, "90-day Image Age" which by default is second in the list. Click Edit to get to the Policy settings.
+Click Next at the upper right to get to the Policy Criteria page.
+Click Next at the upper right to get to the Violations Preview page.
+Click Next at the upper right to get to the Enforcement Options page.
+On the enforcement options, click Off for both Build and Deploy enforcement. Click Save, and then X to close.
+At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to disable enforcement and save the policy.

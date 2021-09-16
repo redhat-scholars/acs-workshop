@@ -21,11 +21,18 @@
 ** xref:05-risk.adoc#risk_dashboard[Review Risk Dashboard]
 
 * xref:06-network_graph.adoc[Network Graph]
-* xref:06-network_graph.adoc#network_graph_overview[Network Graph Overview]
+** xref:06-network_graph.adoc#network_graph_overview[Network Graph Overview]
 
 * xref:07-violations.adoc[Violations]
 
 * xref:08-compliance.adoc[Compliance]
+** xref:08-compliance.adoc#compliance_dashboard[Review Compliance Dashboard]
+** xref:08-compliance.adoc#compliance_operator[Integrating Compliance Operator with ACS ]
+** xref:08-compliance.adoc#compliance_operator_acs_review[Review Compliance Scans of the Compliance Operator in ACS]
+** xref:08-compliance.adoc#acs_policy_compliance[Configure Policy in ACS to Invoke Compliance related Controls]
+** xref:08-compliance.adoc#acs_policy_compliance_nist[Enforce Policies that Meet Guidance for NIST Control 4.2.2]
+** xref:08-compliance.adoc#acs_policy_compliance_nist_view[View Updated Compliance Scan Results in ACS]
+** xref:08-compliance.adoc#acs_policy_compliance_nist_revert[Revert the Policy Changes]
 
 * xref:09-configuration_management.adoc[Configuration Management]
 
