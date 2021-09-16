@@ -27,6 +27,10 @@
 
 * xref:08-compliance.adoc[Compliance]
 ** xref:08-compliance.adoc#compliance_dashboard[Review Compliance Dashboard]
+** xref:08-compliance.adoc#compliance_dashboard_scan[Execute the first Compliance Scan]
+** xref:08-compliance.adoc#compliance_dashboard_review[Review the Compliance Reports in the Compliance Dashboard]
+** xref:08-compliance.adoc#compliance_dashboard_ns[Namespace Compliance Details]
+** xref:08-compliance.adoc#compliance_dashboard_report[Evidence Export]
 ** xref:08-compliance.adoc#compliance_operator[Integrating Compliance Operator with ACS ]
 ** xref:08-compliance.adoc#compliance_operator_acs_review[Review Compliance Scans of the Compliance Operator in ACS]
 ** xref:08-compliance.adoc#acs_policy_compliance[Configure Policy in ACS to Invoke Compliance related Controls]

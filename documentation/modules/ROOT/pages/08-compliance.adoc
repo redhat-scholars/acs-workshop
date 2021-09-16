@@ -5,7 +5,12 @@ include::_attributes.adoc[]
 [#compliance_dashboard]
 == Review Compliance Dashboard
 
-Compliance Dashboard
+[#compliance_dashboard_scan]
+=== Execute the first Compliance Scan
+
+Once the RHACS is installed the first compliance scan needs to be executed to ensure that the Compliance results are available. So let's execute our first Compliance Scan.
+
+Compliance Dashboard without the First Compliance Scan 
 
 image::compliance/00_compliance_dash.png[ACS 1, 800]
 
@@ -15,12 +20,63 @@ image::compliance/01_compliance_scan.png[ACS 2, 300]
 
 Compliance Result
 
-image::compliance/02_compliance_result.png[ACS 3, 300]
+image::compliance/02_compliance_result.png[ACS 3, 800]
+
+[#compliance_dashboard_review]
+=== Review the Compliance Reports in the Compliance Dashboard
+
+The compliance reports gather information for configuration, industry standards, and best practices for container-based workloads running in OpenShift.
+
+In many ways, you’ve already seen the compliance features - because they’re tied to controls that we saw in Risk, in the Network Graph, and in Policies
+
+Each standard represents a series of controls, with guidance provided by StackRox on the specific OpenShift configuration or DevOps process required to meet that control.
+
+* Click on PCI, or the PCI percentage bar, in the upper-left “Passing Standards Across Clusters” graph
+
+* Click on Control 1.1.4, “Requirements for a firewall…”
+
+image::compliance/00_compliance_pci.png[ACS 4, 800]
+
+For example, PCI-DSS has controls that refer to firewalls and DMZ - not exactly cloud-native
+
+In OpenShift, that requirement, and other isolation requirements, is met by Network Policies, and the 32% compliance score here indicates that only about one third of my deployments have correctly defined policies.
+
+* Click on Compliance tab from the left hand side menu
+
+* Click on NIST SP 800-190. Click on Control 4.1.1, “Image vulnerabilities…”
+
+* Similarly - NIST 800-190, the application containers security standard, requires a pipeline-based build approach to mitigating vulnerabilities in images.
+
+image::compliance/00_compliance_pci2.png[ACS 4_2, 800]
+
+Because we added enforcement to the CVSS >7 policy, we now meet the requirement dictated by control 4.1.1, and the 0% score changes to 100% because we now have the control in place to prevent known vulnerabilities from being deployed
+
+[#compliance_dashboard_ns]
+=== Namespace Compliance Details
+
+* Click on Compliance tab on the left hand side menu
+* Click on Namespaces in the top toolbar of the compliance page
+
+Of course, like every other report - it’s also valuable to break this data down by Clusters, Namespaces, and Deployments.
+
+Namespaces in particular - being able to see, application-by-application, or team-by-team, where the gaps in compliance are.
+
+[#compliance_dashboard_report]
+=== Evidence Export
+
+* Click on Compliance tab on the left hand side menu
+* Last thing about compliance - you’re only as compliant as you can prove!
+* Click on the Export button in the upper right to show the “Evidence as CSV” option
+
+This is the evidence export that your auditors will want to see for proof that the security controls mandated are actually in place.
+
 
 [#compliance_operator]
 == Integrating Compliance Operator with ACS 
 
-Red Hat Advanced Cluster Security for Kubernetes supports OpenShift Container Platform configuration compliance standards through an integration with the OpenShift Container Platform Compliance Operator. In addition, it allows you to measure and report on configuration security best practices for OpenShift Container Platform.
+Red Hat Advanced Cluster Security for Kubernetes supports OpenShift Container Platform configuration compliance standards through an integration with the OpenShift Container Platform Compliance Operator. 
+
+In addition, it allows you to measure and report on configuration security best practices for OpenShift Container Platform.
 
 * Create a Namespace object YAML file by running:
 
@@ -275,8 +331,9 @@ To avoid rejecting any other deployments to the cluster, you should disable the 
 
 Navigate to Platform Configuration -> System Policies
 Find and click on the policy named, "90-day Image Age" which by default is second in the list. Click Edit to get to the Policy settings.
-Click Next at the upper right to get to the Policy Criteria page.
-Click Next at the upper right to get to the Violations Preview page.
-Click Next at the upper right to get to the Enforcement Options page.
-On the enforcement options, click Off for both Build and Deploy enforcement. Click Save, and then X to close.
-At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to disable enforcement and save the policy.
+
+* Click Next at the upper right to get to the Policy Criteria page.
+* Click Next at the upper right to get to the Violations Preview page.
+* Click Next at the upper right to get to the Enforcement Options page.
+* On the enforcement options, click Off for both Build and Deploy enforcement. Click Save, and then X to close.
+* At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to disable enforcement and save the policy.
