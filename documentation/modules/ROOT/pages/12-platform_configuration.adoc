@@ -7,12 +7,16 @@ TBD
 [#clusters]
 == ACS Secured Clusters
 
-TBD
+image::multicluster/0_multi.png[ACS Multi 1, 800]
+
+Download the zip and execute in the bastion of the lab:
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-oc version	
+unzip -d sensor sensor-[cluster-name].zip
+
+./sensor/sensor.sh
 ----	
 
 The output should show oc version >=4.7:	
@@ -20,9 +24,49 @@ The output should show oc version >=4.7:
 [.console-output]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-Client Version: 4.7.0-202102130115.p0-c66c03f	
-Kubernetes Version: {kubernetes-version}	
+ 
+NAME                                 READY   STATUS    RESTARTS   AGE
+admission-control-6b6bcfbf48-bsldm   1/1     Running   0          80s
+admission-control-6b6bcfbf48-rrppt   1/1     Running   0          80s
+admission-control-6b6bcfbf48-w9wv6   1/1     Running   0          80s
+collector-52jlx                      2/2     Running   0          76s
+collector-8pc44                      2/2     Running   0          76s
+collector-lgqqw                      2/2     Running   0          76s
+collector-qdvbq                      2/2     Running   0          76s
+collector-qlst8                      2/2     Running   0          76s
+collector-vr8h6                      2/2     Running   0          76s
+collector-z2frz                      2/2     Running   0          76s
+sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s
 ----
+
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get pod -n stackrox
+----	
+
+The output should show oc version >=4.7:	
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+ 
+NAME                                 READY   STATUS    RESTARTS   AGE
+admission-control-6b6bcfbf48-bsldm   1/1     Running   0          80s
+admission-control-6b6bcfbf48-rrppt   1/1     Running   0          80s
+admission-control-6b6bcfbf48-w9wv6   1/1     Running   0          80s
+collector-52jlx                      2/2     Running   0          76s
+collector-8pc44                      2/2     Running   0          76s
+collector-lgqqw                      2/2     Running   0          76s
+collector-qdvbq                      2/2     Running   0          76s
+collector-qlst8                      2/2     Running   0          76s
+collector-vr8h6                      2/2     Running   0          76s
+collector-z2frz                      2/2     Running   0          76s
+sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s
+----
+
+https://help.stackrox.com/docs/get-started/quick-start/#install-a-sensor
 
 [#system_configuration]
 == ACS System Configuration

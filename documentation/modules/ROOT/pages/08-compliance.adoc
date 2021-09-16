@@ -151,7 +151,7 @@ oc get csv -n openshift-compliance | grep compliance
 [.console-output]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-# oc get csv -n openshift-compliance | grep compliance
+oc get csv -n openshift-compliance | grep compliance
 compliance-operator.v0.1.39   Compliance Operator   0.1.39   Succeeded
 ----
 
@@ -160,13 +160,13 @@ compliance-operator.v0.1.39   Compliance Operator   0.1.39   Succeeded
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-# oc get pod -n openshift-compliance
+oc get pod -n openshift-compliance
 ----
 
 [.console-output]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-# oc get pod -n openshift-compliance
+oc get pod -n openshift-compliance
 NAME                                            READY   STATUS    RESTARTS   AGE
 compliance-operator-5989ff994b-mrhc9            1/1     Running   1          4m42s
 ocp4-openshift-compliance-pp-6d7c7db4bd-2gnrf   1/1     Running   0          3m2s
@@ -183,7 +183,7 @@ We now want to make sure that the nodes are scanned appropiately. For this, weâ€
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-# oc apply -f co-scan.yaml
+oc apply -f co-scan.yaml
 ----
 
 [.console-output]
@@ -209,7 +209,7 @@ settingsRef:
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-# oc get scansettingbinding cis-scan -n openshift-compliance -o yaml
+oc get scansettingbinding cis-scan -n openshift-compliance -o yaml
 ----
 
 * With this the scan will start as you can check with the CRD of ComplianceScan.
@@ -217,7 +217,7 @@ settingsRef:
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-# oc get compliancescan -n openshift-compliance ocp4-cis
+oc get compliancescan -n openshift-compliance ocp4-cis
 ----
 
 [.console-output]
@@ -233,7 +233,7 @@ ocp4-cis   RUNNING   NOT-AVAILABLE
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-# oc get compliancescan -n openshift-compliance
+oc get compliancescan -n openshift-compliance
 
 ----
 
@@ -252,7 +252,7 @@ ocp4-cis   DONE    NON-COMPLIANT
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-#  oc delete pods -l app.kubernetes.io/component=sensor -n stackrox
+oc delete pods -l app.kubernetes.io/component=sensor -n stackrox
 ----
 
 * With the Sensor restarted, kick off a compliance scan in ACS to see the updated results:
