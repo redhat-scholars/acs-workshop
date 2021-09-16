@@ -208,6 +208,9 @@
     <a class="nav-link" href="#clusters">ACS Secured Clusters</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#clusters_vuln">Add vulnerabilities to the Secured Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#system_configuration">ACS System Configuration</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -280,15 +283,35 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="clusters"><a class="anchor" href="#clusters"></a>ACS Secured Clusters</h2>
+<h2 id="secured_clusters"><a class="anchor" href="#secured_clusters"></a>Install additional ACS Secured Clusters</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>To monitor a cluster, you must deploy a Sensor. The following steps describe adding a sensor by using the StackRox portal</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the StackRox portal, navigate to Platform Configuration &gt; Clusters.</p>
+</li>
+<li>
+<p>Select + New Cluster.</p>
+</li>
+<li>
+<p>Specify a name for the cluster - production</p>
+</li>
+</ul>
+</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/multicluster/0_multi.png" alt="ACS Multi 1" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Download the zip and execute in the bastion of the lab:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Click Next and download the zip:</p>
+</li>
+</ul>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -297,8 +320,32 @@
 ./sensor/sensor.sh</code></pre>
 </div>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the installation of the sensor will ask you to your dockerhub account, just use one dummy account if you want to avoid the integration with dockerhub registry.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Once the process finished without errors, check the pods:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pod -n stackrox</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>The output should show oc version &gt;=4.7:</p>
+<p>The pods of the admission controllers (one per master), the collectors and the sensor, will be in Running state:</p>
 </div>
 <div class="listingblock console-output">
 <div class="content">
@@ -340,8 +387,35 @@ collector-z2frz                      2/2     Running   0          76s
 sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s</code></pre>
 </div>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Return to the ACS portal and check if the deployment is successful. If it’s successful, a green checkmark appears under section #2.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/multicluster/01_multi.png" alt="ACS Multi 2" width="800">
+</div>
+</div>
 <div class="paragraph">
 <p><a href="https://help.stackrox.com/docs/get-started/quick-start/#install-a-sensor" class="bare">https://help.stackrox.com/docs/get-started/quick-start/#install-a-sensor</a></p>
+</div>
+<div class="sect2">
+<h3 id="secured_clusters_add_vuln"><a class="anchor" href="#secured_clusters_add_vuln"></a>Add vulnerabilities to the Secured Cluster</h3>
+<div class="paragraph">
+<p>Deploy vulnerability in the development Demo</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc new-project suspicious
+oc run shell --labels=app=shellshock,team=test-team --image=vulnerables/cve-2014-6271 -n suspicious
+oc run samba --labels=app=rce --image=vulnerables/cve-2017-7494 -n suspicious
+oc run phpunit --labels=app=phpunit --image=vulhub/phpunit:5.6.2 -n suspicious
+oc run couchdb --labels=app=couchdb --image=vulhub/couchdb:1.6.0 -n suspicious</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
