@@ -493,7 +493,7 @@ spec:
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get csv -n openshift-compliance | grep compliance
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-compliance | grep compliance
 compliance-operator.v0.1.39   Compliance Operator   0.1.39   Succeeded</code></pre>
 </div>
 </div>
@@ -506,12 +506,12 @@ compliance-operator.v0.1.39   Compliance Operator   0.1.39   Succeeded</code></p
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get pod -n openshift-compliance</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pod -n openshift-compliance</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get pod -n openshift-compliance
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pod -n openshift-compliance
 NAME                                            READY   STATUS    RESTARTS   AGE
 compliance-operator-5989ff994b-mrhc9            1/1     Running   1          4m42s
 ocp4-openshift-compliance-pp-6d7c7db4bd-2gnrf   1/1     Running   0          3m2s
@@ -532,7 +532,7 @@ rhcos4-openshift-compliance-pp-c7b548bd-k4sz2   1/1     Running   0          3m2
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc apply -f co-scan.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f co-scan.yaml</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -561,7 +561,7 @@ settingsRef:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get scansettingbinding cis-scan -n openshift-compliance -o yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get scansettingbinding cis-scan -n openshift-compliance -o yaml</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -573,7 +573,7 @@ settingsRef:
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get compliancescan -n openshift-compliance ocp4-cis</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get compliancescan -n openshift-compliance ocp4-cis</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -592,7 +592,7 @@ ocp4-cis   RUNNING   NOT-AVAILABLE</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get compliancescan -n openshift-compliance</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get compliancescan -n openshift-compliance</code></pre>
 </div>
 </div>
 <div class="listingblock console-output">
@@ -613,7 +613,7 @@ ocp4-cis   DONE    NON-COMPLIANT</code></pre>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#  oc delete pods -l app.kubernetes.io/component=sensor -n stackrox</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc delete pods -l app.kubernetes.io/component=sensor -n stackrox</code></pre>
 </div>
 </div>
 <div class="ulist">

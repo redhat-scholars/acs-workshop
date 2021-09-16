@@ -282,12 +282,19 @@
 <div class="sect1">
 <h2 id="clusters"><a class="anchor" href="#clusters"></a>ACS Secured Clusters</h2>
 <div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/multicluster/0_multi.png" alt="ACS Multi 1" width="800">
+</div>
+</div>
 <div class="paragraph">
-<p>TBD</p>
+<p>Download the zip and execute in the bastion of the lab:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">unzip -d sensor sensor-[cluster-name].zip
+
+./sensor/sensor.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -295,9 +302,46 @@
 </div>
 <div class="listingblock console-output">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Client Version: 4.7.0-202102130115.p0-c66c03f
-Kubernetes Version: v1.20.2</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                 READY   STATUS    RESTARTS   AGE
+admission-control-6b6bcfbf48-bsldm   1/1     Running   0          80s
+admission-control-6b6bcfbf48-rrppt   1/1     Running   0          80s
+admission-control-6b6bcfbf48-w9wv6   1/1     Running   0          80s
+collector-52jlx                      2/2     Running   0          76s
+collector-8pc44                      2/2     Running   0          76s
+collector-lgqqw                      2/2     Running   0          76s
+collector-qdvbq                      2/2     Running   0          76s
+collector-qlst8                      2/2     Running   0          76s
+collector-vr8h6                      2/2     Running   0          76s
+collector-z2frz                      2/2     Running   0          76s
+sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s</code></pre>
 </div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pod -n stackrox</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should show oc version &gt;=4.7:</p>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME                                 READY   STATUS    RESTARTS   AGE
+admission-control-6b6bcfbf48-bsldm   1/1     Running   0          80s
+admission-control-6b6bcfbf48-rrppt   1/1     Running   0          80s
+admission-control-6b6bcfbf48-w9wv6   1/1     Running   0          80s
+collector-52jlx                      2/2     Running   0          76s
+collector-8pc44                      2/2     Running   0          76s
+collector-lgqqw                      2/2     Running   0          76s
+collector-qdvbq                      2/2     Running   0          76s
+collector-qlst8                      2/2     Running   0          76s
+collector-vr8h6                      2/2     Running   0          76s
+collector-z2frz                      2/2     Running   0          76s
+sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://help.stackrox.com/docs/get-started/quick-start/#install-a-sensor" class="bare">https://help.stackrox.com/docs/get-started/quick-start/#install-a-sensor</a></p>
 </div>
 </div>
 </div>
