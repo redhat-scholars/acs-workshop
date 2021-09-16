@@ -141,16 +141,43 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="06-network_graph.html">Network Graph</a>
-  </li>
-  <li class="nav-item" data-depth="1">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="06-network_graph.html#network_graph_overview">Network Graph Overview</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="07-violations.html">Violations</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="08-compliance.html">Compliance</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#compliance_dashboard">Review Compliance Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#compliance_operator">Integrating Compliance Operator with ACS </a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#compliance_operator_acs_review">Review Compliance Scans of the Compliance Operator in ACS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#acs_policy_compliance">Configure Policy in ACS to Invoke Compliance related Controls</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#acs_policy_compliance_nist">Enforce Policies that Meet Guidance for NIST Control 4.2.2</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#acs_policy_compliance_nist_view">View Updated Compliance Scan Results in ACS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#acs_policy_compliance_nist_revert">Revert the Policy Changes</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="09-configuration_management.html">Configuration Management</a>
@@ -233,8 +260,429 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Compliance</h1>
+<div class="sect1">
+<h2 id="compliance_dashboard"><a class="anchor" href="#compliance_dashboard"></a>Review Compliance Dashboard</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>Compliance Dashboard</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/00_compliance_dash.png" alt="ACS 1" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Run compliance scanner</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/01_compliance_scan.png" alt="ACS 2" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>Compliance Result</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/02_compliance_result.png" alt="ACS 3" width="300">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="compliance_operator"><a class="anchor" href="#compliance_operator"></a>Integrating Compliance Operator with ACS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Red Hat Advanced Cluster Security for Kubernetes supports OpenShift Container Platform configuration compliance standards through an integration with the OpenShift Container Platform Compliance Operator. In addition, it allows you to measure and report on configuration security best practices for OpenShift Container Platform.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a Namespace object YAML file by running:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f co-ns.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-compliance</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create the Compliance Operator OperatorGroup object YAML file by running:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: compliance-operator
+  namespace: openshift-compliance
+spec:
+  targetNamespaces:
+  - openshift-compliance</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f co-og.yaml</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create the Compliance Operator Subscription object YAML file by running:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: compliance-operator-sub
+  namespace: openshift-compliance
+spec:
+  channel: "release-0.1"
+  installPlanApproval: Automatic
+  name: compliance-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f co-subs.yaml</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify the installation succeeded by inspecting the CSV file:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get csv -n openshift-compliance | grep compliance</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get csv -n openshift-compliance | grep compliance
+compliance-operator.v0.1.39   Compliance Operator   0.1.39   Succeeded</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Verify that the Compliance Operator is up and running:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get pod -n openshift-compliance</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get pod -n openshift-compliance
+NAME                                            READY   STATUS    RESTARTS   AGE
+compliance-operator-5989ff994b-mrhc9            1/1     Running   1          4m42s
+ocp4-openshift-compliance-pp-6d7c7db4bd-2gnrf   1/1     Running   0          3m2s
+rhcos4-openshift-compliance-pp-c7b548bd-k4sz2   1/1     Running   0          3m2s</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compliance_operator_scan"><a class="anchor" href="#compliance_operator_scan"></a>Running compliance scans</h3>
+<div class="paragraph">
+<p>We now want to make sure that the nodes are scanned appropiately. For this, we’ll need a ScanSettingsBinding, this bind a profile with scan settings in order to get scans to run.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create a ScanSettingBinding object that binds to the default ScanSetting object and scans the cluster using the cis and cis-node profiles.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc apply -f co-scan.yaml</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: compliance.openshift.io/v1alpha1
+kind: ScanSettingBinding
+metadata:
+  name: cis-scan
+  namespace: openshift-compliance
+profiles:
+- apiGroup: compliance.openshift.io/v1alpha1
+  kind: Profile
+  name: ocp4-cis
+settingsRef:
+  apiGroup: compliance.openshift.io/v1alpha1
+  kind: ScanSetting
+  name: default</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check the scansettingbinding generated:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get scansettingbinding cis-scan -n openshift-compliance -o yaml</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>With this the scan will start as you can check with the CRD of ComplianceScan.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get compliancescan -n openshift-compliance ocp4-cis</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> oc get compliancescan -n openshift-compliance
+NAME       PHASE     RESULT
+ocp4-cis   RUNNING   NOT-AVAILABLE</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>After the scan is done, you&#8217;ll see it was persistent in the relevant namespace:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># oc get compliancescan -n openshift-compliance</code></pre>
+</div>
+</div>
+<div class="listingblock console-output">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">NAME       PHASE   RESULT
+ocp4-cis   DONE    NON-COMPLIANT</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compliance_operator_acs_review"><a class="anchor" href="#compliance_operator_acs_review"></a>Review Compliance Scans of the Compliance Operator in ACS</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>If ACS was installed prior to the Compliance Operator, we&#8217;ll need to restart the ACS sensor in the OpenShift cluster to see these results.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#  oc delete pods -l app.kubernetes.io/component=sensor -n stackrox</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>With the Sensor restarted, kick off a compliance scan in ACS to see the updated results:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/01_compliance_scan.png" alt="ACS 4" width="300">
+</div>
+</div>
+<div class="paragraph">
+<p>In the ACS User Interface, select Compliance from the left menu, and click Scan Environment in the top menu bar.
+The scan should only take a few seconds; once it&#8217;s complete you should see entries for both the ACS built-in and compliance operator standards:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check that the ocp4-cis report from the Compliance Operator is shown in ACS Compliance Dashboard:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/03_compliance_operator_in_acs.png" alt="ACS 5" width="500">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To see the detailed results, click on the name or bar of any of the standards. To investigate the results of the OpenShift CIS benchmark scan, for example, click ocp4-cis:</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/04_co_acs_detail.png" alt="ACS 6" width="500">
+</div>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.openshift.com/container-platform/4.8/security/compliance_operator/compliance-scans.html" class="bare">https://docs.openshift.com/container-platform/4.8/security/compliance_operator/compliance-scans.html</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="acs_policy_compliance"><a class="anchor" href="#acs_policy_compliance"></a>Configure Policy in ACS to Invoke Compliance related Controls</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Built-in standards in ACS Compliance provide guidance on required configurations to meet each individual control. Standards like PCI, HIPAA, and NIST 800-190 are focused on workloads visible to ACS, and apply to all workloads running in any Kubernetes cluster that ACS is installed in.</p>
+</div>
+<div class="paragraph">
+<p>Much of the control guidance can be implemented using ACS policies, and providing appropriate policy with enforcement in ACS can change compliance scores.</p>
+</div>
+<div class="paragraph">
+<p>As an example, we&#8217;ll look at a control in the NIST 800-190 that requires that container images be kept up to date, and to use meaningful version tags: "practices should emphasize accessing images using immutable names that specify discrete versions of images to be used."</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+This configuration will change the behavior of your Kubernetes clusters and possibly result in preventing new deployments from being created. After testing, you can quickly revert the changes using the instructions at the end of this section.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Inspect the NIST 800-190 Guidance for Control 4.2.2</p>
+</li>
+<li>
+<p>Navigate back to the ACS Compliance page.</p>
+</li>
+<li>
+<p>In the section labeled "PASSING STANDARDS ACROSS CLUSTERS", click on NIST 800-190.</p>
+</li>
+<li>
+<p>Scroll down to control 4.2.2 and examine the control guidance on the right.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The control guidance reads:
+"StackRox continuously monitors the images being used by active deployments. StackRox provides
+built-in policies that detects if images with insecure tags are being used or if the image being used is pretty old.
+Therefore, the cluster is compliant if there are policies that are being enforced that discourages such images from being
+deployed."</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/05_nist0.png" alt="ACS 7" width="500">
+</div>
+</div>
+<div class="sect2">
+<h3 id="acs_policy_compliance_nist"><a class="anchor" href="#acs_policy_compliance_nist"></a>Enforce Policies that Meet Guidance for NIST Control 4.2.2</h3>
+<div class="paragraph">
+<p>There are two separate default system policies that, together, meet this control&#8217;s guidance, "90-day Image Age," and "Latest tag". Both must have enforcement enabled for this control to be satisfied.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to Platform Configuration &#8594; System Policies</p>
+</li>
+<li>
+<p>Find and click on the policy named, "90-day Image Age" which by default is second in the list. We&#8217;re not going to change this policy other than to enable enforcement.</p>
+</li>
+<li>
+<p>Click Edit to get to the Policy settings.</p>
+</li>
+<li>
+<p>Click Next at the upper right to get to the Policy Criteria page.</p>
+</li>
+<li>
+<p>Click Next at the upper right to get to the Violations Preview page.</p>
+</li>
+<li>
+<p>Click Next at the upper right to get to the Enforcement Options page.</p>
+</li>
+<li>
+<p>On the enforcement options, click On for both Build and Deploy enforcement. Click Save, and then X to close.</p>
+</li>
+<li>
+<p>At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to enable enforcement and save the policy.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/06_nist1.png" alt="ACS 8" width="400">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="acs_policy_compliance_nist_view"><a class="anchor" href="#acs_policy_compliance_nist_view"></a>View Updated Compliance Scan Results in ACS</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>In order to see the impact on NIST 800-190 scores:</p>
+</li>
+<li>
+<p>Navigate back to the compliance page.</p>
+</li>
+<li>
+<p>Click "Scan Environment" in the upper right.</p>
+</li>
+<li>
+<p>In the section labeled "PASSING STANDARDS ACROSS CLUSTERS", click on NIST 800-190.</p>
+</li>
+<li>
+<p>Scroll down to control 4.2.2 and verify that the control now reports 100% compliance.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/compliance/07_nist2.png" alt="ACS 9" width="400">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="acs_policy_compliance_nist_revert"><a class="anchor" href="#acs_policy_compliance_nist_revert"></a>Revert the Policy Changes</h3>
+<div class="paragraph">
+<p>To avoid rejecting any other deployments to the cluster, you should disable the enforcement after viewing the updated ACS results.</p>
+</div>
+<div class="paragraph">
+<p>Navigate to Platform Configuration &#8594; System Policies
+Find and click on the policy named, "90-day Image Age" which by default is second in the list. Click Edit to get to the Policy settings.
+Click Next at the upper right to get to the Policy Criteria page.
+Click Next at the upper right to get to the Violations Preview page.
+Click Next at the upper right to get to the Enforcement Options page.
+On the enforcement options, click Off for both Build and Deploy enforcement. Click Save, and then X to close.
+At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to disable enforcement and save the policy.</p>
+</div>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="07-violations.html">Violations</a></span>
