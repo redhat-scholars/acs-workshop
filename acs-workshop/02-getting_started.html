@@ -6,7 +6,7 @@
     <title>Getting Started :: ACS Workshop</title>
     <link rel="canonical" href="https://redhat-iberia.github.io/acs-workshop/acs-workshop/02-getting_started.html">
     <link rel="prev" href="01-setup.html">
-    <link rel="next" href="04-vulnerabilities.html">
+    <link rel="next" href="03-overview-acs.html#acs_architecture">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -78,15 +78,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="01-setup.html#prerequisite">Prerequisites</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="01-setup.html#setup_acs_operator">Setup ACS Operator</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="01-setup.html#install_acs_central">Install ACS Central Cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="01-setup.html#config_acs_securedcluster">Configuration of the ACS Secured Cluster </a>
-  </li>
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
@@ -94,26 +85,38 @@
     <a class="nav-link" href="02-getting_started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#deploy_acs_automated">Deploying ACS with Ansible</a>
+    <a class="nav-link" href="#install_acs_operator">Install ACS Operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#install_acs_central">Install ACS Central Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#config_acs_securedcluster">Configuration of the ACS Secured Cluster </a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#deploy_acs_ansible">Deploying ACS with Ansible</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#deploy_acs_gitops">Deploying ACS with Openshift GitOps </a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#deploy_demo_acs">Deploying Demo in ACS</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#acs_architecture">ACS Architecture</a>
+    <a class="nav-link" href="03-overview-acs.html#acs_architecture">ACS Architecture</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="#dashboard_acs">ACS Dashboard</a>
+    <a class="nav-link" href="03-overview-acs.html#dashboard_acs">ACS Dashboard</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#dashboard_acs_header">Dashboard Header</a>
+    <a class="nav-link" href="03-overview-acs.html#dashboard_acs_header">Dashboard Header</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#dashboard_acs_menu">Dashboard Left Menu</a>
+    <a class="nav-link" href="03-overview-acs.html#dashboard_acs_menu">Dashboard Left Menu</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#dashboard_acs_information">Dashboard Information</a>
+    <a class="nav-link" href="03-overview-acs.html#dashboard_acs_information">Dashboard Information</a>
   </li>
 </ul>
   </li>
@@ -275,175 +278,350 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Getting Started</h1>
-<div id="preamble">
+<div class="sect1">
+<h2 id="install_acs_operator"><a class="anchor" href="#install_acs_operator"></a>ACS Operator Install - Option 1</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In this section we will face the following:</p>
+<p>Find and the Advanced Cluster Security Operator from the Operator Hub.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>How to deploy ACS.</p>
-</li>
-<li>
-<p>ACS Architecture.</p>
-</li>
-<li>
-<p>The ACS Dashboard.</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/00_operator_hub.png" alt="ACS Operator 1" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Install the selected operator by clicking on the <code>Install</code> button.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/01_select_acs_operator.png" alt="ACS Operator 2" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Confirm default installation parameters (auto update, latest channel, <code>openshift-operators</code> namespace).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/02_install_acs_operator.png" alt="ACS Operator 3" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for completion, the installation will take a few seconds.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/03_wait_for_completion.png" alt="ACS Operator 4" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Access the now ready operator by clicking on the <code>View Operator</code> button.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_operator_ready.png" alt="ACS Operator 5" width="800">
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploy_demo_ansible"><a class="anchor" href="#deploy_demo_ansible"></a>Deploying ACS with Ansible</h2>
+<h2 id="install_acs_central"><a class="anchor" href="#install_acs_central"></a>ACS Central Cluster Installation</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>In this section we will deploy the Central component in the lab cluster. The Central is made up two main deployments:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>central</code> service, which exposes api and console and communicates with Sensors on secured clusters.</p>
+</li>
+<li>
+<p>The <code>scanner</code> service, which has the role of scanning the deployed pods images.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Create a new <code>stackrox</code> namespace. We will install our components here.</p>
+</div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/ralvares/ansible-demo.git" class="bare">https://github.com/ralvares/ansible-demo.git</a> ansible-demo</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc new-project stackrox</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following is an example of the central custom resource:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: platform.stackrox.io/v1alpha1
+kind: Central
+metadata:
+  name: stackrox-central-services
+  namespace: stackrox
+spec:
+  central:
+    exposure:
+      loadBalancer:
+        enabled: false
+        port: 443
+      nodePort:
+        enabled: false
+      route:
+        enabled: true
+    persistence:
+      persistentVolumeClaim:
+        claimName: stackrox-db
+  egress:
+    connectivityPolicy: Online
+  scanner:
+    analyzer:
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 5
+        minReplicas: 2
+        replicas: 3
+    scannerComponent: Enabled</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the <code>central</code> custom resource using the template file provided in this repository.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f stackrox-central-services.yaml -n stackrox</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Monitor the installation using the watch option:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n stackrox -w</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the installation is complete obtain the generated admin password from the <code>central-htpasswd</code> secret.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Extract the hostname of the generated route.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get routes/central -n stackrox -o jsonpath='{.spec.host}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Login to <a href="https://&lt;route_hostname&gt" class="bare">https://&lt;route_hostname&gt</a>; using the <code>admin</code> username and the password extracted before.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/05_login.png" alt="ACS Operator 6" width="800">
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="deploy_demo_acs"><a class="anchor" href="#deploy_demo_acs"></a>Deploying Demo in ACS</h2>
+<h2 id="config_acs_securedcluster"><a class="anchor" href="#config_acs_securedcluster"></a>ACS Secured Cluster Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>To join a cluster to ACS it is necessary to generate a cluster init bundle containing TLS secrets for Sensor, Collectors and Admission Controllers.</p>
+</div>
+<div class="paragraph">
+<p>Generate the cluster init bundle by accessing the Integration subsection in the <code>Platform Configuration</code> section</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/06_acs_integrations.png" alt="ACS Operator 7" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Generate the bundle with a unique cluster name.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/07_generate_cluster_init_bundle.png" alt="ACS Operator 8" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Download the cluster init bundle secret.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/08_download_cluster_init_bundle_secret.png" alt="ACS Operator 9" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Apply the cluster init bundle secret on the target secured cluster</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f ~/Downloads/demo-cluster-cluster-init-secrets.yaml -n stackrox</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This workshop uses the same cluster as central and secured cluster. In a real time scenario there will be many different secured clusters. Please ensure to install the ACS Operator in all the secured cluster in order to manage the SecuredCluster CR.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The SecuredCluster custom resource is quite simple. The following example shows the configuration for a <code>demo-cluster</code> target. Notice the <code>collector</code> configuration, with the collection method set to <code>KernelModule</code>. The alternative collection approach would be <code>eBPF</code>. The <code>TolerateTaints</code> lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: platform.stackrox.io/v1alpha1
+kind: SecuredCluster
+metadata:
+  name: stackrox-secured-cluster-services
+  namespace: stackrox
+spec:
+  admissionControl:
+    listenOnCreates: false
+    listenOnEvents: true
+    listenOnUpdates: false
+  clusterName: demo-cluster
+  perNode:
+    collector:
+      collection: KernelModule
+      imageFlavor: Regular
+    taintToleration: TolerateTaints</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the Secured Cluster custom Resource using (and optionally custumizing) the example provided in the repository.</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f stackrox-secured-cluster-services.yaml -n stackrox</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Monitor the installation using the watch option:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n stackrox -w</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At the end of the installation, go to the central console and check the correct attachment of the secured cluster.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/09_verify_cluster_list.png" alt="ACS Operator 10" width="800">
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="acs_architecture"><a class="anchor" href="#acs_architecture"></a>ACS Architecture</h2>
+<h2 id="deploy_acs_ansible"><a class="anchor" href="#deploy_acs_ansible"></a>Deploying ACS with Ansible - Option 2</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The StackRox Kubernetes Security Platform installs as a set of pods in your Kubernetes or OpenShift cluster and includes the following components:</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Do this step ONLY if you have not installed the Operator manually neither selected the acs-gitops installation.
+</td>
+</tr>
+</table>
 </div>
-<div class="imageblock">
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/architecture_acs.png" alt="ACS Architecture" width="800">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ansible-galaxy collection install kubernetes.core
+git clone <a href="https://github.com/rcarrata/rhacs-demo.git" class="bare">https://github.com/rcarrata/rhacs-demo.git</a> rhacs-demo
+cd rhacs-demo</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#central"><strong>Central</strong></a>: Gathers and displays information from other components (1 for multiple clusters).</p>
-</li>
-<li>
-<p><a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor"><strong>Sensor</strong></a>: Collects and augments data from the Collector (1 for each cluster.)</p>
-</li>
-<li>
-<p><a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor"><strong>Scanner</strong></a>: Scans images for vulnerabilities (1 for multiple clusters)</p>
-</li>
-<li>
-<p><a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor"><strong>Collector</strong></a>: Collects and monitors container activities (1 on each node)</p>
-</li>
-<li>
-<p><a href="https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor"><strong>Admission controller</strong></a>: Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Follow the <a href="https://github.com/rcarrata/rhacs-demo#rhacs-installyaml-file-example">instructions</a> if you need to customize the ACS installation (change passwords, etc)</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ansible-playbook rhacs-install.yaml</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="dashboard_acs"><a class="anchor" href="#dashboard_acs"></a>ACS Dashboard</h2>
+<h2 id="deploy_acs_gitops"><a class="anchor" href="#deploy_acs_gitops"></a>Deploying ACS with Openshift GitOps - Option 3</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When login in ACS we will get the ACS Dashboard:</p>
+<p>Install ACS using Openshift GitOps:</p>
 </div>
-<div class="imageblock">
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/dashboard/acs_dashboard.png" alt="ACS Dashboard" width="800">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/rcarrata/acs-gitops.git" class="bare">https://github.com/rcarrata/acs-gitops.git</a>
+cd acs-gitops</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>In the ACS Dashboard we have three main sections:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The header.</p>
-</li>
-<li>
-<p>The menu.</p>
-</li>
-<li>
-<p>The information.</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="dashboard_acs_header"><a class="anchor" href="#dashboard_acs_header"></a>Dashboard Header</h3>
-<div class="imageblock">
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/dashboard/acs_dashboard_header.png" alt="ACS Dashboard" width="800">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/rcarrata/acs-gitops.git" class="bare">https://github.com/rcarrata/acs-gitops.git</a>
+cd acs-gitops</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Install bootstrap Openshift GitOps / ArgoCD</p>
 </div>
-<div class="sect2">
-<h3 id="dashboard_acs_menu"><a class="anchor" href="#dashboard_acs_menu"></a>Dashboard Left Menu</h3>
-<div class="imageblock left">
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/dashboard/acs_dashboard_menu.png" alt="ACS Dashboard" width="150">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">until oc apply -k bootstrap/base/; do sleep 2; done
+oc apply -k acs-deploy/applications</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploy_demo_acs"><a class="anchor" href="#deploy_demo_acs"></a>Deploying Demo in ACS - Mandatory</h2>
+<div class="sectionbody">
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Independent of which option to install you used, you need to deploy the ACS Demo into your cluster.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>In the left part of the dashboard we can see the different sections we can access in ACS to gather information about the security in the clusters we have configured in ACS.</p>
+<p>Download the repo with the demo:</p>
 </div>
-<div class="paragraph">
-<p>Later we will go deeper in each of them. For the time being, we will introduce each of these:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Dashboard</strong>, where we are in this moment. We can get a summarize vision of our environment.</p>
-</li>
-<li>
-<p><strong>Network Graph</strong>, we can get information about the configured network flows and the real ones. We can use to create Network Policies to implement network segmentation.</p>
-</li>
-<li>
-<p><strong>Violations</strong>, we can get all the events that do not match the defined security policies.</p>
-</li>
-<li>
-<p><strong>Compliance</strong>, we can get the compliance of out environment according to several indistry and regulatory security standards such as <strong>PCI DSS</strong>.</p>
-</li>
-<li>
-<p><strong>Vulnerability Management</strong>, get information about known vulnerabilities which are affecting your environment. Not only deployed workloads but infrastructure as well.</p>
-</li>
-<li>
-<p><strong>Configuration Management</strong>, review configuration to prevent possible misconfigurations which can lead to security issues.</p>
-</li>
-<li>
-<p><strong>Risk</strong>, review risks affecting your environment such as suspicious executions.</p>
-</li>
-<li>
-<p><strong>Platform Configuration</strong>, ACS configuration and integrations.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="dashboard_acs_information"><a class="anchor" href="#dashboard_acs_information"></a>Dashboard Information</h3>
-<div class="imageblock">
+<div class="listingblock console-input">
 <div class="content">
-<img src="_images/dashboard/acs_dashboard_information.png" alt="ACS Dashboard" width="800">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ansible-galaxy collection install kubernetes.core
+git clone <a href="https://github.com/rcarrata/rhacs-demo" class="bare">https://github.com/rcarrata/rhacs-demo</a>
+cd rhacs-demo</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>We can get a summary about the security state of the whole environment.</p>
+<p>Apply the ansible demo into the cluster:</p>
 </div>
-<div class="paragraph">
-<p>You can browse and click in each part to get more information.</p>
-</div>
-<div class="paragraph">
-<p>You can spend a time browsing the information in Dashboard to get familiarized to. In the following sections we will go deeper in each one of them.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ansible-playbook rhacs-demo.yaml</code></pre>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="01-setup.html">Setup</a></span>
-  <span class="next"><a href="04-vulnerabilities.html">Vulnerability Management</a></span>
+  <span class="next"><a href="03-overview-acs.html#acs_architecture">ACS Architecture</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
