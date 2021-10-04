@@ -2,82 +2,254 @@
 include::_attributes.adoc[]
 :profile: acs
 
-In this section we will face the following:
+[#install_acs_operator]
+== ACS Operator Install - Option 1
 
-* How to deploy ACS.
-* ACS Architecture.
-* The ACS Dashboard.
+Find and the Advanced Cluster Security Operator from the Operator Hub.
 
-[#deploy_demo_ansible]
-== Deploying ACS with Ansible
+image::install/00_operator_hub.png[ACS Operator 1, 800]
+
+Install the selected operator by clicking on the ``Install`` button.
+
+image::install/01_select_acs_operator.png[ACS Operator 2, 800]
+
+Confirm default installation parameters (auto update, latest channel, ``openshift-operators`` namespace).
+
+image::install/02_install_acs_operator.png[ACS Operator 3, 800]
+
+Wait for completion, the installation will take a few seconds.
+
+image::install/03_wait_for_completion.png[ACS Operator 4, 800]
+
+Access the now ready operator by clicking on the ``View Operator`` button.
+
+image::install/04_operator_ready.png[ACS Operator 5, 800]
+
+[#install_acs_central]
+== ACS Central Cluster Installation
+
+In this section we will deploy the Central component in the lab cluster. The Central is made up two main deployments:
+
+* The ``central`` service, which exposes api and console and communicates with Sensors on secured clusters.
+
+* The ``scanner`` service, which has the role of scanning the deployed pods images.
+
+Create a new ``stackrox`` namespace. We will install our components here.
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-git clone https://github.com/ralvares/ansible-demo.git ansible-demo
+oc new-project stackrox	
+----
+
+The following is an example of the central custom resource:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: platform.stackrox.io/v1alpha1
+kind: Central
+metadata:
+  name: stackrox-central-services
+  namespace: stackrox
+spec:
+  central:
+    exposure:
+      loadBalancer:
+        enabled: false
+        port: 443
+      nodePort:
+        enabled: false
+      route:
+        enabled: true
+    persistence:
+      persistentVolumeClaim:
+        claimName: stackrox-db
+  egress:
+    connectivityPolicy: Online
+  scanner:
+    analyzer:
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 5
+        minReplicas: 2
+        replicas: 3
+    scannerComponent: Enabled	
+----
+
+Create the ``central`` custom resource using the template file provided in this repository.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f stackrox-central-services.yaml -n stackrox
+----
+
+Monitor the installation using the watch option:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get pods -n stackrox -w
+----
+
+Once the installation is complete obtain the generated admin password from the ``central-htpasswd`` secret.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'
+----
+
+Extract the hostname of the generated route.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get routes/central -n stackrox -o jsonpath='{.spec.host}'
+----
+
+Login to https://<route_hostname> using the ``admin`` username and the password extracted before.
+
+image::install/05_login.png[ACS Operator 6, 800]
+
+[#config_acs_securedcluster]
+== ACS Secured Cluster Configuration
+
+To join a cluster to ACS it is necessary to generate a cluster init bundle containing TLS secrets for Sensor, Collectors and Admission Controllers.
+
+Generate the cluster init bundle by accessing the Integration subsection in the ``Platform Configuration`` section 
+
+image::install/06_acs_integrations.png[ACS Operator 7, 800]
+
+Generate the bundle with a unique cluster name.
+
+image::install/07_generate_cluster_init_bundle.png[ACS Operator 8, 800]
+
+Download the cluster init bundle secret.
+
+image::install/08_download_cluster_init_bundle_secret.png[ACS Operator 9, 800]
+
+Apply the cluster init bundle secret on the target secured cluster
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f ~/Downloads/demo-cluster-cluster-init-secrets.yaml -n stackrox
+----
+
+NOTE: This workshop uses the same cluster as central and secured cluster. In a real time scenario there will be many different secured clusters. Please ensure to install the ACS Operator in all the secured cluster in order to manage the SecuredCluster CR.
+
+The SecuredCluster custom resource is quite simple. The following example shows the configuration for a ``demo-cluster`` target. Notice the ``collector`` configuration, with the collection method set to ``KernelModule``. The alternative collection approach would be ``eBPF``. The ``TolerateTaints`` lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: platform.stackrox.io/v1alpha1
+kind: SecuredCluster
+metadata:
+  name: stackrox-secured-cluster-services
+  namespace: stackrox
+spec:
+  admissionControl:
+    listenOnCreates: false
+    listenOnEvents: true
+    listenOnUpdates: false
+  clusterName: demo-cluster
+  perNode:
+    collector:
+      collection: KernelModule
+      imageFlavor: Regular
+    taintToleration: TolerateTaints
+----
+
+Create the Secured Cluster custom Resource using (and optionally custumizing) the example provided in the repository.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f stackrox-secured-cluster-services.yaml -n stackrox
+----
+
+Monitor the installation using the watch option:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get pods -n stackrox -w
+----
+
+At the end of the installation, go to the central console and check the correct attachment of the secured cluster. 
+
+image::install/09_verify_cluster_list.png[ACS Operator 10, 800]
+
+[#deploy_acs_ansible]
+== Deploying ACS with Ansible - Option 2
+
+IMPORTANT: Do this step ONLY if you have not installed the Operator manually neither selected the acs-gitops installation.
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+ansible-galaxy collection install kubernetes.core	
+git clone https://github.com/rcarrata/rhacs-demo.git rhacs-demo
+cd rhacs-demo
 ----	
 
-[#deploy_demo_acs]
-== Deploying Demo in ACS
+Follow the https://github.com/rcarrata/rhacs-demo#rhacs-installyaml-file-example[instructions] if you need to customize the ACS installation (change passwords, etc)
 
-TBD
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+ansible-playbook rhacs-install.yaml
+----
 
-[#acs_architecture]
-== ACS Architecture
+[#deploy_acs_gitops]
+== Deploying ACS with Openshift GitOps - Option 3
 
-The StackRox Kubernetes Security Platform installs as a set of pods in your Kubernetes or OpenShift cluster and includes the following components:
+Install ACS using Openshift GitOps:
 
-image::architecture_acs.png[ACS Architecture, 800]
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+git clone https://github.com/rcarrata/acs-gitops.git
+cd acs-gitops
+----
 
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#central[**Central**]: Gathers and displays information from other components (1 for multiple clusters).
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Sensor**]: Collects and augments data from the Collector (1 for each cluster.)
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Scanner**]: Scans images for vulnerabilities (1 for multiple clusters)
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Collector**]: Collects and monitors container activities (1 on each node)
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Admission controller**]: Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+git clone https://github.com/rcarrata/acs-gitops.git
+cd acs-gitops
+----
 
-[#dashboard_acs]
-== ACS Dashboard
+Install bootstrap Openshift GitOps / ArgoCD
 
-When login in ACS we will get the ACS Dashboard:
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+until oc apply -k bootstrap/base/; do sleep 2; done
+oc apply -k acs-deploy/applications
+----
 
-image::dashboard/acs_dashboard.png[ACS Dashboard, 800]
+[#deploy_demo_acs] 
+== Deploying Demo in ACS - Mandatory
 
-In the ACS Dashboard we have three main sections:
+IMPORTANT: Independent of which option to install you used, you need to deploy the ACS Demo into your cluster.
 
-* The header.
-* The menu.
-* The information.
+Download the repo with the demo:
 
-[#dashboard_acs_header]
-=== Dashboard Header
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+ansible-galaxy collection install kubernetes.core
+git clone https://github.com/rcarrata/rhacs-demo
+cd rhacs-demo
+----
 
-image::dashboard/acs_dashboard_header.png[ACS Dashboard, 800]
-
-[#dashboard_acs_menu]
-=== Dashboard Left Menu
-
-image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 150, role=left]
-
-In the left part of the dashboard we can see the different sections we can access in ACS to gather information about the security in the clusters we have configured in ACS.
-
-Later we will go deeper in each of them. For the time being, we will introduce each of these:
-
-* **Dashboard**, where we are in this moment. We can get a summarize vision of our environment.
-* **Network Graph**, we can get information about the configured network flows and the real ones. We can use to create Network Policies to implement network segmentation.
-* **Violations**, we can get all the events that do not match the defined security policies.
-* **Compliance**, we can get the compliance of out environment according to several indistry and regulatory security standards such as **PCI DSS**.
-* **Vulnerability Management**, get information about known vulnerabilities which are affecting your environment. Not only deployed workloads but infrastructure as well.
-* **Configuration Management**, review configuration to prevent possible misconfigurations which can lead to security issues.
-* **Risk**, review risks affecting your environment such as suspicious executions.
-* **Platform Configuration**, ACS configuration and integrations.
-
-[#dashboard_acs_information]
-=== Dashboard Information
-
-image::dashboard/acs_dashboard_information.png[ACS Dashboard, 800]
-
-We can get a summary about the security state of the whole environment.
-
-You can browse and click in each part to get more information.
-
-You can spend a time browsing the information in Dashboard to get familiarized to. In the following sections we will go deeper in each one of them.
+Apply the ansible demo into the cluster:
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+ansible-playbook rhacs-demo.yaml
+----
