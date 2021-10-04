@@ -2,6 +2,8 @@
 include::_attributes.adoc[]
 :profile: acs
 
+We will install the 
+
 [#install_acs_operator]
 == ACS Operator Install - Option 1
 
