@@ -13,3 +13,8 @@ The default view, Active, shows me actual traffic for the Past Hour between the 
 
 You can change the time frame in the upper right dropdown, and the legend at bottom left 
 
+
+
+With ACS setup complete and some running workloads, you should see data being populated in the ACS UI. Navigate to the Network tab to see a graph of active and allowed network connections among the namespaces and the deployments.
+
+Zoom into the microservices-demo namespace and click on one of the deployments. On the right hand side you’ll see the deployment details.

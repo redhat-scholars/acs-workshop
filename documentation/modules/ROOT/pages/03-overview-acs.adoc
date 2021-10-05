@@ -15,11 +15,18 @@ The StackRox Kubernetes Security Platform installs as a set of pods in your Kube
 
 image::architecture_acs.png[ACS Architecture, 800]
 
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#central[**Central**]: Gathers and displays information from other components (1 for multiple clusters).
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Sensor**]: Collects and augments data from the Collector (1 for each cluster.)
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Scanner**]: Scans images for vulnerabilities (1 for multiple clusters)
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Collector**]: Collects and monitors container activities (1 on each node)
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Admission controller**]: Interacts with Kubernetes API server and prevents creating workloads that don’t adhere to security policies	(1 for each cluster)
+* https://docs.openshift.com/acs/architecture/acs-architecture.html#centralized-components_acs-architecture[**Central**]: [Centralized components] Central is the main component of Red Hat Advanced Cluster Security for Kubernetes and it is installed as a Kubernetes deployment. It handles data persistence, API interactions, and user interface (Portal) access. You can use the same Central instance to secure multiple OpenShift Container Platform or Kubernetes clusters.
+
+* https://docs.openshift.com/acs/architecture/acs-architecture.html#centralized-components_acs-architecture[**Scanner**]: [Centralized component] Red Hat Advanced Cluster Security for Kubernetes includes an image vulnerability scanning component called Scanner. It analyzes all image layers to check for known vulnerabilities from the Common Vulnerabilities and Exposures (CVEs) list. Scanner also identifies vulnerabilities in packages installed by package managers and in dependencies for multiple programming languages. 
+
+* https://docs.openshift.com/acs/architecture/acs-architecture.html#per-cluster-components_acs-architecture[**Sensor**]: [1 x Per Cluster] Red Hat Advanced Cluster Security for Kubernetes uses the Sensor component to monitor Kubernetes and OpenShift Container Platform clusters. It handles interactions with the OpenShift Container Platform or Kubernetes API server for policy detection and enforcement, and it coordinates with Collector. 
+
+* https://docs.openshift.com/acs/architecture/acs-architecture.html#per-cluster-components_acs-architecture[**Admission controller**]: [1 x Cluster] The admission controller prevents users from creating workloads that violate security policies in Red Hat Advanced Cluster Security for Kubernetes. [1 x Admission Controller]
+
+* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Collector**]: [1 x Node OCP/K8s Nodes] Collector collects and monitors information about container runtime and network activity. It then sends the collected information to Sensor.
+
+
+NOTE: Scanner only scans those images that are not already scanned by other integrated vulnerability scanners. It means that if you have integrated Red Hat Advanced Cluster Security for Kubernetes with other vulnerability scanners, Scanner checks and uses the scanning results from the integrated scanner if available.
 
 [#dashboard_acs]
 == ACS Dashboard

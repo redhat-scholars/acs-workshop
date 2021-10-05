@@ -2,7 +2,6 @@
 include::_attributes.adoc[]
 :profile: acs
 
-TBD
 
 [#secured_clusters]
 == Install additional ACS Secured Clusters
