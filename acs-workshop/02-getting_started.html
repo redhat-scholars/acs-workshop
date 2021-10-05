@@ -210,6 +210,9 @@
     <a class="nav-link" href="11-integrations.html">ACS Integrations</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="11-integrations.html#integrate_with_internal_openshift_registry">Installing ACS DevSecOps Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="12-platform_configuration.html">ACS Secure Cluster Management</a>
 <ul class="nav-list">
@@ -231,14 +234,23 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="13-cicd.html">DevSecOps Pipelines</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="13-cicd.html#install_devsecops_pipelines">Installing ACS DevSecOps Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="13-cicd.html#run_devsecops_pipelines">Running the demo of DevSecOps Pipeline</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="14-apicli.html">ACS API and CLI</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14-apicli.html#api">ACS API</a>
+    <a class="nav-link" href="14-apicli.html#install_devsecops_pipelines">Installing ACS DevSecOps Pipeline</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="14-apicli.html#roxctl">ACS RoxCTL</a>
@@ -289,6 +301,18 @@
 <div class="paragraph">
 <p>We will install ACS thought three main options and afterwards we will install an small demo that will serve examples to our workshop.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can request in RHPDS the environment already installed (including the demo) - Go to Multi-Product Demo &#8594; Openshift 4 Advanced Cluster Security 3
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>The three options depicted are:</p>
 </div>
@@ -312,7 +336,7 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-independently on how you&#8217;re installing, please deploy the deploy in the last step of ACS Deploy Demo to complete this module.
+Independently on how you&#8217;re installing, please deploy the deploy in the last step of ACS Deploy Demo to complete this module.
 </td>
 </tr>
 </table>
@@ -608,12 +632,6 @@ cd rhacs-demo</code></pre>
 cd acs-gitops</code></pre>
 </div>
 </div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/rcarrata/acs-gitops.git" class="bare">https://github.com/rcarrata/acs-gitops.git</a>
-cd acs-gitops</code></pre>
-</div>
-</div>
 <div class="paragraph">
 <p>Install bootstrap Openshift GitOps / ArgoCD</p>
 </div>
@@ -622,6 +640,9 @@ cd acs-gitops</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">until oc apply -k bootstrap/base/; do sleep 2; done
 oc apply -k acs-deploy/applications</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>TODO: Add an image of the bootstrap</p>
 </div>
 </div>
 </div>

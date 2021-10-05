@@ -210,6 +210,9 @@
     <a class="nav-link" href="11-integrations.html">ACS Integrations</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="11-integrations.html#integrate_with_internal_openshift_registry">Installing ACS DevSecOps Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="12-platform_configuration.html">ACS Secure Cluster Management</a>
 <ul class="nav-list">
@@ -231,14 +234,23 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="13-cicd.html">DevSecOps Pipelines</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#install_devsecops_pipelines">Installing ACS DevSecOps Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#run_devsecops_pipelines">Running the demo of DevSecOps Pipeline</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="14-apicli.html">ACS API and CLI</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14-apicli.html#api">ACS API</a>
+    <a class="nav-link" href="14-apicli.html#install_devsecops_pipelines">Installing ACS DevSecOps Pipeline</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="14-apicli.html#roxctl">ACS RoxCTL</a>
@@ -284,8 +296,76 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">ACS DevSecOps Pipelines</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>Based in <a href="https://github.com/rcarrata/devsecops-demo">DevSecOps Pipeline Repo</a> we will deploy in our Openshift cluster a full DevSecOps pipeline example to see the integration of RHACS to a CICD Pipeline.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cicd/00-acs_cicd_overview.png" alt="ACS CICD 1" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="install_devsecops_pipelines"><a class="anchor" href="#install_devsecops_pipelines"></a>Installing ACS DevSecOps Pipeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Download the demo and install the prereqs:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/rcarrata/devsecops-demo.git" class="bare">https://github.com/rcarrata/devsecops-demo.git</a>
+ansible-galaxy collection install community.kubernetes
+cd devsecops-demo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Install the demo in Stackrox:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/rcarrata/devsecops-demo.git" class="bare">https://github.com/rcarrata/devsecops-demo.git</a>
+ansible-galaxy collection install community.kubernetes
+cd devsecops-demo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check the status of the devsecops pipelines demo:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/rcarrata/devsecops-demo.git" class="bare">https://github.com/rcarrata/devsecops-demo.git</a>
+ansible-galaxy collection install community.kubernetes
+cd devsecops-demo</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="run_devsecops_pipelines"><a class="anchor" href="#run_devsecops_pipelines"></a>Running the demo of DevSecOps Pipeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Run the demo with:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./demo.sh start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Go to the namespace of <code><code>cicd</code></code> and check the Pipelines resources with the PipelineRun like the following:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/cicd/01-devsecops_pipeline.png" alt="ACS CICD 2" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>For more information check the <a href="https://github.com/rcarrata/devsecops-demo">original repo</a> or the Security Lab guide that have all the details and caveats.</p>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="12-platform_configuration.html">ACS Secure Cluster Management</a></span>

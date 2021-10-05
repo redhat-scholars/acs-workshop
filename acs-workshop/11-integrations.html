@@ -210,6 +210,9 @@
     <a class="nav-link" href="11-integrations.html">ACS Integrations</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#integrate_with_internal_openshift_registry">Installing ACS DevSecOps Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="12-platform_configuration.html">ACS Secure Cluster Management</a>
 <ul class="nav-list">
@@ -231,14 +234,23 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="13-cicd.html">DevSecOps Pipelines</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="13-cicd.html#install_devsecops_pipelines">Installing ACS DevSecOps Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="13-cicd.html#run_devsecops_pipelines">Running the demo of DevSecOps Pipeline</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="14-apicli.html">ACS API and CLI</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14-apicli.html#api">ACS API</a>
+    <a class="nav-link" href="14-apicli.html#install_devsecops_pipelines">Installing ACS DevSecOps Pipeline</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="14-apicli.html#roxctl">ACS RoxCTL</a>
@@ -284,8 +296,49 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Integrations</h1>
+<div class="sect1">
+<h2 id="integrate_with_internal_openshift_registry"><a class="anchor" href="#integrate_with_internal_openshift_registry"></a>Installing ACS DevSecOps Pipeline</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>Originally posted by Mark Roberts in <a href="https://cloud.redhat.com/blog/using-red-hat-advanced-cluster-security-with-the-openshift-registry">this great blog post</a></p>
+</div>
+<div class="paragraph">
+<p>By default, the OpenShift Container Platform registry is not exposed outside of the cluster at the time of installation. Red Hat Advanced Cluster Security can be used to scan images held within OpenShift image streams (the OpenShift registry). This can be helpful within continuous integration processes, to enable organizations  to scan images for policy violations and vulnerabilities prior to pushing the image to an external container registry. In this way, the quality of container images that get to the external registry improves, and triggered activities that result from a new image appearing in the registry only happen for a good reason.
+Configuration of OpenShift</p>
+</div>
+<div class="paragraph">
+<p>The OpenShift Platform requires a default route to the image registry, which is configured using the command described here and shown below:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc patch configs.imageregistry.operator.openshift.io/cluster --patch \
+'{"spec":{"defaultRoute":true}}' --type=merge</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, get the route using the command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get route default-route -n openshift-image-registry \
+--template='{{ .spec.host }}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will display the route URL.</p>
+</div>
+<div class="paragraph">
+<p>For a user who has access to the image registry, get the login token. This can be a service account where the token is stored in a secret or a general account where the token is generated using the command:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc whoami -t</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>TODO: finish documenting this</p>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="10-system_policies.html">System Policies</a></span>
