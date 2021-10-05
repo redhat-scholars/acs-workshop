@@ -207,10 +207,16 @@
     <a class="nav-link" href="10-system_policies.html">System Policies</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="11-integrations.html">ACS Integrations</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#integrate_with_internal_openshift_registry">Integrate with Internal Openshift Registry</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="#integrate_with_internal_openshift_registry">Installing ACS DevSecOps Pipeline</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#integrate_with_internal_openshift_registry_config_acs">Integrate with Internal Openshift Registry</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -249,9 +255,6 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="14-apicli.html">ACS API and CLI</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14-apicli.html#install_devsecops_pipelines">Installing ACS DevSecOps Pipeline</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="14-apicli.html#roxctl">ACS RoxCTL</a>
   </li>
@@ -296,47 +299,75 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Integrations</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In RHACS the Scanner component only scans those images that are not already scanned by other integrated vulnerability scanners. It means that if you have integrated Red Hat Advanced Cluster Security for Kubernetes with other vulnerability scanners, Scanner checks and uses the scanning results from the integrated scanner if available.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
-<h2 id="integrate_with_internal_openshift_registry"><a class="anchor" href="#integrate_with_internal_openshift_registry"></a>Installing ACS DevSecOps Pipeline</h2>
+<h2 id="integrate_with_internal_openshift_registry"><a class="anchor" href="#integrate_with_internal_openshift_registry"></a>Integrate with Internal Openshift Registry</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Originally posted by Mark Roberts in <a href="https://cloud.redhat.com/blog/using-red-hat-advanced-cluster-security-with-the-openshift-registry">this great blog post</a></p>
+<p>Idea originally posted by Mark Roberts in <a href="https://cloud.redhat.com/blog/using-red-hat-advanced-cluster-security-with-the-openshift-registry">this great blog post</a>, and adapt to consume internally</p>
 </div>
 <div class="paragraph">
-<p>By default, the OpenShift Container Platform registry is not exposed outside of the cluster at the time of installation. Red Hat Advanced Cluster Security can be used to scan images held within OpenShift image streams (the OpenShift registry). This can be helpful within continuous integration processes, to enable organizations  to scan images for policy violations and vulnerabilities prior to pushing the image to an external container registry. In this way, the quality of container images that get to the external registry improves, and triggered activities that result from a new image appearing in the registry only happen for a good reason.
-Configuration of OpenShift</p>
+<p>Red Hat Advanced Cluster Security can be used to scan images held within OpenShift image streams (the OpenShift registry).</p>
 </div>
 <div class="paragraph">
-<p>The OpenShift Platform requires a default route to the image registry, which is configured using the command described here and shown below:</p>
+<p>This can be helpful within continuous integration processes, to enable organizations to scan images for policy violations and vulnerabilities prior to pushing the image to an external container registry.</p>
+</div>
+<div class="paragraph">
+<p>In this way, the quality of container images that get to the external registry improves, and triggered activities that result from a new image appearing in the registry only happen for a good reason.</p>
+</div>
+<div class="paragraph">
+<p>Generate a namespace and extract the token name of the</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc patch configs.imageregistry.operator.openshift.io/cluster --patch \
-'{"spec":{"defaultRoute":true}}' --type=merge</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">export NSINTEGRATION="integration-internal-registry"
+
+oc new-project $NSINTEGRATION
+
+SECRET_TOKEN_NAME=$(oc get sa -n $NSINTEGRATION default -o jsonpath='{.secrets[*]}' | jq -r .name | grep token)
+
+PIPELINE_TOKEN=$(oc get secret -n $NSINTEGRATION $SECRET_TOKEN_NAME -o jsonpath='{.data.token}' | base64 -d)
+echo $PIPELINE_TOKEN
+
+oc policy add-role-to-user admin system:serviceaccount:$NSINTEGRATION:pipeline -n $NSINTEGRATION</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="integrate_with_internal_openshift_registry_config_acs"><a class="anchor" href="#integrate_with_internal_openshift_registry_config_acs"></a>Integrate with Internal Openshift Registry</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To allow the roxctl command line interface to scan the images within the OpenShift registry, add an integration of type “Generic Docker Registry'', from the Platform Configuration - Integrations menu.</p>
 </div>
 <div class="paragraph">
-<p>Next, get the route using the command:</p>
+<p>Fill in the fields as shown in figure 1, giving the integration a unique name that should include the cluster name for practicality. Paste in the username and token and select Disable TLS certificate validation if you need insecure https communication to a test cluster, for example.</p>
 </div>
-<div class="listingblock console-input">
+<div class="paragraph">
+<p>Press the test button to validate the connection and press “save” when the test is successful.</p>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get route default-route -n openshift-image-registry \
---template='{{ .spec.host }}'</code></pre>
+<img src="_images/integrations/03-registry_ocp_internal.png" alt="ACS Integrations 1" width="800">
 </div>
 </div>
 <div class="paragraph">
-<p>This will display the route URL.</p>
-</div>
-<div class="paragraph">
-<p>For a user who has access to the image registry, get the login token. This can be a service account where the token is stored in a secret or a general account where the token is generated using the command:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc whoami -t</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>TODO: finish documenting this</p>
+<p>TODO: Finish the integration!!</p>
 </div>
 </div>
 </div>

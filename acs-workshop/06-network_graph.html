@@ -207,10 +207,16 @@
     <a class="nav-link" href="10-system_policies.html">System Policies</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="11-integrations.html">ACS Integrations</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11-integrations.html#integrate_with_internal_openshift_registry">Integrate with Internal Openshift Registry</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="11-integrations.html#integrate_with_internal_openshift_registry">Installing ACS DevSecOps Pipeline</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11-integrations.html#integrate_with_internal_openshift_registry_config_acs">Integrate with Internal Openshift Registry</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -249,9 +255,6 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="14-apicli.html">ACS API and CLI</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14-apicli.html#install_devsecops_pipelines">Installing ACS DevSecOps Pipeline</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="14-apicli.html#roxctl">ACS RoxCTL</a>
   </li>
@@ -310,6 +313,12 @@
 </div>
 <div class="paragraph">
 <p>You can change the time frame in the upper right dropdown, and the legend at bottom left</p>
+</div>
+<div class="paragraph">
+<p>With ACS setup complete and some running workloads, you should see data being populated in the ACS UI. Navigate to the Network tab to see a graph of active and allowed network connections among the namespaces and the deployments.</p>
+</div>
+<div class="paragraph">
+<p>Zoom into the microservices-demo namespace and click on one of the deployments. On the right hand side you’ll see the deployment details.</p>
 </div>
 </div>
 </div>
