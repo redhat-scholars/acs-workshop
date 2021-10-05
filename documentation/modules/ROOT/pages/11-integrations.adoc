@@ -2,4 +2,42 @@
 include::_attributes.adoc[]
 :profile: acs
 
-TBD
+
+
+[#integrate_with_internal_openshift_registry]
+== Installing ACS DevSecOps Pipeline
+
+Originally posted by Mark Roberts in https://cloud.redhat.com/blog/using-red-hat-advanced-cluster-security-with-the-openshift-registry[this great blog post]
+
+By default, the OpenShift Container Platform registry is not exposed outside of the cluster at the time of installation. Red Hat Advanced Cluster Security can be used to scan images held within OpenShift image streams (the OpenShift registry). This can be helpful within continuous integration processes, to enable organizations  to scan images for policy violations and vulnerabilities prior to pushing the image to an external container registry. In this way, the quality of container images that get to the external registry improves, and triggered activities that result from a new image appearing in the registry only happen for a good reason.
+Configuration of OpenShift
+
+The OpenShift Platform requires a default route to the image registry, which is configured using the command described here and shown below:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc patch configs.imageregistry.operator.openshift.io/cluster --patch \
+'{"spec":{"defaultRoute":true}}' --type=merge
+----
+
+Next, get the route using the command:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get route default-route -n openshift-image-registry \
+--template='{{ .spec.host }}'
+----
+
+This will display the route URL.
+
+For a user who has access to the image registry, get the login token. This can be a service account where the token is stored in a secret or a general account where the token is generated using the command: 
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc whoami -t
+----
+
+TODO: finish documenting this

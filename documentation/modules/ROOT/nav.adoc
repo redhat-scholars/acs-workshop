@@ -46,6 +46,7 @@
 * xref:10-system_policies.adoc[System Policies]
 
 * xref:11-integrations.adoc[ACS Integrations]
+* xref:11-integrations.adoc#integrate_with_internal_openshift_registry[Installing ACS DevSecOps Pipeline]
 
 * xref:12-platform_configuration.adoc[ACS Secure Cluster Management]
 ** xref:12-platform_configuration.adoc#clusters[ACS Secured Clusters]
@@ -55,7 +56,9 @@
 ** xref:12-platform_configuration.adoc#access_control[ACS Access Control]
 
 * xref:13-cicd.adoc[DevSecOps Pipelines]
+** xref:13-cicd#install_devsecops_pipelines[Installing ACS DevSecOps Pipeline]
+** xref:13-cicd#run_devsecops_pipelines[Running the demo of DevSecOps Pipeline]
 
 * xref:14-apicli.adoc[ACS API and CLI]
-** xref:14-apicli.adoc#api[ACS API]
+** xref:14-apicli.adoc#install_devsecops_pipelines[Installing ACS DevSecOps Pipeline]
 ** xref:14-apicli.adoc#roxctl[ACS RoxCTL]
