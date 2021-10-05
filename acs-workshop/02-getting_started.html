@@ -6,7 +6,7 @@
     <title>Getting Started :: ACS Workshop</title>
     <link rel="canonical" href="https://redhat-iberia.github.io/acs-workshop/acs-workshop/02-getting_started.html">
     <link rel="prev" href="01-setup.html">
-    <link rel="next" href="03-overview-acs.html#acs_architecture">
+    <link rel="next" href="03-overview-acs.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -102,6 +102,12 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#deploy_demo_acs">Deploying Demo in ACS</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-overview-acs.html">ACS Overview</a>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="03-overview-acs.html#acs_architecture">ACS Architecture</a>
   </li>
@@ -281,7 +287,35 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>We will install the</p>
+<p>We will install ACS thought three main options and afterwards we will install an small demo that will serve examples to our workshop.</p>
+</div>
+<div class="paragraph">
+<p>The three options depicted are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Option 1 - ACS Operator Install Manually (recommended to learn the process)</p>
+</li>
+<li>
+<p>Option 2 - Deploying ACS with Ansible (if you&#8217;re in a rush and/or love Ansible)</p>
+</li>
+<li>
+<p>Option 3 - Deploying ACS with Openshift GitOps (the GitOps way!)</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+independently on how you&#8217;re installing, please deploy the deploy in the last step of ACS Deploy Demo to complete this module.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -628,7 +662,7 @@ cd rhacs-demo</code></pre>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="01-setup.html">Setup</a></span>
-  <span class="next"><a href="03-overview-acs.html#acs_architecture">ACS Architecture</a></span>
+  <span class="next"><a href="03-overview-acs.html">ACS Overview</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
