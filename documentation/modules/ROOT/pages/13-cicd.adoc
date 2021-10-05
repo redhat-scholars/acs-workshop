@@ -33,9 +33,7 @@ Check the status of the devsecops pipelines demo:
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-git clone https://github.com/rcarrata/devsecops-demo.git
-ansible-galaxy collection install community.kubernetes
-cd devsecops-demo
+./status.sh
 ----
 
 [#run_devsecops_pipelines]
