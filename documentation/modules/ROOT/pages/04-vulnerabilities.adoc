@@ -20,7 +20,6 @@ Point out the Top Riskiest Images panel in the upper right
 [#image_overview_image_details]
 == Image overview and image details
 
-
 In Top Riskiest Images, images are listed here in order of risk, based on the number and severity of the vulnerabilities present in the components in the images.
 
 Lets see it:
