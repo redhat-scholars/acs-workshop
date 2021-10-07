@@ -3,7 +3,7 @@ runtime:
 
 site:
   title: ACS Workshop
-  url: https://redhat-iberia.github.io/acs-workshop
+  url: https://redhat-scholars.github.io/acs-workshop
   start_page: acs-workshop::index.adoc
 
 content:

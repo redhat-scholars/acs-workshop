@@ -66,7 +66,7 @@ Although they are used in the tutorial, you could use others without any problem
 [#downloadtutorial]
 == Get tutorial sources
 
-:tutorial-url: https://github.com/redhat-iberia/acs-workshop.git
+:tutorial-url: https://github.com/redhat-scholars/acs-workshop.git
 :folder: acs-workshop
 include::https://raw.githubusercontent.com/redhat-developer-demos/rhd-tutorial-common/master/download-sources.adoc[]
 

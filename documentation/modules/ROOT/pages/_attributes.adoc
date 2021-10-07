@@ -1,7 +1,7 @@
 :experimental:
 :source-highlighter: highlightjs
 :branch: main
-:github-repo: https://github.com/redhat-iberia/acs-workshop/blob/{branch}
+:github-repo: https://github.com/redhat-scholars/acs-workshop/blob/{branch}
 :profile: acs
 :minikube-version: v1.20.0
 :kubernetes-version: v1.20.2
