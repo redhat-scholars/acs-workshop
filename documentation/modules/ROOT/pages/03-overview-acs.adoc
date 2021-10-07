@@ -23,7 +23,7 @@ image::architecture_acs.png[ACS Architecture, 800]
 
 * https://docs.openshift.com/acs/architecture/acs-architecture.html#per-cluster-components_acs-architecture[**Admission controller**]: [1 x Cluster] The admission controller prevents users from creating workloads that violate security policies in Red Hat Advanced Cluster Security for Kubernetes. [1 x Admission Controller]
 
-* https://help.stackrox.com/docs/system-info/stackrox-architecture/#sensor[**Collector**]: [1 x Node OCP/K8s Nodes] Collector collects and monitors information about container runtime and network activity. It then sends the collected information to Sensor.
+* https://redhat-scholars.github.io/acs-workshop/acs-workshop/03-overview-acs.html#acs_architecture[**Collector**]: [1 x Node OCP/K8s Nodes] Collector collects and monitors information about container runtime and network activity. It then sends the collected information to Sensor.
 
 
 NOTE: Scanner only scans those images that are not already scanned by other integrated vulnerability scanners. It means that if you have integrated Red Hat Advanced Cluster Security for Kubernetes with other vulnerability scanners, Scanner checks and uses the scanning results from the integrated scanner if available.
