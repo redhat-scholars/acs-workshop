@@ -11,7 +11,7 @@ In the upper left you’ll see the dropdown for clusters so I can easily navigat
 
 The default view, Active, shows me actual traffic for the Past Hour between the deployments in all of the namespaces.
 
-image::network-flow/00-network.png[Network Flow 1, 400]
+image::network-flow/00-network.png[Network Flow 1, 600]
 
 You can change the time frame in the upper right dropdown, and the legend at bottom left 
 
@@ -23,7 +23,7 @@ Click on ```api-server``` deployment.
 
 Clicking on a deployment brings up details of the types of traffic observed including source or destination and ports.
 
-image::network-flow/01-network.png[Network Flow 2, 400]
+image::network-flow/01-network.png[Network Flow 2, 800]
 
 [#network_graph_views]
 == Network Graph Views
