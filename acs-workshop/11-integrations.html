@@ -211,10 +211,16 @@
     <a class="nav-link" href="11-integrations.html">ACS Integrations</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="#integrate_with_internal_openshift_registry">Integrate with Internal Openshift Registry</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#integrate_with_internal_openshift_registry_config_acs">Configure RHACS integration for Internal Openshift Registry</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#integrate_with_internal_openshift_registry_config_acs">Integrate with Internal Openshift Registry</a>
+    <a class="nav-link" href="#integrate_acs_slack">Integrate ACS with Slack</a>
   </li>
 </ul>
   </li>
@@ -316,7 +322,7 @@ In RHACS the Scanner component only scans those images that are not already scan
 </div>
 </div>
 <div class="sect1">
-<h2 id="integrate_with_internal_openshift_registry"><a class="anchor" href="#integrate_with_internal_openshift_registry"></a>Integrate with Internal Openshift Registry</h2>
+<h2 id="integrate_with_internal_openshift_registry"><a class="anchor" href="#integrate_with_internal_openshift_registry"></a>Integrate RHACS with the Internal Openshift Registry</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Idea originally posted by Mark Roberts in <a href="https://cloud.redhat.com/blog/using-red-hat-advanced-cluster-security-with-the-openshift-registry">this great blog post</a>, and adapt to consume internally</p>
@@ -347,11 +353,8 @@ echo $PIPELINE_TOKEN
 oc policy add-role-to-user admin system:serviceaccount:$NSINTEGRATION:pipeline -n $NSINTEGRATION</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="integrate_with_internal_openshift_registry_config_acs"><a class="anchor" href="#integrate_with_internal_openshift_registry_config_acs"></a>Integrate with Internal Openshift Registry</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="integrate_with_internal_openshift_registry_config_acs"><a class="anchor" href="#integrate_with_internal_openshift_registry_config_acs"></a>Configure RHACS integration for Internal Openshift Registry</h3>
 <div class="paragraph">
 <p>To allow the roxctl command line interface to scan the images within the OpenShift registry, add an integration of type “Generic Docker Registry'', from the Platform Configuration - Integrations menu.</p>
 </div>
@@ -368,6 +371,64 @@ oc policy add-role-to-user admin system:serviceaccount:$NSINTEGRATION:pipeline -
 </div>
 <div class="paragraph">
 <p>TODO: Finish the integration!!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="integrate_acs_slack"><a class="anchor" href="#integrate_acs_slack"></a>Integrate RHACS Notifications with Slack</h3>
+<div class="paragraph">
+<p>If you are using Slack, you can forward alerts from Red Hat Advanced Cluster Security for Kubernetes to Slack.</p>
+</div>
+<div class="paragraph">
+<p>Create a new Slack app, enable incoming webhooks, and get a webhook URL. To do this step, follow the <a href="https://docs.openshift.com/acs/integration/integrate-with-slack.html#configure-slack_integrate-with-slack">Configuration Slack documentation guide</a> for generate a slack channel and the webhook url into the Slack workspace.</p>
+</div>
+<div class="paragraph">
+<p>On the RHACS portal, navigate to Platform Configuration &#8594; Integrations.
+image::integrations/04-integration-slack.png[ACS Integrations Slack 1, 500]</p>
+</div>
+<div class="paragraph">
+<p>Create a new integration in Red Hat Advanced Cluster Security for Kubernetes by using the webhook URL.
+image::integrations/05-integrations-slack.png[ACS Integrations Slack 2, 600]</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+the webhook URL will have the format of "https://hooks.slack.com/services/ZZZ/YYY/XXX"
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Click Test and check the Slack Channel:
+image::integrations/07-integrations-slack.png[ACS Integrations Slack 3, 300]</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+by default all the notifications in the system policies are disabled. If you have not configured any other integrations, you will see No notifiers configured!.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>For enable the Policy Notifications, select a System Policy and click on Actions, then Enable Notification:
+image::integrations/08-integrations-slack.png[ACS Integrations Slack 4, 600]</p>
+</div>
+<div class="paragraph">
+<p>For enable the Policy Notifications, select a System Policy and click on Actions, then Enable Notification:
+image::integrations/06-integrations-slack.png[ACS Integrations Slack 5, 600]</p>
+</div>
+<div class="paragraph">
+<p>When a System Policy is violated, and appears in Violations, will be sent a Notification to Slack though the Slack integration notifier showing the information of the System Policy violated and more details about that:
+image::integrations/09-integrations-slack.png[ACS Integrations Slack 6, 600]</p>
+</div>
 </div>
 </div>
 </div>
