@@ -268,7 +268,7 @@ image::compliance/03_compliance_operator_in_acs.png[ACS 5, 500]
 
 * To see the detailed results, click on the name or bar of any of the standards. To investigate the results of the OpenShift CIS benchmark scan, for example, click ocp4-cis: 
 
-image::compliance/04_co_acs_detail.png[ACS 6, 500]
+image::compliance/04_co_acs_detail.png[ACS 6, 800]
 
 For more information check the https://docs.openshift.com/container-platform/4.8/security/compliance_operator/compliance-scans.html[Compliance Operator guide]
 
@@ -294,7 +294,7 @@ built-in policies that detects if images with insecure tags are being used or if
 Therefore, the cluster is compliant if there are policies that are being enforced that discourages such images from being
 deployed."
 
-image::compliance/05_nist0.png[ACS 7, 500]
+image::compliance/05_nist0.png[ACS 7, 700]
 
 [#acs_policy_compliance_nist]
 === Enforce Policies that Meet Guidance for NIST Control 4.2.2
@@ -321,7 +321,7 @@ image::compliance/06_nist1.png[ACS 8, 400]
 * In the section labeled "PASSING STANDARDS ACROSS CLUSTERS", click on NIST 800-190.
 * Scroll down to control 4.2.2 and verify that the control now reports 100% compliance.
 
-image::compliance/07_nist2.png[ACS 9, 400]
+image::compliance/07_nist2.png[ACS 9, 700]
 
 [#acs_policy_compliance_nist_revert]
 === Revert the Policy Changes
