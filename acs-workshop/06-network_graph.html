@@ -311,14 +311,63 @@
 <div class="paragraph">
 <p>The default view, Active, shows me actual traffic for the Past Hour between the deployments in all of the namespaces.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/network-flow/00-network.png" alt="Network Flow 1" width="400">
+</div>
+</div>
 <div class="paragraph">
 <p>You can change the time frame in the upper right dropdown, and the legend at bottom left</p>
 </div>
 <div class="paragraph">
-<p>With ACS setup complete and some running workloads, you should see data being populated in the ACS UI. Navigate to the Network tab to see a graph of active and allowed network connections among the namespaces and the deployments.</p>
+<p>Zoom in on Payments Namespace</p>
 </div>
 <div class="paragraph">
-<p>Zoom into the microservices-demo namespace and click on one of the deployments. On the right hand side you’ll see the deployment details.</p>
+<p>As we zoom in, the namespace boxes show the individual deployment names</p>
+</div>
+<div class="paragraph">
+<p>Click on <code><code>api-server</code></code> deployment.</p>
+</div>
+<div class="paragraph">
+<p>Clicking on a deployment brings up details of the types of traffic observed including source or destination and ports.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/network-flow/01-network.png" alt="Network Flow 2" width="400">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="network_graph_views"><a class="anchor" href="#network_graph_views"></a>Network Graph Views</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In the Network Graph view, you can configure the type of connections you want to see. In the Flows section (upper left), select:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Active</strong> to view only active connections.</p>
+</li>
+<li>
+<p><strong>Allowed</strong> to view only allowed network connections.</p>
+</li>
+<li>
+<p><strong>All</strong> to view both active and allowed network connections.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Let’s switch the view from active connections to the firewall view - Allowed.</p>
+</div>
+<div class="paragraph">
+<p>This allows us to quickly see the disconnect between what we’ve actually seen happening, versus the wide-open view we see here</p>
+</div>
+<div class="paragraph">
+<p>The red dots indicate an unrestricted deployment that is an open network.</p>
+</div>
+<div class="paragraph">
+<p>The dashed lines indicate a namespace with no restrictions on egress and in conflict with best practices required under several compliance standards.</p>
 </div>
 </div>
 </div>
