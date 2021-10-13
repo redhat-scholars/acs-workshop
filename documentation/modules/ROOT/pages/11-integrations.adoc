@@ -50,7 +50,9 @@ TODO: Finish the integration!!
 
 If you are using Slack, you can forward alerts from Red Hat Advanced Cluster Security for Kubernetes to Slack.
 
-Create a new Slack app, enable incoming webhooks, and get a webhook URL. To do this step, follow the https://docs.openshift.com/acs/integration/integrate-with-slack.html#configure-slack_integrate-with-slack[Configuration Slack documentation guide] for generate a slack channel and the webhook url into the Slack workspace.
+Create a new Slack app, enable incoming webhooks, and get a webhook URL. 
+
+To do this step, follow the https://docs.openshift.com/acs/integration/integrate-with-slack.html#configure-slack_integrate-with-slack[Configuration Slack documentation guide] for generate a slack channel and the webhook url into the Slack workspace.
 
 On the RHACS portal, navigate to Platform Configuration -> Integrations.
 

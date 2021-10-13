@@ -50,4 +50,4 @@ Go to the namespace of ```cicd``` and check the Pipelines resources with the Pip
 
 image::cicd/01-devsecops_pipeline.png[ACS CICD 2, 800]
 
-For more information check the https://github.com/rcarrata/devsecops-demo[original repo] or the Security Lab guide that have all the details and caveats.
+For more information check the https://github.com/rcarrata/devsecops-demo[original repo] or the https://github.com/RedHatDemos/SecurityDemos/blob/master/2021Labs/OpenShiftSecurity/documentation/lab4.adoc[Security Lab guide] that have all the details and caveats.
