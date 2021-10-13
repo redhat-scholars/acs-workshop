@@ -572,9 +572,9 @@ metadata:
   namespace: stackrox
 spec:
   admissionControl:
-    listenOnCreates: false
+    listenOnCreates: true
     listenOnEvents: true
-    listenOnUpdates: false
+    listenOnUpdates: true
   clusterName: demo-cluster
   perNode:
     collector:
@@ -582,6 +582,18 @@ spec:
       imageFlavor: Regular
     taintToleration: TolerateTaints</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Check the settings of the <a href="https://docs.openshift.com/acs/installing/install-ocp-operator.html#addmission-controller-settings_install-ocp-operator">SecuredCluster operator documentation</a> for more information.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Create the Secured Cluster custom Resource using (and optionally custumizing) the example provided in the repository.</p>
