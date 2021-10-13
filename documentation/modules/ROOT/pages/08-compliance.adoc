@@ -270,8 +270,7 @@ image::compliance/03_compliance_operator_in_acs.png[ACS 5, 500]
 
 image::compliance/04_co_acs_detail.png[ACS 6, 500]
 
-
-https://docs.openshift.com/container-platform/4.8/security/compliance_operator/compliance-scans.html
+For more information check the https://docs.openshift.com/container-platform/4.8/security/compliance_operator/compliance-scans.html[Compliance Operator guide]
 
 [#acs_policy_compliance]
 == Configure Policy in ACS to Invoke Compliance related Controls

@@ -5,7 +5,7 @@ include::_attributes.adoc[]
 NOTE: In RHACS the Scanner component only scans those images that are not already scanned by other integrated vulnerability scanners. It means that if you have integrated Red Hat Advanced Cluster Security for Kubernetes with other vulnerability scanners, Scanner checks and uses the scanning results from the integrated scanner if available.
 
 [#integrate_with_internal_openshift_registry]
-== Integrate with Internal Openshift Registry
+== Integrate RHACS with the Internal Openshift Registry 
 
 Idea originally posted by Mark Roberts in https://cloud.redhat.com/blog/using-red-hat-advanced-cluster-security-with-the-openshift-registry[this great blog post], and adapt to consume internally 
 
@@ -33,7 +33,7 @@ oc policy add-role-to-user admin system:serviceaccount:$NSINTEGRATION:pipeline -
 ----
 
 [#integrate_with_internal_openshift_registry_config_acs]
-== Integrate with Internal Openshift Registry
+=== Configure RHACS integration for Internal Openshift Registry
 
 To allow the roxctl command line interface to scan the images within the OpenShift registry, add an integration of type “Generic Docker Registry'', from the Platform Configuration - Integrations menu.
 
@@ -45,5 +45,31 @@ image::integrations/03-registry_ocp_internal.png[ACS Integrations 1, 800]
 
 TODO: Finish the integration!!
 
+[#integrate_acs_slack]
+=== Integrate RHACS Notifications with Slack
 
+If you are using Slack, you can forward alerts from Red Hat Advanced Cluster Security for Kubernetes to Slack.
 
+Create a new Slack app, enable incoming webhooks, and get a webhook URL. To do this step, follow the https://docs.openshift.com/acs/integration/integrate-with-slack.html#configure-slack_integrate-with-slack[Configuration Slack documentation guide] for generate a slack channel and the webhook url into the Slack workspace.
+
+On the RHACS portal, navigate to Platform Configuration -> Integrations.
+image::integrations/04-integration-slack.png[ACS Integrations Slack 1, 500]
+
+Create a new integration in Red Hat Advanced Cluster Security for Kubernetes by using the webhook URL.
+image::integrations/05-integrations-slack.png[ACS Integrations Slack 2, 600]
+
+NOTE: the webhook URL will have the format of "https://hooks.slack.com/services/ZZZ/YYY/XXX"
+
+Click Test and check the Slack Channel:
+image::integrations/07-integrations-slack.png[ACS Integrations Slack 3, 300]
+
+NOTE: by default all the notifications in the system policies are disabled. If you have not configured any other integrations, you will see No notifiers configured!.
+
+For enable the Policy Notifications, select a System Policy and click on Actions, then Enable Notification:
+image::integrations/08-integrations-slack.png[ACS Integrations Slack 4, 600]
+
+For enable the Policy Notifications, select a System Policy and click on Actions, then Enable Notification:
+image::integrations/06-integrations-slack.png[ACS Integrations Slack 5, 600]
+
+When a System Policy is violated, and appears in Violations, will be sent a Notification to Slack though the Slack integration notifier showing the information of the System Policy violated and more details about that:
+image::integrations/09-integrations-slack.png[ACS Integrations Slack 6, 600]

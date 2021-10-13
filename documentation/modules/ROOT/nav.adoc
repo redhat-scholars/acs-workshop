@@ -47,7 +47,8 @@
 
 * xref:11-integrations.adoc[ACS Integrations]
 ** xref:11-integrations.adoc#integrate_with_internal_openshift_registry[Integrate with Internal Openshift Registry]
-** xref:11-integrations.adoc#integrate_with_internal_openshift_registry_config_acs[Integrate with Internal Openshift Registry]
+*** xref:11-integrations.adoc#integrate_with_internal_openshift_registry_config_acs[Configure RHACS integration for Internal Openshift Registry]
+** xref:11-integrations.adoc#integrate_acs_slack[Integrate ACS with Slack]
 
 * xref:12-platform_configuration.adoc[ACS Secure Cluster Management]
 ** xref:12-platform_configuration.adoc#clusters[ACS Secured Clusters]

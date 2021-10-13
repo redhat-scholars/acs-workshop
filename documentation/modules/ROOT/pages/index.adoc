@@ -28,3 +28,4 @@ Using Red Hat Advanced Cluster Security for Kubernetes (Red Hat Advanced Cluster
 * **Threat Detection**: Use rules, automated allow lists, and baselining to accurately identify suspicious activity in your running applications.
 * **Incident Response**: Take action, from failing builds and blocking deployments to killing pods and thwarting attacks, using Kubernetes for enforcement.
 
+IMPORTANT: This is not an official RH Advanced Cluster Security guide or workshop. Please contact with your RH representative if you want more information about Training or Guidelines about this topic / product.
