@@ -2,4 +2,11 @@
 include::_attributes.adoc[]
 :profile: acs
 
-TBD
+Learn how to use the Configuration Management view and understand the correlation between various entities in your cluster to manage your cluster configuration efficiently.
+
+[#conf_management_overview]
+== Configuration Management Overview
+
+Every OpenShift Container Platform cluster includes many different entities distributed throughout the cluster, which makes it more challenging to understand and act on the available information.
+
+Red Hat Advanced Cluster Security for Kubernetes (RHACS) provides efficient configuration management that combines all these distributed entities on a single page. It brings together information about all your clusters, namespaces, nodes, deployments, images, secrets, users, groups, service accounts, and roles in a single Configuration Management view, helping you visualize different entities and the connections between them.

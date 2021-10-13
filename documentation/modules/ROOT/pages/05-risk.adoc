@@ -2,8 +2,6 @@
 include::_attributes.adoc[]
 :profile: acs
 
-TBD
-
 [#risk_dashboard]
 == Risks main dashboard
 

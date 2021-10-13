@@ -42,8 +42,10 @@
 ** xref:08-compliance.adoc#acs_policy_compliance_nist_revert[Revert the Policy Changes]
 
 * xref:09-configuration_management.adoc[Configuration Management]
+** xref:09-configuration_management.adoc#conf_management_overview[Configuration Management Overview]
 
 * xref:10-system_policies.adoc[System Policies]
+** xref:10-system_policies.adoc#system_policies_overview[System Policies Overview]
 
 * xref:11-integrations.adoc[ACS Integrations]
 ** xref:11-integrations.adoc#integrate_with_internal_openshift_registry[Integrate with Internal Openshift Registry]
