@@ -2,12 +2,19 @@
 include::_attributes.adoc[]
 :profile: acs
 
-Based in https://github.com/rcarrata/devsecops-demo[DevSecOps Pipeline Repo] we will deploy in our Openshift cluster a full DevSecOps pipeline example to see the integration of RHACS to a CICD Pipeline.
+[#integrate_ocp_pipelines]
+== Integrate Openshift Pipelines with RHACS
 
-image::cicd/00-acs_cicd_overview.png[ACS CICD 1, 800]
+https://cloud.redhat.com/blog/using-openshift-pipelines-to-automate-red-hat-advanced-cluster-security-for-kubernetes[Using OpenShift Pipelines to Automate Red Hat Advanced Cluster Security for Kubernetes]
+
+TODO: finish the writing.
 
 [#install_devsecops_pipelines]
 == Installing ACS DevSecOps Pipeline
+
+Based in https://github.com/rcarrata/devsecops-demo[DevSecOps Pipeline Repo] we will deploy in our Openshift cluster a full DevSecOps pipeline example to see the integration of RHACS to a CICD Pipeline.
+
+image::cicd/00-acs_cicd_overview.png[ACS CICD 1, 800]
 
 Download the demo and install the prereqs:
 
