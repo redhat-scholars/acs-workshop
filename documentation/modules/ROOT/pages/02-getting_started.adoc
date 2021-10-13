@@ -260,3 +260,14 @@ Apply the ansible demo into the cluster:
 ----
 ansible-playbook rhacs-demo.yaml
 ----
+
+After the Playbook execution (and if everything worked properly), the output will be the following:
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+TASK [ocp4_workload_stackrox_demo_apps : post_workload tasks complete] ********************************************************
+ok: [localhost] => {
+    "msg": "Post-Workload Tasks completed successfully."
+}
+----
+

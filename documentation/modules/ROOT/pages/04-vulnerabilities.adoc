@@ -43,3 +43,10 @@ Under the Image Findings section, Click on Dockerfile tab
 The Dockerfile tab view shows the layer-by-layer view, starting from the base image.
 This image shows us a serious security problem - the base image was imported more than three years ago and even the most recent layers are more than two years old.
 Time is not kind to images and components - as vulnerabilities are discovered, ACS will display newly discovered CVEs.
+
+
+ACS scanner uses to fetch and update the vulnerability definitions. The first two are used by Central in ACS to fetch vulnerability details and collector modules.
+
+http://definitions.stackrox.io/
+
+collector-modules.stackrox.io is the other FQDN that will be used in online mode.

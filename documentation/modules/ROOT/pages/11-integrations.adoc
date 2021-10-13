@@ -44,3 +44,6 @@ Press the test button to validate the connection and press “save” when the t
 image::integrations/03-registry_ocp_internal.png[ACS Integrations 1, 800]
 
 TODO: Finish the integration!!
+
+
+
