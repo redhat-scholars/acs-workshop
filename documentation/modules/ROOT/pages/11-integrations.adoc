@@ -56,7 +56,7 @@ To do this step, follow the https://docs.openshift.com/acs/integration/integrate
 
 On the RHACS portal, navigate to Platform Configuration -> Integrations.
 
-image::integrations/04-integration-slack.png[ACS Integrations Slack 1, 500]
+image::integrations/04-integration-slack.png[ACS Integrations Slack 1, 800]
 
 Create a new integration in Red Hat Advanced Cluster Security for Kubernetes by using the webhook URL.
 
@@ -66,13 +66,13 @@ NOTE: the webhook URL will have the format of "https://hooks.slack.com/services/
 
 Click Test and check the Slack Channel:
 
-image::integrations/07-integrations-slack.png[ACS Integrations Slack 3, 300]
+image::integrations/07-integrations-slack.png[ACS Integrations Slack 3, 500]
 
 NOTE: by default all the notifications in the system policies are disabled. If you have not configured any other integrations, you will see No notifiers configured!.
 
 For enable the Policy Notifications, select a System Policy and click on Actions, then Enable Notification:
 
-image::integrations/08-integrations-slack.png[ACS Integrations Slack 4, 600]
+image::integrations/08-integrations-slack.png[ACS Integrations Slack 4, 700]
 
 Then in the System Policy selected, in the Notification will appear the Slack notification that it's enabled.
 
@@ -80,4 +80,4 @@ image::integrations/06-integrations-slack.png[ACS Integrations Slack 5, 600]
 
 When a System Policy is violated, and appears in Violations, will be sent a Notification to Slack though the Slack integration notifier showing the information of the System Policy violated and more details about that:
 
-image::integrations/09-integrations-slack.png[ACS Integrations Slack 6, 600]
+image::integrations/09-integrations-slack.png[ACS Integrations Slack 6, 700]
