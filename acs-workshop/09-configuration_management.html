@@ -201,10 +201,22 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="09-configuration_management.html">Configuration Management</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#conf_management_overview">Configuration Management Overview</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="10-system_policies.html">System Policies</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10-system_policies.html#system_policies_overview">System Policies Overview</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -305,8 +317,23 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Configuration Management</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>Learn how to use the Configuration Management view and understand the correlation between various entities in your cluster to manage your cluster configuration efficiently.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conf_management_overview"><a class="anchor" href="#conf_management_overview"></a>Configuration Management Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Every OpenShift Container Platform cluster includes many different entities distributed throughout the cluster, which makes it more challenging to understand and act on the available information.</p>
+</div>
+<div class="paragraph">
+<p>Red Hat Advanced Cluster Security for Kubernetes (RHACS) provides efficient configuration management that combines all these distributed entities on a single page. It brings together information about all your clusters, namespaces, nodes, deployments, images, secrets, users, groups, service accounts, and roles in a single Configuration Management view, helping you visualize different entities and the connections between them.</p>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="08-compliance.html">Compliance</a></span>
