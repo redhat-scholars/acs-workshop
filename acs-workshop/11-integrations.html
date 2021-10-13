@@ -373,8 +373,11 @@ oc policy add-role-to-user admin system:serviceaccount:$NSINTEGRATION:pipeline -
 <p>TODO: Finish the integration!!</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="integrate_acs_slack"><a class="anchor" href="#integrate_acs_slack"></a>Integrate RHACS Notifications with Slack</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="integrate_acs_slack"><a class="anchor" href="#integrate_acs_slack"></a>Integrate RHACS Notifications with Slack</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If you are using Slack, you can forward alerts from Red Hat Advanced Cluster Security for Kubernetes to Slack.</p>
 </div>
@@ -382,12 +385,20 @@ oc policy add-role-to-user admin system:serviceaccount:$NSINTEGRATION:pipeline -
 <p>Create a new Slack app, enable incoming webhooks, and get a webhook URL. To do this step, follow the <a href="https://docs.openshift.com/acs/integration/integrate-with-slack.html#configure-slack_integrate-with-slack">Configuration Slack documentation guide</a> for generate a slack channel and the webhook url into the Slack workspace.</p>
 </div>
 <div class="paragraph">
-<p>On the RHACS portal, navigate to Platform Configuration &#8594; Integrations.
-image::integrations/04-integration-slack.png[ACS Integrations Slack 1, 500]</p>
+<p>On the RHACS portal, navigate to Platform Configuration &#8594; Integrations.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/04-integration-slack.png" alt="ACS Integrations Slack 1" width="500">
+</div>
 </div>
 <div class="paragraph">
-<p>Create a new integration in Red Hat Advanced Cluster Security for Kubernetes by using the webhook URL.
-image::integrations/05-integrations-slack.png[ACS Integrations Slack 2, 600]</p>
+<p>Create a new integration in Red Hat Advanced Cluster Security for Kubernetes by using the webhook URL.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/05-integrations-slack.png" alt="ACS Integrations Slack 2" width="600">
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -402,8 +413,12 @@ the webhook URL will have the format of "https://hooks.slack.com/services/ZZZ/YY
 </table>
 </div>
 <div class="paragraph">
-<p>Click Test and check the Slack Channel:
-image::integrations/07-integrations-slack.png[ACS Integrations Slack 3, 300]</p>
+<p>Click Test and check the Slack Channel:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/07-integrations-slack.png" alt="ACS Integrations Slack 3" width="300">
+</div>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -418,16 +433,27 @@ by default all the notifications in the system policies are disabled. If you hav
 </table>
 </div>
 <div class="paragraph">
-<p>For enable the Policy Notifications, select a System Policy and click on Actions, then Enable Notification:
-image::integrations/08-integrations-slack.png[ACS Integrations Slack 4, 600]</p>
+<p>For enable the Policy Notifications, select a System Policy and click on Actions, then Enable Notification:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/08-integrations-slack.png" alt="ACS Integrations Slack 4" width="600">
+</div>
 </div>
 <div class="paragraph">
-<p>For enable the Policy Notifications, select a System Policy and click on Actions, then Enable Notification:
-image::integrations/06-integrations-slack.png[ACS Integrations Slack 5, 600]</p>
+<p>Then in the System Policy selected, in the Notification will appear the Slack notification that it&#8217;s enabled.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/06-integrations-slack.png" alt="ACS Integrations Slack 5" width="600">
+</div>
 </div>
 <div class="paragraph">
-<p>When a System Policy is violated, and appears in Violations, will be sent a Notification to Slack though the Slack integration notifier showing the information of the System Policy violated and more details about that:
-image::integrations/09-integrations-slack.png[ACS Integrations Slack 6, 600]</p>
+<p>When a System Policy is violated, and appears in Violations, will be sent a Notification to Slack though the Slack integration notifier showing the information of the System Policy violated and more details about that:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/09-integrations-slack.png" alt="ACS Integrations Slack 6" width="600">
 </div>
 </div>
 </div>
