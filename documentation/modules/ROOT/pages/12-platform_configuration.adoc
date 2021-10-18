@@ -84,7 +84,7 @@ sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s
 
 image::multicluster/01_multi.png[ACS Multi 2, 800]
 
-https://help.stackrox.com/docs/get-started/quick-start/#install-a-sensor
+For more information check about adding Secured Clusters check https://docs.openshift.com/acs/installing/install-ocp-operator.html#generate-init-bundle[the RHACS Documentation].
 
 [#secured_clusters_add_vuln]
 === Add vulnerabilities to the Secured Cluster

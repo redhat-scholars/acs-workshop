@@ -2,4 +2,29 @@
 include::_attributes.adoc[]
 :profile: acs
 
-TBD
+Using Red Hat Advanced Cluster Security for Kubernetes you can view policy violations, drill down to the actual cause of the violation, and take corrective actions.
+
+Red Hat Advanced Cluster Security for Kubernetes built-in policies identify a variety of security findings, including vulnerabilities (CVEs), violations of DevOps best practices, high-risk build and deployment practices, and suspicious runtime behaviors. Whether you use the default out-of-box security policies or use your own custom policies, Red Hat Advanced Cluster Security for Kubernetes reports a violation when an enabled policy fails.
+
+[#violations_overview]
+== Violations Dashboard Overview
+
+Violations record all of the specific times where a policy criteria has been met by any of the objects in your cluster - images and their components, deployments, runtime activity.
+
+Think of it as the “stream” of events that have occurred, although we don’t want this to just be a “to-do” list for incident response folks.
+
+
+IMPORTANT: The violations are per Deployment, not per pod! 
+
+NOTE: What happens if you not resolve a Violation in a Deployment, or if the same violation happened again (with the same parameters)?
+
+A unique violation is not always generated per event, but those events and details are summarized in the violation details itself.
+
+This behavior is expected. Since it is the same running deployment that you are updating through your pipeline, and this first violation is not resolved.  
+If new CVEs present themselves, those are of course updated based on any changes to the image. 
+But a violation will not trigger if we have already analyzed it is currently violating that policy from the original 
+time stamp of when it was detected, and nothing else has changed
+
+If the change to the deployment represented new violations, then those would appear. Or, if you deleted the deployment and redeployed a new one for example.
+
+For example, "Ubuntu Package Manager Execution". If I had an outstanding violation present from Time X, when it was first detected, and the same pod executes 24 hours later at time Y, the result would be additive, where I would see the details of those executions (First Occurrence, Last Occurrence and then each individual event execution) under the same violation summary

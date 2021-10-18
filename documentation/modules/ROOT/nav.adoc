@@ -27,6 +27,7 @@
 ** xref:06-network_graph.adoc#network_graph_overview[Network Graph Overview]
 
 * xref:07-violations.adoc[Violations]
+** xref:07-violations.adoc#violations_overview[Violations Dashboard Overview]
 
 * xref:08-compliance.adoc[Compliance]
 ** xref:08-compliance.adoc#compliance_dashboard[Review Compliance Dashboard]
