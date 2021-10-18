@@ -22,6 +22,10 @@
 
 * xref:05-risk.adoc[Risk]
 ** xref:05-risk.adoc#risk_dashboard[Review Risk Dashboard]
+** xref:05-risk.adoc#risk_single_deployment_details[Single Deployment Details]
+** xref:05-risk.adoc#risk_process_discovery[Process Discovery / Runtime]
+** xref:05-risk.adoc#risk_filtering[Filtering]
+
 
 * xref:06-network_graph.adoc[Network Graph]
 ** xref:06-network_graph.adoc#network_graph_overview[Network Graph Overview]

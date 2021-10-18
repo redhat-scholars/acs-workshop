@@ -32,6 +32,8 @@ echo $PIPELINE_TOKEN
 oc policy add-role-to-user admin system:serviceaccount:$NSINTEGRATION:pipeline -n $NSINTEGRATION
 ----
 
+NOTE: TODO change the permissions to this - https://github.com/redhat-cop/gitops-catalog/blob/main/advanced-cluster-security-operator/instance/overlays/internal-registry-integration/stackrox-image-puller-sa.yaml
+
 [#integrate_with_internal_openshift_registry_config_acs]
 === Configure RHACS integration for Internal Openshift Registry
 
