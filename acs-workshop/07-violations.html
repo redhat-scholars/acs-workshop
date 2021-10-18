@@ -159,7 +159,13 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="07-violations.html">Violations</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#violations_overview">Violations Dashboard Overview</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -317,8 +323,65 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Violations</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>Using Red Hat Advanced Cluster Security for Kubernetes you can view policy violations, drill down to the actual cause of the violation, and take corrective actions.</p>
+</div>
+<div class="paragraph">
+<p>Red Hat Advanced Cluster Security for Kubernetes built-in policies identify a variety of security findings, including vulnerabilities (CVEs), violations of DevOps best practices, high-risk build and deployment practices, and suspicious runtime behaviors. Whether you use the default out-of-box security policies or use your own custom policies, Red Hat Advanced Cluster Security for Kubernetes reports a violation when an enabled policy fails.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="violations_overview"><a class="anchor" href="#violations_overview"></a>Violations Dashboard Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Violations record all of the specific times where a policy criteria has been met by any of the objects in your cluster - images and their components, deployments, runtime activity.</p>
+</div>
+<div class="paragraph">
+<p>Think of it as the “stream” of events that have occurred, although we don’t want this to just be a “to-do” list for incident response folks.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The violations are per Deployment, not per pod!
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+What happens if you not resolve a Violation in a Deployment, or if the same violation happened again (with the same parameters)?
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A unique violation is not always generated per event, but those events and details are summarized in the violation details itself.</p>
+</div>
+<div class="paragraph">
+<p>This behavior is expected. Since it is the same running deployment that you are updating through your pipeline, and this first violation is not resolved.
+If new CVEs present themselves, those are of course updated based on any changes to the image.
+But a violation will not trigger if we have already analyzed it is currently violating that policy from the original
+time stamp of when it was detected, and nothing else has changed</p>
+</div>
+<div class="paragraph">
+<p>If the change to the deployment represented new violations, then those would appear. Or, if you deleted the deployment and redeployed a new one for example.</p>
+</div>
+<div class="paragraph">
+<p>For example, "Ubuntu Package Manager Execution". If I had an outstanding violation present from Time X, when it was first detected, and the same pod executes 24 hours later at time Y, the result would be additive, where I would see the details of those executions (First Occurrence, Last Occurrence and then each individual event execution) under the same violation summary</p>
+</div>
+</div>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="06-network_graph.html">Network Graph</a></span>
