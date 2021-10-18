@@ -147,6 +147,15 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="05-risk.html#risk_dashboard">Review Risk Dashboard</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-risk.html#risk_single_deployment_details">Single Deployment Details</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-risk.html#risk_process_discovery">Process Discovery / Runtime</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="05-risk.html#risk_filtering">Filtering</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -370,6 +379,18 @@ echo $PIPELINE_TOKEN
 
 oc policy add-role-to-user admin system:serviceaccount:$NSINTEGRATION:pipeline -n $NSINTEGRATION</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+TODO change the permissions to this - <a href="https://github.com/redhat-cop/gitops-catalog/blob/main/advanced-cluster-security-operator/instance/overlays/internal-registry-integration/stackrox-image-puller-sa.yaml" class="bare">https://github.com/redhat-cop/gitops-catalog/blob/main/advanced-cluster-security-operator/instance/overlays/internal-registry-integration/stackrox-image-puller-sa.yaml</a>
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="integrate_with_internal_openshift_registry_config_acs"><a class="anchor" href="#integrate_with_internal_openshift_registry_config_acs"></a>Configure RHACS integration for Internal Openshift Registry</h3>

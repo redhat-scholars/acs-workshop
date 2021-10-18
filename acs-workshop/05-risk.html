@@ -147,6 +147,15 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#risk_dashboard">Review Risk Dashboard</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#risk_single_deployment_details">Single Deployment Details</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#risk_process_discovery">Process Discovery / Runtime</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#risk_filtering">Filtering</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -327,12 +336,169 @@
 <h2 id="risk_dashboard"><a class="anchor" href="#risk_dashboard"></a>Risks main dashboard</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can check the OpenShift version using:</p>
+<p>Let’s take a look at the Risk view, where we go beyond the basics of vulnerabilities to understand how deployment configuration and runtime activity impact the likelihood of an exploit occurring and how successful those exploits will be.</p>
 </div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
+<div class="paragraph">
+<p>This list view shows all deployments, in all clusters and namespaces, ordered by Risk priority.</p>
 </div>
+<div class="paragraph">
+<p>Risk is also influenced by runtime activity - and Deployments that have activity that could indicate a breach in progress have a red dot on the left.</p>
+</div>
+<div class="paragraph">
+<p>Obviously - the first one in the list should be our first focus.</p>
+</div>
+<div class="paragraph">
+<p>The reality of security is that it’s just not possible to tackle all sources of Risk, so organizations end up prioritizing their efforts.</p>
+</div>
+<div class="paragraph">
+<p>We want ACS to help inform that prioritization.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="risk_single_deployment_details"><a class="anchor" href="#risk_single_deployment_details"></a>Single Deployment Details</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Click on the number 1 deployment, “visa-processor” to bring up the Risk Indicators</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TODO - Insert Image Here</p>
+</div>
+<div class="paragraph">
+<p>The details tab shows why this deployment is considered such a high risk.</p>
+</div>
+<div class="paragraph">
+<p>The deployment has serious, fixable vulnerabilities, but it also has configurations like network ports and service exposure outside the cluster, making it more likely to be attacked.</p>
+</div>
+<div class="paragraph">
+<p>In addition, other configurations like privileged containers mean that a successful attacker has access to the underlying host network and filesystem, including other containers running on that host.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Navigate to the bottom of the Risk Indicators page to the RBAC configuration section</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TODO - Insert Image Here</p>
+</div>
+<div class="paragraph">
+<p>At the bottom, we see another serious problem: the service account associated with this deployment has been given “cluster admin” privileges, which means that a successful attacker gains full control over this entire OpenShift cluster which could result in compromise of the entire cluster.</p>
+</div>
+<div class="paragraph">
+<p>All of these configurations are gleaned automatically by ACS from OpenShift, and the built-in policies assign a risk score to each, meaning that this Risk report is available as soon as you start running ACS.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="risk_process_discovery"><a class="anchor" href="#risk_process_discovery"></a>Process Discovery / Runtime</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Navigate to the Process Discovery tab of the details page
+Of course, we can’t restrict ourselves to build and deploy time configuration.</p>
+</div>
+<div class="paragraph">
+<p>Even a perfectly configured application has the potential for an attacker to gain access and cause havoc.</p>
+</div>
+<div class="paragraph">
+<p>Here we show how ACS continuously monitors runtime activity within pods in the deployment, building a baseline of observed behavior, and tracking deviations from that baseline.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on the Header bar in the section for Event Timeline (with View Graph in the labels toward the top</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TODO - Insert Image Here</p>
+</div>
+<div class="paragraph">
+<p>The event timeline shows us, for each pod, the process activity that has occurred over time.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click on the squares / circles for process activity</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TODO - Insert Image Here</p>
+</div>
+<div class="paragraph">
+<p>We can take advantage of the constrained lifecycle of containers for
+better runtime incident detection and response.</p>
+</div>
+<div class="paragraph">
+<p>Containers should be pretty boring - they’re not general purpose Virtual machines. They typically have a period of startup, with some initialization, and then settle down to a small number of processes running continuously and making or receiving connections.</p>
+</div>
+<div class="paragraph">
+<p>Deviations from the baseline can be used to take enforcement action and alert team members.</p>
+</div>
+<div class="paragraph">
+<p>Runtime activity rules can be combined with other activity</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="risk_filtering"><a class="anchor" href="#risk_filtering"></a>Filtering</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Most UI pages have a filters section at the top that allows you to narrow the reporting view to matching or non-matching criteria.</p>
+</div>
+<div class="paragraph">
+<p>Almost all of the attributes that ACS gathers are filterable</p>
+</div>
+<div class="paragraph">
+<p>It’s really useful here in Risk when you know what you’re looking for - when you want answers to questions like, “what applications have CVE-2020-1008 present,” or “</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click in the Filters Bar</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TODO - Insert Image Here</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start Typing “Process Name” and select the Process Name key</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TODO - Insert Image Here</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type java and press enter; click away to get the filters dropdown to clear</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>TODO - Insert Image Here</p>
+</div>
+<div class="paragraph">
+<p>There’s three deployments that have been “seen” running bash since they started - and all of them in Production.</p>
+</div>
+<div class="paragraph">
+<p>At the upper right there’s a Create Policy button. Now that we’ve searched for interesting criteria, we can create a policy from the
+search filter to automatically identify this criteria going forward.</p>
+</div>
+<div class="paragraph">
+<p>Filtering
+Process Name - Java
+CVE - CVE-2017-7376 (libxml2)</p>
 </div>
 </div>
 </div>
