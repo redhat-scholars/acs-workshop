@@ -21,7 +21,7 @@ The reality of security is that it’s just not possible to tackle all sources o
 
 * Click on the number 1 deployment, “visa-processor” to bring up the Risk Indicators
 
-image::risks/02-risks.png[ACS Risks 2, 800]
+image::risks/02-risks.png[ACS Risks 2, 350]
 
 The details tab shows why this deployment is considered such a high risk.
 
@@ -31,7 +31,7 @@ In addition, other configurations like privileged containers mean that a success
 
 * Navigate to the bottom of the Risk Indicators page to the RBAC configuration section
 
-image::risks/03-risks.png[ACS Risks 3, 500]
+image::risks/03-risks.png[ACS Risks 3, 400]
 
 At the bottom, we see another serious problem: the service account associated with this deployment has been given “cluster admin” privileges, which means that a successful attacker gains full control over this entire OpenShift cluster which could result in compromise of the entire cluster.
 

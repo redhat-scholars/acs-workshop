@@ -7,6 +7,8 @@ include::_attributes.adoc[]
 
 The Network Graph is a flow diagram, firewall diagram, and firewall rule builder in one.
 
+image::network-flow/03-network.png[Network Flow 1, 800]
+
 In the upper left you’ll see the dropdown for clusters so I can easily navigate between any of the clusters that are connected to ACS.
 
 * The default view, Active, shows me actual traffic for the Past Hour between the deployments in all of the namespaces.
@@ -23,7 +25,7 @@ As we zoom in, the namespace boxes show the individual deployment names
 
 * Clicking on a deployment brings up details of the types of traffic observed including source or destination and ports.
 
-image::network-flow/01-network.png[Network Flow 2, 800]
+image::network-flow/01-network.png[Network Flow 1, 800]
 
 [#network_graph_views]
 == Network Graph Views
@@ -34,10 +36,34 @@ In the Network Graph view, you can configure the type of connections you want to
 * **Allowed** to view only allowed network connections.
 * **All** to view both active and allowed network connections.
 
-Let’s switch the view from active connections to the firewall view - Allowed.
+* Let’s switch the view from active connections to the firewall view - Allowed.
+
+image::network-flow/02-network.png[Network Flow 2, 800]
 
 This allows us to quickly see the disconnect between what we’ve actually seen happening, versus the wide-open view we see here
 
 The red dots indicate an unrestricted deployment that is an open network.
 
 The dashed lines indicate a namespace with no restrictions on egress and in conflict with best practices required under several compliance standards.
+
+[#network_policy_simulator]
+== Network Graph Views
+
+* Click on Network Policy Simulator button in the top right
+
+image::network-flow/04-network.png[Network Flow 4, 400]
+
+The Network Policy Simulator is designed to help solve this problem by using the history of observed traffic to build firewall rules.
+Click on Generate and Simulate
+
+You’ll notice, though, that the firewall rules we’re generating are not proprietary rules, but OpenShift-native Network Policy objects.
+This feature, more than any other, illustrates the philosophy that ACS represents: Security through platform-native features, with fixes supplied as configuration for OpenShift.
+
+By implementing stronger security through declarative code we believe this avoids the anti-pattern of having configuration rules in a separate system - this code becomes part of your application, ensuring the consistency of “single source of truth” from your codebase.
+
+This approach also reduces operational risk since there is no proprietary firewall in your cluster or in your pods that could fail, causing an application outage.
+ACS is leveraging the firewall that’s already in your OpenShift cluster.
+
+image::network-flow/05-network.png[Network Flow 5, 400]
+
+You’ll see this approach - “fix it in the code,” “leverage the platform,” - everywhere throughout the product - and we’ll take a look at what those policies look like, with examples of policy violations.
