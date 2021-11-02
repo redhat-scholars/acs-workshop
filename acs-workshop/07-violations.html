@@ -168,6 +168,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="06-network_graph.html#network_graph_overview">Network Graph Overview</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-network_graph.html#network_policy_simulator">Network Graph Views</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
@@ -354,6 +357,60 @@
 <div class="paragraph">
 <p>Think of it as the “stream” of events that have occurred, although we don’t want this to just be a “to-do” list for incident response folks.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/violations/01-violations.png" alt="Violations 1" width="800">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="violations_example"><a class="anchor" href="#violations_example"></a>Violations Build &amp; Deploy Example</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Click on a Violation of the "Fixable Severity at least Important". You may have to look for one! The violation details appear on the right.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/violations/02-violations.png" alt="Violations 2" width="600">
+</div>
+</div>
+<div class="paragraph">
+<p>Here’s an example of the details recorded for a policy violated at deployment time.</p>
+</div>
+<div class="paragraph">
+<p>You’ll see that it’s the same information presented in a CI/CD tool or developer console when using the build-time integration.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="violations_runtime"><a class="anchor" href="#violations_runtime"></a>Violations Runtime Example</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Click on a Violation of the Red hat Package Manager in Image policy. Again, you may have to look or search (filter) for it. The violation details appear on the right.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/violations/03-violations.png" alt="Violations 3" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>This violation is a runtime incident - so it has a different set of details and actions available.</p>
+</div>
+<div class="paragraph">
+<p>The forensic data recorded will be familiar to most incident response team - the “who, what, when, where, and why” of the activity, including process names, arguments, UIDs, container IDs</p>
+</div>
+<div class="paragraph">
+<p>In this case, for our demo, there’s been no enforcement of the action, just a notification, and the team has options to resolve or suppress these notifications in the future.</p>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -366,25 +423,23 @@ The violations are per Deployment, not per pod!
 </tr>
 </table>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-What happens if you not resolve a Violation in a Deployment, or if the same violation happened again (with the same parameters)?
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="violations_behaviour"><a class="anchor" href="#violations_behaviour"></a>Violations Behaviour</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>What happens if you not resolve a Violation in a Deployment, or if the same violation happened again (with the same parameters)?</p>
 </div>
 <div class="paragraph">
 <p>A unique violation is not always generated per event, but those events and details are summarized in the violation details itself.</p>
 </div>
 <div class="paragraph">
 <p>This behavior is expected. Since it is the same running deployment that you are updating through your pipeline, and this first violation is not resolved.
-If new CVEs present themselves, those are of course updated based on any changes to the image.
-But a violation will not trigger if we have already analyzed it is currently violating that policy from the original
+If new CVEs present themselves, those are of course updated based on any changes to the image.</p>
+</div>
+<div class="paragraph">
+<p>But a violation will not trigger if we have already analyzed it is currently violating that policy from the original
 time stamp of when it was detected, and nothing else has changed</p>
 </div>
 <div class="paragraph">
@@ -392,6 +447,33 @@ time stamp of when it was detected, and nothing else has changed</p>
 </div>
 <div class="paragraph">
 <p>For example, "Ubuntu Package Manager Execution". If I had an outstanding violation present from Time X, when it was first detected, and the same pod executes 24 hours later at time Y, the result would be additive, where I would see the details of those executions (First Occurrence, Last Occurrence and then each individual event execution) under the same violation summary</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="policy_summary"><a class="anchor" href="#policy_summary"></a>Policy Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>ACS has a number of built-in policies to detect activity that’s related to attacker goals: gain a foothold, maintain a presence, move laterally, and exfiltrate data.
+The continuous runtime monitoring observes all container activity and will automatically respond to events with appropriate enforcement and notification</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In the right hand side details of the Violation, click on the Policy tab</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/violations/04-violations.png" alt="Violations 4" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>But that would be missing out on an opportunity - ACS wants to go one step further, to take advantage of the ephemeral, immutable nature of containers to improve security in a measurable way going forward.</p>
+</div>
+<div class="paragraph">
+<p>We are, essentially, using runtime incidents as a learning opportunity to improve security going forward by constraining how our containers can act.</p>
 </div>
 </div>
 </div>
