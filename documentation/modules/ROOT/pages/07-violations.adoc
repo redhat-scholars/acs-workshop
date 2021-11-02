@@ -13,14 +13,14 @@ Violations record all of the specific times where a policy criteria has been met
 
 Think of it as the “stream” of events that have occurred, although we don’t want this to just be a “to-do” list for incident response folks.
 
-image::violations/01-violations.png[Violations 1, 800]
+image::violations/01-violations.png[Violations 1, 600]
 
 [#violations_example]
 == Violations Build & Deploy Example
 
 * Click on a Violation of the "Fixable Severity at least Important". You may have to look for one! The violation details appear on the right.
 
-image::violations/02-violations.png[Violations 2, 600]
+image::violations/02-violations.png[Violations 2, 800]
 
 Here’s an example of the details recorded for a policy violated at deployment time.
 
@@ -29,9 +29,9 @@ You’ll see that it’s the same information presented in a CI/CD tool or devel
 [#violations_runtime]
 == Violations Runtime Example
 
-* Click on a Violation of the Red hat Package Manager in Image policy. Again, you may have to look or search (filter) for it. The violation details appear on the right.
+* Click on a Violation of the "Netcat Execution Detected" in Image policy. Again, you may have to look or search (filter) for it. The violation details appear on the right.
 
-image::violations/03-violations.png[Violations 3, 800]
+image::violations/03-violations.png[Violations 3, 600]
 
 This violation is a runtime incident - so it has a different set of details and actions available.
 
@@ -66,7 +66,7 @@ The continuous runtime monitoring observes all container activity and will autom
 
 * In the right hand side details of the Violation, click on the Policy tab
 
-image::violations/04-violations.png[Violations 4, 700]
+image::violations/04-violations.png[Violations 4, 500]
 
 But that would be missing out on an opportunity - ACS wants to go one step further, to take advantage of the ephemeral, immutable nature of containers to improve security in a measurable way going forward.
 
