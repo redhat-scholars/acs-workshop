@@ -33,6 +33,10 @@
 
 * xref:07-violations.adoc[Violations]
 ** xref:07-violations.adoc#violations_overview[Violations Dashboard Overview]
+** xref:07-violations.adoc#violations_example[Violations Build & Deploy Example]
+** xref:07-violations.adoc#violations_runtime[Violations Runtime Example]
+** xref:07-violations.adoc#violations_behaviour[Violations Behaviour]
+** xref:07-violations.adoc#policy_summary[Policy Summary]
 
 * xref:08-compliance.adoc[Compliance]
 ** xref:08-compliance.adoc#compliance_dashboard[Review Compliance Dashboard]

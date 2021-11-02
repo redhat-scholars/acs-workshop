@@ -10,3 +10,31 @@ Learn how to use the Configuration Management view and understand the correlatio
 Every OpenShift Container Platform cluster includes many different entities distributed throughout the cluster, which makes it more challenging to understand and act on the available information.
 
 Red Hat Advanced Cluster Security for Kubernetes (RHACS) provides efficient configuration management that combines all these distributed entities on a single page. It brings together information about all your clusters, namespaces, nodes, deployments, images, secrets, users, groups, service accounts, and roles in a single Configuration Management view, helping you visualize different entities and the connections between them.
+
+* To open the Configuration Management view, select Configuration Management from the left-hand navigation menu. Similar to the Dashboard, it displays some useful widgets.
+
+image::configmgmt/01-config.png[Config 1, 800]
+
+These widgets are interactive and show the following information:
+
+* Security policy violations by severity
+* The state of CIS (Center for Information Security) Docker and Kubernetes benchmark controls
+* Users with administrator rights in the most clusters
+* Secrets used most widely in your clusters
+
+The header in the Configuration Management view shows you the number of policies and CIS controls in your cluster. The header includes drop-down menus that allow you to switch between entities. For example, you can:
+
+* Click Policies to view all policies and their severity, or select CIS Controls to view detailed information about all controls.
+
+image::configmgmt/02-config.png[Config 2, 800]
+
+* Click Application and Infrastructure and select clusters, namespaces, nodes, deployments, images, and secrets to view detailed information.
+
+image::configmgmt/03-config.png[Config 3, 400]
+
+* Click RBAC Visibility and Configuration and select users and groups, service accounts, and roles to view detailed information.
+
+image::configmgmt/04-config.png[Config 4, 800]
+
+
+
