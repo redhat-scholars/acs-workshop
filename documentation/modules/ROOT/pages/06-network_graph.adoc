@@ -47,7 +47,7 @@ The red dots indicate an unrestricted deployment that is an open network.
 The dashed lines indicate a namespace with no restrictions on egress and in conflict with best practices required under several compliance standards.
 
 [#network_policy_simulator]
-== Network Graph Views
+== Network Policy Simulator
 
 * Click on Network Policy Simulator button in the top right
 
