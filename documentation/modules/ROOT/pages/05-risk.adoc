@@ -7,22 +7,21 @@ include::_attributes.adoc[]
 
 Let’s take a look at the Risk view, where we go beyond the basics of vulnerabilities to understand how deployment configuration and runtime activity impact the likelihood of an exploit occurring and how successful those exploits will be.
 
+image::risks/01-risks.png[ACS Risks 1, 800]
+
 This list view shows all deployments, in all clusters and namespaces, ordered by Risk priority.
 
 Risk is also influenced by runtime activity - and Deployments that have activity that could indicate a breach in progress have a red dot on the left.
-
 Obviously - the first one in the list should be our first focus.
 
-The reality of security is that it’s just not possible to tackle all sources of Risk, so organizations end up prioritizing their efforts. 
-
-We want ACS to help inform that prioritization.  
+The reality of security is that it’s just not possible to tackle all sources of Risk, so organizations end up prioritizing their efforts. We want ACS to help inform that prioritization.  
 
 [#risk_single_deployment_details]
 == Single Deployment Details
 
 * Click on the number 1 deployment, “visa-processor” to bring up the Risk Indicators
 
-TODO - Insert Image Here
+image::risks/02-risks.png[ACS Risks 2, 800]
 
 The details tab shows why this deployment is considered such a high risk.
 
@@ -32,7 +31,7 @@ In addition, other configurations like privileged containers mean that a success
 
 * Navigate to the bottom of the Risk Indicators page to the RBAC configuration section
 
-TODO - Insert Image Here
+image::risks/03-risks.png[ACS Risks 3, 500]
 
 At the bottom, we see another serious problem: the service account associated with this deployment has been given “cluster admin” privileges, which means that a successful attacker gains full control over this entire OpenShift cluster which could result in compromise of the entire cluster.
 
@@ -50,22 +49,20 @@ Here we show how ACS continuously monitors runtime activity within pods in the d
 
 * Click on the Header bar in the section for Event Timeline (with View Graph in the labels toward the top
 
-TODO - Insert Image Here
+image::risks/04-risks.png[ACS Risks 4, 500]
 
 The event timeline shows us, for each pod, the process activity that has occurred over time. 
 
 * Click on the squares / circles for process activity
 
-TODO - Insert Image Here
+image::risks/05-risks.png[ACS Risks 5, 700]
 
 We can take advantage of the constrained lifecycle of containers for 
 better runtime incident detection and response.
 
 Containers should be pretty boring - they’re not general purpose Virtual machines. They typically have a period of startup, with some initialization, and then settle down to a small number of processes running continuously and making or receiving connections.
 
-Deviations from the baseline can be used to take enforcement action and alert team members.
-
-Runtime activity rules can be combined with other activity
+Deviations from the baseline can be used to take enforcement action and alert team members. Runtime activity rules can be combined with other activity
 
 [#risk_filtering]
 == Filtering
@@ -76,23 +73,21 @@ Almost all of the attributes that ACS gathers are filterable
 
 It’s really useful here in Risk when you know what you’re looking for - when you want answers to questions like, “what applications have CVE-2020-1008 present,” or “
 
-* Click in the Filters Bar
+* Click in the Filters Bar. Start Typing “Process Name” and select the Process Name key. Type java and press enter; click away to get the filters dropdown to clear
 
-TODO - Insert Image Here
-
-* Start Typing “Process Name” and select the Process Name key
-
-TODO - Insert Image Here
-
-* Type java and press enter; click away to get the filters dropdown to clear
-
-TODO - Insert Image Here
+image::risks/06-risks.png[ACS Risks 6, 700]
 
 There’s three deployments that have been “seen” running bash since they started - and all of them in Production.
 
 At the upper right there’s a Create Policy button. Now that we’ve searched for interesting criteria, we can create a policy from the 
-search filter to automatically identify this criteria going forward.
+search filter to automatically identify this criteria going forward:
 
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
 Filtering 
 Process Name - Java
 CVE - CVE-2017-7376 (libxml2)
+----
+
+Now let's review the Network Graph and the Network Policies in RH ACS!

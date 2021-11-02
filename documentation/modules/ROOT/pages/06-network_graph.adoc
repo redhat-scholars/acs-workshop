@@ -9,19 +9,19 @@ The Network Graph is a flow diagram, firewall diagram, and firewall rule builder
 
 In the upper left you’ll see the dropdown for clusters so I can easily navigate between any of the clusters that are connected to ACS.
 
-The default view, Active, shows me actual traffic for the Past Hour between the deployments in all of the namespaces.
+* The default view, Active, shows me actual traffic for the Past Hour between the deployments in all of the namespaces.
 
 image::network-flow/00-network.png[Network Flow 1, 600]
 
 You can change the time frame in the upper right dropdown, and the legend at bottom left 
 
-Zoom in on Payments Namespace
+* Zoom in on Payments Namespace
 
 As we zoom in, the namespace boxes show the individual deployment names
 
-Click on ```api-server``` deployment.
+* Click on ```api-server``` deployment.
 
-Clicking on a deployment brings up details of the types of traffic observed including source or destination and ports.
+* Clicking on a deployment brings up details of the types of traffic observed including source or destination and ports.
 
 image::network-flow/01-network.png[Network Flow 2, 800]
 

@@ -52,6 +52,9 @@ This image shows us a serious security problem - the base image was imported mor
 
 Time is not kind to images and components - as vulnerabilities are discovered, ACS will display newly discovered CVEs.
 
+[#review_cve_images]
+== Image CVE Vulnerability Analysis
+
 * Click back to the Fixable CVEs tab.
 
 The CVE list for each image focuses on the severe - CVSS >7 - and the “fixable,” where the upstream package maintainers have published a fix. 

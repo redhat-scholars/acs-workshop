@@ -18,6 +18,7 @@
 
 * xref:04-vulnerabilities.adoc[Vulnerability Management]
 ** xref:04-vulnerabilities#vulnerability_management_panel[Review Vulnerability Management Dashboard]
+** xref:04-vulnerabilities#review_cve_images[Image CVE Vulnerability Analysis]
 ** xref:04-vulnerabilities#image_overview_image_details[Image overview and image details]
 
 * xref:05-risk.adoc[Risk]
