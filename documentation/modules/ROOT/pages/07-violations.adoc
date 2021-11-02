@@ -13,18 +13,61 @@ Violations record all of the specific times where a policy criteria has been met
 
 Think of it as the “stream” of events that have occurred, although we don’t want this to just be a “to-do” list for incident response folks.
 
+image::violations/01-violations.png[Violations 1, 800]
+
+[#violations_example]
+== Violations Build & Deploy Example
+
+* Click on a Violation of the "Fixable Severity at least Important". You may have to look for one! The violation details appear on the right.
+
+image::violations/02-violations.png[Violations 2, 600]
+
+Here’s an example of the details recorded for a policy violated at deployment time.
+
+You’ll see that it’s the same information presented in a CI/CD tool or developer console when using the build-time integration.
+
+[#violations_runtime]
+== Violations Runtime Example
+
+* Click on a Violation of the Red hat Package Manager in Image policy. Again, you may have to look or search (filter) for it. The violation details appear on the right.
+
+image::violations/03-violations.png[Violations 3, 800]
+
+This violation is a runtime incident - so it has a different set of details and actions available.
+
+The forensic data recorded will be familiar to most incident response team - the “who, what, when, where, and why” of the activity, including process names, arguments, UIDs, container IDs
+
+In this case, for our demo, there’s been no enforcement of the action, just a notification, and the team has options to resolve or suppress these notifications in the future.
 
 IMPORTANT: The violations are per Deployment, not per pod! 
 
-NOTE: What happens if you not resolve a Violation in a Deployment, or if the same violation happened again (with the same parameters)?
+[#violations_behaviour]
+== Violations Behaviour
+
+What happens if you not resolve a Violation in a Deployment, or if the same violation happened again (with the same parameters)?
 
 A unique violation is not always generated per event, but those events and details are summarized in the violation details itself.
 
 This behavior is expected. Since it is the same running deployment that you are updating through your pipeline, and this first violation is not resolved.  
 If new CVEs present themselves, those are of course updated based on any changes to the image. 
+
 But a violation will not trigger if we have already analyzed it is currently violating that policy from the original 
 time stamp of when it was detected, and nothing else has changed
 
 If the change to the deployment represented new violations, then those would appear. Or, if you deleted the deployment and redeployed a new one for example.
 
 For example, "Ubuntu Package Manager Execution". If I had an outstanding violation present from Time X, when it was first detected, and the same pod executes 24 hours later at time Y, the result would be additive, where I would see the details of those executions (First Occurrence, Last Occurrence and then each individual event execution) under the same violation summary
+
+[#policy_summary]
+== Policy Summary
+
+ACS has a number of built-in policies to detect activity that’s related to attacker goals: gain a foothold, maintain a presence, move laterally, and exfiltrate data.
+The continuous runtime monitoring observes all container activity and will automatically respond to events with appropriate enforcement and notification
+
+* In the right hand side details of the Violation, click on the Policy tab
+
+image::violations/04-violations.png[Violations 4, 700]
+
+But that would be missing out on an opportunity - ACS wants to go one step further, to take advantage of the ephemeral, immutable nature of containers to improve security in a measurable way going forward.
+
+We are, essentially, using runtime incidents as a learning opportunity to improve security going forward by constraining how our containers can act.

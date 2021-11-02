@@ -64,6 +64,6 @@ By implementing stronger security through declarative code we believe this avoid
 This approach also reduces operational risk since there is no proprietary firewall in your cluster or in your pods that could fail, causing an application outage.
 ACS is leveraging the firewall that’s already in your OpenShift cluster.
 
-image::network-flow/05-network.png[Network Flow 5, 400]
+image::network-flow/05-network.png[Network Flow 5, 800]
 
 You’ll see this approach - “fix it in the code,” “leverage the platform,” - everywhere throughout the product - and we’ll take a look at what those policies look like, with examples of policy violations.
