@@ -136,6 +136,9 @@
     <a class="nav-link" href="04-vulnerabilities.html#vulnerability_management_panel">Review Vulnerability Management Dashboard</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-vulnerabilities.html#review_cve_images">Image CVE Vulnerability Analysis</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="04-vulnerabilities.html#image_overview_image_details">Image overview and image details</a>
   </li>
 </ul>
@@ -338,20 +341,20 @@
 <div class="paragraph">
 <p>Let’s take a look at the Risk view, where we go beyond the basics of vulnerabilities to understand how deployment configuration and runtime activity impact the likelihood of an exploit occurring and how successful those exploits will be.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/risks/01-risks.png" alt="ACS Risks 1" width="800">
+</div>
+</div>
 <div class="paragraph">
 <p>This list view shows all deployments, in all clusters and namespaces, ordered by Risk priority.</p>
 </div>
 <div class="paragraph">
-<p>Risk is also influenced by runtime activity - and Deployments that have activity that could indicate a breach in progress have a red dot on the left.</p>
+<p>Risk is also influenced by runtime activity - and Deployments that have activity that could indicate a breach in progress have a red dot on the left.
+Obviously - the first one in the list should be our first focus.</p>
 </div>
 <div class="paragraph">
-<p>Obviously - the first one in the list should be our first focus.</p>
-</div>
-<div class="paragraph">
-<p>The reality of security is that it’s just not possible to tackle all sources of Risk, so organizations end up prioritizing their efforts.</p>
-</div>
-<div class="paragraph">
-<p>We want ACS to help inform that prioritization.</p>
+<p>The reality of security is that it’s just not possible to tackle all sources of Risk, so organizations end up prioritizing their efforts. We want ACS to help inform that prioritization.</p>
 </div>
 </div>
 </div>
@@ -365,8 +368,10 @@
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>TODO - Insert Image Here</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/risks/02-risks.png" alt="ACS Risks 2" width="800">
+</div>
 </div>
 <div class="paragraph">
 <p>The details tab shows why this deployment is considered such a high risk.</p>
@@ -384,8 +389,10 @@
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>TODO - Insert Image Here</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/risks/03-risks.png" alt="ACS Risks 3" width="500">
+</div>
 </div>
 <div class="paragraph">
 <p>At the bottom, we see another serious problem: the service account associated with this deployment has been given “cluster admin” privileges, which means that a successful attacker gains full control over this entire OpenShift cluster which could result in compromise of the entire cluster.</p>
@@ -415,8 +422,10 @@ Of course, we can’t restrict ourselves to build and deploy time configuration.
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>TODO - Insert Image Here</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/risks/04-risks.png" alt="ACS Risks 4" width="500">
+</div>
 </div>
 <div class="paragraph">
 <p>The event timeline shows us, for each pod, the process activity that has occurred over time.</p>
@@ -428,8 +437,10 @@ Of course, we can’t restrict ourselves to build and deploy time configuration.
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>TODO - Insert Image Here</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/risks/05-risks.png" alt="ACS Risks 5" width="700">
+</div>
 </div>
 <div class="paragraph">
 <p>We can take advantage of the constrained lifecycle of containers for
@@ -439,10 +450,7 @@ better runtime incident detection and response.</p>
 <p>Containers should be pretty boring - they’re not general purpose Virtual machines. They typically have a period of startup, with some initialization, and then settle down to a small number of processes running continuously and making or receiving connections.</p>
 </div>
 <div class="paragraph">
-<p>Deviations from the baseline can be used to take enforcement action and alert team members.</p>
-</div>
-<div class="paragraph">
-<p>Runtime activity rules can be combined with other activity</p>
+<p>Deviations from the baseline can be used to take enforcement action and alert team members. Runtime activity rules can be combined with other activity</p>
 </div>
 </div>
 </div>
@@ -461,44 +469,31 @@ better runtime incident detection and response.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Click in the Filters Bar</p>
+<p>Click in the Filters Bar. Start Typing “Process Name” and select the Process Name key. Type java and press enter; click away to get the filters dropdown to clear</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>TODO - Insert Image Here</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/risks/06-risks.png" alt="ACS Risks 6" width="700">
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Start Typing “Process Name” and select the Process Name key</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>TODO - Insert Image Here</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Type java and press enter; click away to get the filters dropdown to clear</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>TODO - Insert Image Here</p>
 </div>
 <div class="paragraph">
 <p>There’s three deployments that have been “seen” running bash since they started - and all of them in Production.</p>
 </div>
 <div class="paragraph">
 <p>At the upper right there’s a Create Policy button. Now that we’ve searched for interesting criteria, we can create a policy from the
-search filter to automatically identify this criteria going forward.</p>
+search filter to automatically identify this criteria going forward:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">Filtering
+Process Name - Java
+CVE - CVE-2017-7376 (libxml2)</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Filtering
-Process Name - Java
-CVE - CVE-2017-7376 (libxml2)</p>
+<p>Now let&#8217;s review the Network Graph and the Network Policies in RH ACS!</p>
 </div>
 </div>
 </div>
