@@ -180,6 +180,18 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="07-violations.html#violations_overview">Violations Dashboard Overview</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-violations.html#violations_example">Violations Build &amp; Deploy Example</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-violations.html#violations_runtime">Violations Runtime Example</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-violations.html#violations_behaviour">Violations Behaviour</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="07-violations.html#policy_summary">Policy Summary</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -353,6 +365,76 @@
 </div>
 <div class="paragraph">
 <p>Red Hat Advanced Cluster Security for Kubernetes (RHACS) provides efficient configuration management that combines all these distributed entities on a single page. It brings together information about all your clusters, namespaces, nodes, deployments, images, secrets, users, groups, service accounts, and roles in a single Configuration Management view, helping you visualize different entities and the connections between them.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>To open the Configuration Management view, select Configuration Management from the left-hand navigation menu. Similar to the Dashboard, it displays some useful widgets.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/configmgmt/01-config.png" alt="Config 1" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>These widgets are interactive and show the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Security policy violations by severity</p>
+</li>
+<li>
+<p>The state of CIS (Center for Information Security) Docker and Kubernetes benchmark controls</p>
+</li>
+<li>
+<p>Users with administrator rights in the most clusters</p>
+</li>
+<li>
+<p>Secrets used most widely in your clusters</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The header in the Configuration Management view shows you the number of policies and CIS controls in your cluster. The header includes drop-down menus that allow you to switch between entities. For example, you can:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click Policies to view all policies and their severity, or select CIS Controls to view detailed information about all controls.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/configmgmt/02-config.png" alt="Config 2" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click Application and Infrastructure and select clusters, namespaces, nodes, deployments, images, and secrets to view detailed information.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/configmgmt/03-config.png" alt="Config 3" width="400">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click RBAC Visibility and Configuration and select users and groups, service accounts, and roles to view detailed information.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/configmgmt/04-config.png" alt="Config 4" width="800">
+</div>
 </div>
 </div>
 </div>
