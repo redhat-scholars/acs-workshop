@@ -89,7 +89,7 @@ For more information check about adding Secured Clusters check https://docs.open
 [#secured_clusters_add_vuln]
 === Add vulnerabilities to the Secured Cluster
 
-Deploy some vulnerabilities in the development Demo.
+Deploy some vulnerabilities in the new Secured Cluster added in the earlier step. 
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
@@ -104,13 +104,17 @@ oc run couchdb --labels=app=couchdb --image=vulhub/couchdb:1.6.0 -n suspicious
 [#system_configuration]
 == ACS System Configuration
 
-TBD
+Check into the https://docs.openshift.com/acs/3.66/configuration/enable-alert-data-retention.html[official documentation] the different configuration tweaks that you can do in the RH ACS cluster:
 
-[.console-input]
-[source,bash,subs="attributes+,+macros"]	
-----	
-oc version	
-----
+image::multicluster/03_multi.png[ACS Multi 3, 800]
+
+The options are:
+
+* https://docs.openshift.com/acs/3.66/configuration/enable-alert-data-retention.html[Data Retention Configuration]
+* Header Configuration
+* Footer Configuration
+* Login Notice Configuration
+* Online Telemetry Data Collection
 
 [#system_health]
 == ACS System Health
