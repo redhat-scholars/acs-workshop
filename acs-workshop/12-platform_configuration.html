@@ -615,12 +615,79 @@ oc run couchdb --labels=app=couchdb --image=vulhub/couchdb:1.6.0 -n suspicious</
 <h2 id="access_control"><a class="anchor" href="#access_control"></a>ACS Access Control</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>Red Hat Advanced Cluster Security for Kubernetes (RHACS) comes with role-based access control (RBAC) that you can use to configure roles and grant various levels of access to Red Hat Advanced Cluster Security for Kubernetes for different users.</p>
 </div>
-<div class="listingblock console-input">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
+<img src="_images/multicluster/04_multi.png" alt="ACS Multi 4" width="400">
 </div>
+</div>
+<div class="paragraph">
+<p>Red Hat Advanced Cluster Security for Kubernetes 3.63 includes a scoped access control feature that enables you to configure fine-grained and specific sets of permissions that define how a given Red Hat Advanced Cluster Security for Kubernetes user or a group of users can interact with Red Hat Advanced Cluster Security for Kubernetes, which resources they can access, and which actions they can perform.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Roles are a collection of permission sets and access scopes. You can assign roles to users and groups by specifying rules. You can configure these rules when you configure an authentication provider. There are two types of roles in Red Hat Advanced Cluster Security for Kubernetes:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>System roles</strong> that are created by Red Hat and cannot be changed.</p>
+</li>
+<li>
+<p><strong>Custom roles</strong>, which Red Hat Advanced Cluster Security for Kubernetes administrators can create and change at any time.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/multicluster/07_multi.png" alt="ACS Multi 5" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Permission sets are a set of permissions that define what actions a role can perform on a given resource. Resources are the functionalities of Red Hat Advanced Cluster Security for Kubernetes for which you can set view (read) and modify (write) permissions. There are two types of permission sets in Red Hat Advanced Cluster Security for Kubernetes:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>System permission sets</strong>, which are created by Red Hat and cannot be changed.</p>
+</li>
+<li>
+<p><strong>Custom permission sets</strong>, which Red Hat Advanced Cluster Security for Kubernetes administrators can create and change at any time.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/multicluster/08_multi.png" alt="ACS Multi 6" width="800">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Access scopes are a set of Kubernetes and OpenShift Container Platform resources that users can access. For example, you can define an access scope that only allows users to access information about pods in a given project. There are two types of access scopes in Red Hat Advanced Cluster Security for Kubernetes:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>System access scopes</strong>, which are created by Red Hat and cannot be changed.</p>
+</li>
+<li>
+<p><strong>Custom access scopes</strong>, which Red Hat Advanced Cluster Security for Kubernetes administrators can create and change at any time.</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more information about RBAC and the integration with third parties for <a href="https://docs.openshift.com/acs/3.66/operating/manage-user-access/manage-role-based-access-control-3630.html#rbac-system-roles-3630_manage-role-based-access-control">User Access</a></p>
 </div>
 </div>
 </div>
