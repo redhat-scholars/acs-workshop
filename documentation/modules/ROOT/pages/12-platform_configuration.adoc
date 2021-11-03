@@ -12,7 +12,7 @@ To monitor a cluster, you must deploy a Sensor. The following steps describe add
 * Select + New Cluster.
 * Specify a name for the cluster - production
 
-image::multicluster/0_multi.png[ACS Multi 1, 800]
+image::multicluster/0_multi.png[ACS Multi 0, 800]
 
 * Click Next and download the zip:
 
@@ -82,14 +82,14 @@ sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s
 
 * Return to the ACS portal and check if the deployment is successful. If it’s successful, a green checkmark appears under section #2.
 
-image::multicluster/01_multi.png[ACS Multi 2, 800]
+image::multicluster/01_multi.png[ACS Multi 1, 800]
 
 For more information check about adding Secured Clusters check https://docs.openshift.com/acs/installing/install-ocp-operator.html#generate-init-bundle[the RHACS Documentation].
 
 [#secured_clusters_add_vuln]
 === Add vulnerabilities to the Secured Cluster
 
-Deploy vulnerability in the development Demo
+Deploy some vulnerabilities in the development Demo.
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
@@ -115,13 +115,35 @@ oc version
 [#system_health]
 == ACS System Health
 
-TBD
+The Red Hat Advanced Cluster Security for Kubernetes system health dashboard provides a single interface for viewing health related information about Red Hat Advanced Cluster Security for Kubernetes components.
 
-[.console-input]
-[source,bash,subs="attributes+,+macros"]	
-----	
-oc version	
-----
+To access the health dashboard:
+
+* On the RHACS portal, navigate to Platform Configuration → System Health.
+
+image::multicluster/02_multi.png[ACS Multi 2, 800]
+
+The health dashboard organizes information in the following groups:
+
+1. **Cluster Health** - Shows the overall state of Red Hat Advanced Cluster Security for Kubernetes cluster.
+2. **Vulnerability Definitions** - Shows the last update time of vulnerability definitions.
+3. **Image Integrations** - Shows the health of all registries that you have integrated.
+4. **Notifier Integrations** - Shows the health of any notifiers (Slack, email, Jira, or other similar integrations) that you have integrated.
+5. **Backup Integrations** - Shows the health of any backup providers that you have integrated.
+
+The dashboard lists the following states for different components:
+
+1. **Healthy** - The component is functional.
+2. **Degraded** - The component is partially unhealthy. This state means the cluster is functional, but some components are unhealthy and require attention.
+3. **Unhealthy** - This component is not healthy and requires immediate attention.
+4. **Uninitialized** - The component has not yet reported back to Central to have its health assessed. An uninitialized state may sometimes require attention, but often components report back the health status after a few minutes or when the integration is used.
+
+The Cluster Overview shows information about your Red Hat Advanced Cluster Security for Kubernetes cluster health. It reports the health information about the following:
+
+1. **Collector Status** - It shows whether the Collector pod that Red Hat Advanced Cluster Security for Kubernetes uses is reporting healthy.
+2. **Sensor Status** - It shows whether the Sensor pod that Red Hat Advanced Cluster Security for Kubernetes uses is reporting healthy.
+3. **Sensor Upgrade** - It shows whether the Sensor is running the correct version when compared with Central.
+4. **Credential Expiration** - It shows if the credentials for Red Hat Advanced Cluster Security for Kubernetes are nearing expiration.
 
 [#access_control]
 == ACS Access Control
