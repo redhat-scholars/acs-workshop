@@ -479,7 +479,7 @@ sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s</code></pr
 <div class="sect2">
 <h3 id="secured_clusters_add_vuln"><a class="anchor" href="#secured_clusters_add_vuln"></a>Add vulnerabilities to the Secured Cluster</h3>
 <div class="paragraph">
-<p>Deploy some vulnerabilities in the development Demo.</p>
+<p>Deploy some vulnerabilities in the new Secured Cluster added in the earlier step.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -497,12 +497,34 @@ oc run couchdb --labels=app=couchdb --image=vulhub/couchdb:1.6.0 -n suspicious</
 <h2 id="system_configuration"><a class="anchor" href="#system_configuration"></a>ACS System Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>Check into the <a href="https://docs.openshift.com/acs/3.66/configuration/enable-alert-data-retention.html">official documentation</a> the different configuration tweaks that you can do in the RH ACS cluster:</p>
 </div>
-<div class="listingblock console-input">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
+<img src="_images/multicluster/03_multi.png" alt="ACS Multi 3" width="800">
 </div>
+</div>
+<div class="paragraph">
+<p>The options are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.openshift.com/acs/3.66/configuration/enable-alert-data-retention.html">Data Retention Configuration</a></p>
+</li>
+<li>
+<p>Header Configuration</p>
+</li>
+<li>
+<p>Footer Configuration</p>
+</li>
+<li>
+<p>Login Notice Configuration</p>
+</li>
+<li>
+<p>Online Telemetry Data Collection</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
