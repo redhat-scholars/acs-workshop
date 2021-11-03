@@ -22,6 +22,9 @@ These widgets are interactive and show the following information:
 * Users with administrator rights in the most clusters
 * Secrets used most widely in your clusters
 
+[#conf_management_cis]
+== Configuration Management CIS
+
 The header in the Configuration Management view shows you the number of policies and CIS controls in your cluster. The header includes drop-down menus that allow you to switch between entities. For example, you can:
 
 * Click Policies to view all policies and their severity, or select CIS Controls to view detailed information about all controls.

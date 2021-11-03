@@ -54,6 +54,7 @@
 
 * xref:09-configuration_management.adoc[Configuration Management]
 ** xref:09-configuration_management.adoc#conf_management_overview[Configuration Management Overview]
+** xref:09-configuration_management.adoc#conf_management_cis[Configuration Management CIS]
 
 * xref:10-system_policies.adoc[System Policies]
 ** xref:10-system_policies.adoc#system_policies_overview[System Policies Overview]
