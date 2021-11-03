@@ -29,6 +29,7 @@
 
 * xref:06-network_graph.adoc[Network Graph]
 ** xref:06-network_graph.adoc#network_graph_overview[Network Graph Overview]
+** xref:06-network_graph.adoc#network_graph_views[Network Graph Views]
 ** xref:06-network_graph.adoc#network_policy_simulator[Network Policy Simulator]
 
 * xref:07-violations.adoc[Violations]
