@@ -377,7 +377,7 @@
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/multicluster/0_multi.png" alt="ACS Multi 1" width="800">
+<img src="_images/multicluster/0_multi.png" alt="ACS Multi 0" width="800">
 </div>
 </div>
 <div class="ulist">
@@ -470,7 +470,7 @@ sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s</code></pr
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/multicluster/01_multi.png" alt="ACS Multi 2" width="800">
+<img src="_images/multicluster/01_multi.png" alt="ACS Multi 1" width="800">
 </div>
 </div>
 <div class="paragraph">
@@ -479,7 +479,7 @@ sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s</code></pr
 <div class="sect2">
 <h3 id="secured_clusters_add_vuln"><a class="anchor" href="#secured_clusters_add_vuln"></a>Add vulnerabilities to the Secured Cluster</h3>
 <div class="paragraph">
-<p>Deploy vulnerability in the development Demo</p>
+<p>Deploy some vulnerabilities in the development Demo.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -510,12 +510,82 @@ oc run couchdb --labels=app=couchdb --image=vulhub/couchdb:1.6.0 -n suspicious</
 <h2 id="system_health"><a class="anchor" href="#system_health"></a>ACS System Health</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>The Red Hat Advanced Cluster Security for Kubernetes system health dashboard provides a single interface for viewing health related information about Red Hat Advanced Cluster Security for Kubernetes components.</p>
 </div>
-<div class="listingblock console-input">
+<div class="paragraph">
+<p>To access the health dashboard:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>On the RHACS portal, navigate to Platform Configuration → System Health.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc version</code></pre>
+<img src="_images/multicluster/02_multi.png" alt="ACS Multi 2" width="800">
 </div>
+</div>
+<div class="paragraph">
+<p>The health dashboard organizes information in the following groups:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Cluster Health</strong> - Shows the overall state of Red Hat Advanced Cluster Security for Kubernetes cluster.</p>
+</li>
+<li>
+<p><strong>Vulnerability Definitions</strong> - Shows the last update time of vulnerability definitions.</p>
+</li>
+<li>
+<p><strong>Image Integrations</strong> - Shows the health of all registries that you have integrated.</p>
+</li>
+<li>
+<p><strong>Notifier Integrations</strong> - Shows the health of any notifiers (Slack, email, Jira, or other similar integrations) that you have integrated.</p>
+</li>
+<li>
+<p><strong>Backup Integrations</strong> - Shows the health of any backup providers that you have integrated.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The dashboard lists the following states for different components:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Healthy</strong> - The component is functional.</p>
+</li>
+<li>
+<p><strong>Degraded</strong> - The component is partially unhealthy. This state means the cluster is functional, but some components are unhealthy and require attention.</p>
+</li>
+<li>
+<p><strong>Unhealthy</strong> - This component is not healthy and requires immediate attention.</p>
+</li>
+<li>
+<p><strong>Uninitialized</strong> - The component has not yet reported back to Central to have its health assessed. An uninitialized state may sometimes require attention, but often components report back the health status after a few minutes or when the integration is used.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The Cluster Overview shows information about your Red Hat Advanced Cluster Security for Kubernetes cluster health. It reports the health information about the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Collector Status</strong> - It shows whether the Collector pod that Red Hat Advanced Cluster Security for Kubernetes uses is reporting healthy.</p>
+</li>
+<li>
+<p><strong>Sensor Status</strong> - It shows whether the Sensor pod that Red Hat Advanced Cluster Security for Kubernetes uses is reporting healthy.</p>
+</li>
+<li>
+<p><strong>Sensor Upgrade</strong> - It shows whether the Sensor is running the correct version when compared with Central.</p>
+</li>
+<li>
+<p><strong>Credential Expiration</strong> - It shows if the credentials for Red Hat Advanced Cluster Security for Kubernetes are nearing expiration.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
