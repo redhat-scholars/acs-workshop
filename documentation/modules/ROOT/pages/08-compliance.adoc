@@ -22,6 +22,8 @@ Compliance Result
 
 image::compliance/02_compliance_result.png[ACS 3, 800]
 
+TODO: Add more descriptions in compliance dashboard scan
+
 [#compliance_dashboard_review]
 === Review the Compliance Reports in the Compliance Dashboard
 
