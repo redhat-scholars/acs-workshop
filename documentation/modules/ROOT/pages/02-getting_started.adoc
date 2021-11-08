@@ -46,7 +46,7 @@ In this section we will deploy the Central component in the lab cluster. The Cen
 
 * The ``scanner`` service, which has the role of scanning the deployed pods images.
 
-Create a new ``stackrox`` namespace. We will install our components here.
+Create a new ``stackrox`` namespace (using the web console or the cli as follows). We will install our components here.
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
@@ -54,7 +54,24 @@ Create a new ``stackrox`` namespace. We will install our components here.
 oc new-project stackrox	
 ----
 
-The following is an example of the central custom resource:
+The following is an example of the central custom resource. You can do this in two ways, via the web console or via the CLI.
+
+**With Web Console:**
+
+From the operator ready screen by clicking on ``View Operator`` or browsing from the Installed Operator menu, you can reach the ACS' operator intrface:
+
+image::install/04_1_create_central_resource.png[ACS Operator 51, 800]
+
+Check the ``YAML`` radio button and paste the ``Central`` CR you see below.
+
+image::install/04_2_create_central_resource.png[ACS Operator 52, 800]
+
+You can check the progress by switching to the `Development` perspective, in the `Topology` menu.
+
+image::install/04_3_create_central_resource.png[ACS Operator 53, 800]
+
+
+**With OC client:**
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
