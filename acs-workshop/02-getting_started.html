@@ -465,7 +465,7 @@ Independently on how you&#8217;re installing, please deploy the deploy in the la
 </ul>
 </div>
 <div class="paragraph">
-<p>Create a new <code>stackrox</code> namespace. We will install our components here.</p>
+<p>Create a new <code>stackrox</code> namespace (using the web console or the cli as follows). We will install our components here.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -473,7 +473,37 @@ Independently on how you&#8217;re installing, please deploy the deploy in the la
 </div>
 </div>
 <div class="paragraph">
-<p>The following is an example of the central custom resource:</p>
+<p>The following is an example of the central custom resource. You can do this in two ways, via the web console or via the CLI.</p>
+</div>
+<div class="paragraph">
+<p><strong>With Web Console:</strong></p>
+</div>
+<div class="paragraph">
+<p>From the operator ready screen by clicking on <code>View Operator</code> or browsing from the Installed Operator menu, you can reach the ACS' operator intrface:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_1_create_central_resource.png" alt="ACS Operator 51" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Check the <code>YAML</code> radio button and paste the <code>Central</code> CR you see below.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_2_create_central_resource.png" alt="ACS Operator 52" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>You can check the progress by switching to the <code>Development</code> perspective, in the <code>Topology</code> menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_3_create_central_resource.png" alt="ACS Operator 53" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>With OC client:</strong></p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
