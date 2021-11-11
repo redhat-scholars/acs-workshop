@@ -17,24 +17,24 @@ IMPORTANT: Independently on how you're installing, please deploy the deploy in t
 [#install_acs_operator]
 == ACS Operator Install - Option 1
 
-Find and the Advanced Cluster Security Operator from the Operator Hub.
-
+. Find and the Advanced Cluster Security Operator from the Operator Hub.
++
 image::install/00_operator_hub.png[ACS Operator 1, 800]
 
-Install the selected operator by clicking on the ``Install`` button.
-
+. Install the selected operator by clicking on the ``Install`` button.
++
 image::install/01_select_acs_operator.png[ACS Operator 2, 800]
 
-Confirm default installation parameters (auto update, latest channel, ``openshift-operators`` namespace).
-
+. Confirm default installation parameters (auto update, latest channel, ``openshift-operators`` namespace).
++
 image::install/02_install_acs_operator.png[ACS Operator 3, 800]
 
-Wait for completion, the installation will take a few seconds.
-
+. Wait for completion, the installation will take a few seconds.
++
 image::install/03_wait_for_completion.png[ACS Operator 4, 800]
 
-Access the now ready operator by clicking on the ``View Operator`` button.
-
+. Access the now ready operator by clicking on the ``View Operator`` button.
++
 image::install/04_operator_ready.png[ACS Operator 5, 800]
 
 [#install_acs_central]
@@ -55,23 +55,6 @@ oc new-project stackrox
 ----
 
 The following is an example of the central custom resource. You can do this in two ways, via the web console or via the CLI.
-
-**With Web Console:**
-
-From the operator ready screen by clicking on ``View Operator`` or browsing from the Installed Operator menu, you can reach the ACS' operator intrface:
-
-image::install/04_1_create_central_resource.png[ACS Operator 51, 800]
-
-Check the ``YAML`` radio button and paste the ``Central`` CR you see below.
-
-image::install/04_2_create_central_resource.png[ACS Operator 52, 800]
-
-You can check the progress by switching to the `Development` perspective, in the `Topology` menu.
-
-image::install/04_3_create_central_resource.png[ACS Operator 53, 800]
-
-
-**With OC client:**
 
 [.console-input]
 [source,yaml,subs="attributes+,+macros"]	
@@ -106,40 +89,57 @@ spec:
     scannerComponent: Enabled	
 ----
 
-Create the ``central`` custom resource using the template file provided in this repository.
+**With Web Console:**
 
+. From the operator _ready screen_ by clicking on ``View Operator`` or navigating to the **Operators → Installed Operators** page. Then, under the **Provided APIs** section, select ``Create Central`` on the ``Central`` API:
++
+image::install/04_1_create_central_resource.png[ACS Operator 51, 800]
+
+. Check the ``YAML`` radio button and paste the ``Central`` CR you see below.
++
+image::install/04_2_create_central_resource.png[ACS Operator 52, 800]
+
+. You can check the progress by switching to the `Developer` perspective, in the `Topology` menu.
++
+image::install/04_3_create_central_resource.png[ACS Operator 53, 800]
+
+
+**With OC client:**
+
+. Create the ``central`` custom resource using the template file provided in this repository.
++
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
 oc apply -f stackrox-central-services.yaml -n stackrox
 ----
 
-Monitor the installation using the watch option:
-
+. Monitor the installation using the watch option:
++
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
 oc get pods -n stackrox -w
 ----
 
-Once the installation is complete obtain the generated admin password from the ``central-htpasswd`` secret.
-
+. Once the installation is complete obtain the generated admin password from the ``central-htpasswd`` secret.
++
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
 oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'
 ----
 
-Extract the hostname of the generated route.
-
+. Extract the hostname of the generated route.
++
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
 oc get routes/central -n stackrox -o jsonpath='{.spec.host}'
 ----
 
-Login to https://<route_hostname> using the ``admin`` username and the password extracted before.
-
+. Login to https://<route_hostname> using the ``admin`` username and the password extracted before.
++
 image::install/05_login.png[ACS Operator 6, 800]
 
 [#config_acs_securedcluster]
@@ -219,7 +219,7 @@ image::install/09_create_secured_cluster_resource.png[ACS Operator 9, 800]
 image::install/10_create_secured_cluster_resource_yaml.png[ACS Operator 10, 800]
 
 
-. Monitor the installation using the watch option (or using the web console ``Topology`` view from the ``Development`` perspective as mentioned before):
+. Monitor the installation using the watch option (or using the web console ``Topology`` view from the ``Developer`` perspective as mentioned before):
 +
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
