@@ -513,7 +513,7 @@ Independently on how you&#8217;re installing, please deploy the deploy in the la
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: platform.stackrox.io/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: platform.stackrox.io/v1alpha1
 kind: Central
 metadata:
   name: stackrox-central-services
@@ -591,38 +591,47 @@ spec:
 <div class="paragraph">
 <p>To join a cluster to ACS it is necessary to generate a cluster init bundle containing TLS secrets for Sensor, Collectors and Admission Controllers.</p>
 </div>
-<div class="paragraph">
-<p>Generate the cluster init bundle by accessing the Integration subsection in the <code>Platform Configuration</code> section</p>
-</div>
+<div class="sect2">
+<h3 id="config_acs_securedcluster_init_bundle"><a class="anchor" href="#config_acs_securedcluster_init_bundle"></a>Generating an init bundle by using the RHACS portal</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Generate the cluster init bundle by accessing the <code>Integration</code> subsection in the <code>Platform Configuration</code> section</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/06_acs_integrations.png" alt="ACS Operator 7" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>Generate the bundle with a unique cluster name.</p>
-</div>
+</li>
+<li>
+<p>Generate the bundle with a unique cluster name, in our case, <code>demo-cluster</code></p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/07_generate_cluster_init_bundle.png" alt="ACS Operator 8" width="800">
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Download the cluster init bundle secret.</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/08_download_cluster_init_bundle_secret.png" alt="ACS Operator 9" width="800">
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Apply the cluster init bundle secret on the target secured cluster</p>
-</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f ~/Downloads/demo-cluster-cluster-init-secrets.yaml -n stackrox</code></pre>
 </div>
 </div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="config_acs_securedcluster_install_scs"><a class="anchor" href="#config_acs_securedcluster_install_scs"></a>Installing secured cluster services</h3>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -636,11 +645,11 @@ This workshop uses the same cluster as central and secured cluster. In a real ti
 </table>
 </div>
 <div class="paragraph">
-<p>The SecuredCluster custom resource is quite simple. The following example shows the configuration for a <code>demo-cluster</code> target. Notice the <code>collector</code> configuration, with the collection method set to <code>KernelModule</code>. The alternative collection approach would be <code>eBPF</code>. The <code>TolerateTaints</code> lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.</p>
+<p>The <code>SecuredCluster</code> custom resource is quite simple. The following example shows the configuration for a <code>demo-cluster</code> target. Notice the <code>collector</code> configuration, with the collection method set to <code>KernelModule</code>. The alternative collection approach would be <code>eBPF</code>. The <code>TolerateTaints</code> lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: platform.stackrox.io/v1alpha1
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: platform.stackrox.io/v1alpha1
 kind: SecuredCluster
 metadata:
   name: stackrox-secured-cluster-services
@@ -670,28 +679,56 @@ Check the settings of the <a href="https://docs.openshift.com/acs/installing/ins
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
 <p>Create the Secured Cluster custom Resource using (and optionally custumizing) the example provided in the repository.</p>
-</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f stackrox-secured-cluster-services.yaml -n stackrox</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Monitor the installation using the watch option:</p>
+<p>Or using the web console, in the ACS opertator view, as follows:app-name:</p>
 </div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Under the Provided APIs section, select Create instance on the Secured Cluster API</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/09_create_secured_cluster_resource.png" alt="ACS Operator 9" width="800">
+</div>
+</div>
+</li>
+<li>
+<p>And then copy &amp; paste the yaml content</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/10_create_secured_cluster_resource_yaml.png" alt="ACS Operator 10" width="800">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Monitor the installation using the watch option (or using the web console <code>Topology</code> view from the <code>Development</code> perspective as mentioned before):</p>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n stackrox -w</code></pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>At the end of the installation, go to the central console and check the correct attachment of the secured cluster.</p>
-</div>
 <div class="imageblock">
 <div class="content">
-<img src="_images/install/09_verify_cluster_list.png" alt="ACS Operator 10" width="800">
+<img src="_images/install/11_verify_cluster_list.png" alt="ACS Operator 11" width="800">
+</div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
