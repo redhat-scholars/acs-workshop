@@ -412,45 +412,49 @@ Independently on how you&#8217;re installing, please deploy the deploy in the la
 <div class="sect1">
 <h2 id="install_acs_operator"><a class="anchor" href="#install_acs_operator"></a>ACS Operator Install - Option 1</h2>
 <div class="sectionbody">
-<div class="paragraph">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
 <p>Find and the Advanced Cluster Security Operator from the Operator Hub.</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/00_operator_hub.png" alt="ACS Operator 1" width="800">
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Install the selected operator by clicking on the <code>Install</code> button.</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/01_select_acs_operator.png" alt="ACS Operator 2" width="800">
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Confirm default installation parameters (auto update, latest channel, <code>openshift-operators</code> namespace).</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/02_install_acs_operator.png" alt="ACS Operator 3" width="800">
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Wait for completion, the installation will take a few seconds.</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/03_wait_for_completion.png" alt="ACS Operator 4" width="800">
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Access the now ready operator by clicking on the <code>View Operator</code> button.</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/04_operator_ready.png" alt="ACS Operator 5" width="800">
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -480,36 +484,6 @@ Independently on how you&#8217;re installing, please deploy the deploy in the la
 </div>
 <div class="paragraph">
 <p>The following is an example of the central custom resource. You can do this in two ways, via the web console or via the CLI.</p>
-</div>
-<div class="paragraph">
-<p><strong>With Web Console:</strong></p>
-</div>
-<div class="paragraph">
-<p>From the operator ready screen by clicking on <code>View Operator</code> or browsing from the Installed Operator menu, you can reach the ACS' operator intrface:</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/install/04_1_create_central_resource.png" alt="ACS Operator 51" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Check the <code>YAML</code> radio button and paste the <code>Central</code> CR you see below.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/install/04_2_create_central_resource.png" alt="ACS Operator 52" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>You can check the progress by switching to the <code>Development</code> perspective, in the <code>Topology</code> menu.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/install/04_3_create_central_resource.png" alt="ACS Operator 53" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p><strong>With OC client:</strong></p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -544,44 +518,82 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>Create the <code>central</code> custom resource using the template file provided in this repository.</p>
+<p><strong>With Web Console:</strong></p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the operator <em>ready screen</em> by clicking on <code>View Operator</code> or navigating to the <strong>Operators → Installed Operators</strong> page. Then, under the <strong>Provided APIs</strong> section, select <code>Create Central</code> on the <code>Central</code> API:</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_1_create_central_resource.png" alt="ACS Operator 51" width="800">
+</div>
+</div>
+</li>
+<li>
+<p>Check the <code>YAML</code> radio button and paste the <code>Central</code> CR you see below.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_2_create_central_resource.png" alt="ACS Operator 52" width="800">
+</div>
+</div>
+</li>
+<li>
+<p>You can check the progress by switching to the <code>Developer</code> perspective, in the <code>Topology</code> menu.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_3_create_central_resource.png" alt="ACS Operator 53" width="800">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p><strong>With OC client:</strong></p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create the <code>central</code> custom resource using the template file provided in this repository.</p>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f stackrox-central-services.yaml -n stackrox</code></pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Monitor the installation using the watch option:</p>
-</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n stackrox -w</code></pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Once the installation is complete obtain the generated admin password from the <code>central-htpasswd</code> secret.</p>
-</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'</code></pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Extract the hostname of the generated route.</p>
-</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get routes/central -n stackrox -o jsonpath='{.spec.host}'</code></pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Login to <a href="https://&lt;route_hostname&gt" class="bare">https://&lt;route_hostname&gt</a>; using the <code>admin</code> username and the password extracted before.</p>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/05_login.png" alt="ACS Operator 6" width="800">
 </div>
+</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -713,7 +725,7 @@ Check the settings of the <a href="https://docs.openshift.com/acs/installing/ins
 </div>
 </li>
 <li>
-<p>Monitor the installation using the watch option (or using the web console <code>Topology</code> view from the <code>Development</code> perspective as mentioned before):</p>
+<p>Monitor the installation using the watch option (or using the web console <code>Topology</code> view from the <code>Developer</code> perspective as mentioned before):</p>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n stackrox -w</code></pre>
