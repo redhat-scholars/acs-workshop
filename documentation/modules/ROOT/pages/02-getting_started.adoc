@@ -74,7 +74,7 @@ image::install/04_3_create_central_resource.png[ACS Operator 53, 800]
 **With OC client:**
 
 [.console-input]
-[source,bash,subs="attributes+,+macros"]	
+[source,yaml,subs="attributes+,+macros"]	
 ----	
 apiVersion: platform.stackrox.io/v1alpha1
 kind: Central
@@ -147,32 +147,38 @@ image::install/05_login.png[ACS Operator 6, 800]
 
 To join a cluster to ACS it is necessary to generate a cluster init bundle containing TLS secrets for Sensor, Collectors and Admission Controllers.
 
-Generate the cluster init bundle by accessing the Integration subsection in the ``Platform Configuration`` section 
+[#config_acs_securedcluster_init_bundle]
+=== Generating an init bundle by using the RHACS portal
 
+. Generate the cluster init bundle by accessing the ``Integration`` subsection in the ``Platform Configuration`` section 
++
 image::install/06_acs_integrations.png[ACS Operator 7, 800]
 
-Generate the bundle with a unique cluster name.
-
+. Generate the bundle with a unique cluster name, in our case, ``demo-cluster``
++
 image::install/07_generate_cluster_init_bundle.png[ACS Operator 8, 800]
 
-Download the cluster init bundle secret.
-
+. Download the cluster init bundle secret.
++
 image::install/08_download_cluster_init_bundle_secret.png[ACS Operator 9, 800]
 
-Apply the cluster init bundle secret on the target secured cluster
-
+. Apply the cluster init bundle secret on the target secured cluster
++
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
 oc apply -f ~/Downloads/demo-cluster-cluster-init-secrets.yaml -n stackrox
 ----
 
+[#config_acs_securedcluster_install_scs]
+=== Installing secured cluster services
+
 NOTE: This workshop uses the same cluster as central and secured cluster. In a real time scenario there will be many different secured clusters. Please ensure to install the ACS Operator in all the secured cluster in order to manage the SecuredCluster CR.
 
-The SecuredCluster custom resource is quite simple. The following example shows the configuration for a ``demo-cluster`` target. Notice the ``collector`` configuration, with the collection method set to ``KernelModule``. The alternative collection approach would be ``eBPF``. The ``TolerateTaints`` lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.
+The ``SecuredCluster`` custom resource is quite simple. The following example shows the configuration for a ``demo-cluster`` target. Notice the ``collector`` configuration, with the collection method set to ``KernelModule``. The alternative collection approach would be ``eBPF``. The ``TolerateTaints`` lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.
 
 [.console-input]
-[source,bash,subs="attributes+,+macros"]	
+[source,yaml,subs="attributes+,+macros"]	
 ----	
 apiVersion: platform.stackrox.io/v1alpha1
 kind: SecuredCluster
@@ -194,25 +200,36 @@ spec:
 
 NOTE: Check the settings of the https://docs.openshift.com/acs/installing/install-ocp-operator.html#addmission-controller-settings_install-ocp-operator[SecuredCluster operator documentation] for more information.
 
-Create the Secured Cluster custom Resource using (and optionally custumizing) the example provided in the repository.
-
+. Create the Secured Cluster custom Resource using (and optionally custumizing) the example provided in the repository.
++
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
 oc apply -f stackrox-secured-cluster-services.yaml -n stackrox
 ----
++
+Or using the web console, in the ACS opertator view, as follows:app-name:
++
+.. Under the Provided APIs section, select Create instance on the Secured Cluster API
++
+image::install/09_create_secured_cluster_resource.png[ACS Operator 9, 800]
 
-Monitor the installation using the watch option:
+.. And then copy & paste the yaml content
++
+image::install/10_create_secured_cluster_resource_yaml.png[ACS Operator 10, 800]
 
+
+. Monitor the installation using the watch option (or using the web console ``Topology`` view from the ``Development`` perspective as mentioned before):
++
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
 oc get pods -n stackrox -w
 ----
 
-At the end of the installation, go to the central console and check the correct attachment of the secured cluster. 
-
-image::install/09_verify_cluster_list.png[ACS Operator 10, 800]
+. At the end of the installation, go to the central console and check the correct attachment of the secured cluster. 
++
+image::install/11_verify_cluster_list.png[ACS Operator 11, 800]
 
 [#deploy_acs_ansible]
 == Deploying ACS with Ansible - Option 2
