@@ -58,6 +58,8 @@
 
 * xref:10-system_policies.adoc[System Policies]
 ** xref:10-system_policies.adoc#system_policies_overview[System Policies Overview]
+** xref:10-system_policies.adoc#system_policies_example[System Policies Build and Deploy Example]
+** xref:10-system_policies.adoc#system_policies_enforcement[System Policies Enforcement]
 
 * xref:11-integrations.adoc[ACS Integrations]
 ** xref:11-integrations.adoc#integrate_with_internal_openshift_registry[Integrate with Internal Openshift Registry]
