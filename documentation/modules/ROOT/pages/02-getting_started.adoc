@@ -89,13 +89,14 @@ spec:
     scannerComponent: Enabled	
 ----
 
-**With Web Console:**
+[#install_acs_central_web_console]
+=== With Web Console
 
 . From the operator _ready screen_ by clicking on ``View Operator`` or navigating to the **Operators → Installed Operators** page. Then, under the **Provided APIs** section, select ``Create Central`` on the ``Central`` API:
 +
 image::install/04_1_create_central_resource.png[ACS Operator 51, 800]
 
-. Check the ``YAML`` radio button and paste the ``Central`` CR you see below.
+. Check the ``YAML`` radio button and paste the ``Central`` CR you see below and click on the ``Create`` button.
 +
 image::install/04_2_create_central_resource.png[ACS Operator 52, 800]
 
@@ -103,8 +104,19 @@ image::install/04_2_create_central_resource.png[ACS Operator 52, 800]
 +
 image::install/04_3_create_central_resource.png[ACS Operator 53, 800]
 
+You can also do the same using the ``Developer`` perspective:
 
-**With OC client:**
+. Within the ``stackrock`` project selected, **+Add → Import YAML**
++
+image::install/04_11_create_central_resource.png[ACS Operator 511, 800]
+
+. Paste the YAML content and click on the ``Create`` button:
++
+image::install/04_22_create_central_resource.png[ACS Operator 512, 800]
+
+
+[#install_acs_central_oc_client]
+=== With OC client
 
 . Create the ``central`` custom resource using the template file provided in this repository.
 +
@@ -122,15 +134,21 @@ oc apply -f stackrox-central-services.yaml -n stackrox
 oc get pods -n stackrox -w
 ----
 
+=== ACS login
+
 . Once the installation is complete obtain the generated admin password from the ``central-htpasswd`` secret.
+.. Using the command line:
 +
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
 oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'
 ----
+.. Using the web console, **Secrets** view from the ``Developer`` perspective (search for ``central-htpasswd`` secret):
++
+image::install/05_1_login_password.png[ACS Operator 61, 800]
 
-. Extract the hostname of the generated route.
+. Extract the hostname of the generated route from the command line as follows or using the ``Topology`` view from the web console.
 +
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
@@ -140,7 +158,7 @@ oc get routes/central -n stackrox -o jsonpath='{.spec.host}'
 
 . Login to https://<route_hostname> using the ``admin`` username and the password extracted before.
 +
-image::install/05_login.png[ACS Operator 6, 800]
+image::install/05_2_login.png[ACS Operator 62, 800]
 
 [#config_acs_securedcluster]
 == ACS Secured Cluster Configuration
@@ -169,6 +187,11 @@ image::install/08_download_cluster_init_bundle_secret.png[ACS Operator 9, 800]
 ----	
 oc apply -f ~/Downloads/demo-cluster-cluster-init-secrets.yaml -n stackrox
 ----
++
+[TIP]
+====
+You can open the yaml file, copy the content and paste it to the web console using the **+Add → Import YAML** shortcut. As you are ``cluster-admin`` and all the object have the `namespace` key set you will get all the object created in their respective namespaces regrardless the project you choose in the web console (all projects or whatever).
+====
 
 [#config_acs_securedcluster_install_scs]
 === Installing secured cluster services
@@ -208,7 +231,7 @@ NOTE: Check the settings of the https://docs.openshift.com/acs/installing/instal
 oc apply -f stackrox-secured-cluster-services.yaml -n stackrox
 ----
 +
-Or using the web console, in the ACS opertator view, as follows:app-name:
+Or using the web console, in the ACS opertator view, as follows:
 +
 .. Under the Provided APIs section, select Create instance on the Secured Cluster API
 +
@@ -218,6 +241,8 @@ image::install/09_create_secured_cluster_resource.png[ACS Operator 9, 800]
 +
 image::install/10_create_secured_cluster_resource_yaml.png[ACS Operator 10, 800]
 
++
+Or as in the previous section, with the **+Add → Import YAML** path.
 
 . Monitor the installation using the watch option (or using the web console ``Topology`` view from the ``Developer`` perspective as mentioned before):
 +
