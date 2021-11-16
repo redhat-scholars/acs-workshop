@@ -517,9 +517,8 @@ spec:
     scannerComponent: Enabled</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p><strong>With Web Console:</strong></p>
-</div>
+<div class="sect2">
+<h3 id="install_acs_central_web_console"><a class="anchor" href="#install_acs_central_web_console"></a>With Web Console</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -531,7 +530,7 @@ spec:
 </div>
 </li>
 <li>
-<p>Check the <code>YAML</code> radio button and paste the <code>Central</code> CR you see below.</p>
+<p>Check the <code>YAML</code> radio button and paste the <code>Central</code> CR you see below and click on the <code>Create</code> button.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/04_2_create_central_resource.png" alt="ACS Operator 52" width="800">
@@ -549,8 +548,31 @@ spec:
 </ol>
 </div>
 <div class="paragraph">
-<p><strong>With OC client:</strong></p>
+<p>You can also do the same using the <code>Developer</code> perspective:</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Within the <code>stackrock</code> project selected, <strong>+Add → Import YAML</strong></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_11_create_central_resource.png" alt="ACS Operator 511" width="800">
+</div>
+</div>
+</li>
+<li>
+<p>Paste the YAML content and click on the <code>Create</code> button:</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_22_create_central_resource.png" alt="ACS Operator 512" width="800">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="install_acs_central_oc_client"><a class="anchor" href="#install_acs_central_oc_client"></a>With OC client</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -569,8 +591,19 @@ spec:
 </div>
 </div>
 </li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_acs_login"><a class="anchor" href="#_acs_login"></a>ACS login</h3>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
 <p>Once the installation is complete obtain the generated admin password from the <code>central-htpasswd</code> secret.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Using the command line:</p>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n stackrox get secret central-htpasswd -o go-template='{{index .data "password" | base64decode}}'</code></pre>
@@ -578,7 +611,18 @@ spec:
 </div>
 </li>
 <li>
-<p>Extract the hostname of the generated route.</p>
+<p>Using the web console, <strong>Secrets</strong> view from the <code>Developer</code> perspective (search for <code>central-htpasswd</code> secret):</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/05_1_login_password.png" alt="ACS Operator 61" width="800">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Extract the hostname of the generated route from the command line as follows or using the <code>Topology</code> view from the web console.</p>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get routes/central -n stackrox -o jsonpath='{.spec.host}'</code></pre>
@@ -589,11 +633,12 @@ spec:
 <p>Login to <a href="https://&lt;route_hostname&gt" class="bare">https://&lt;route_hostname&gt</a>; using the <code>admin</code> username and the password extracted before.</p>
 <div class="imageblock">
 <div class="content">
-<img src="_images/install/05_login.png" alt="ACS Operator 6" width="800">
+<img src="_images/install/05_2_login.png" alt="ACS Operator 62" width="800">
 </div>
 </div>
 </li>
 </ol>
+</div>
 </div>
 </div>
 </div>
@@ -637,6 +682,20 @@ spec:
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f ~/Downloads/demo-cluster-cluster-init-secrets.yaml -n stackrox</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>You can open the yaml file, copy the content and paste it to the web console using the <strong>+Add → Import YAML</strong> shortcut. As you are <code>cluster-admin</code> and all the object have the <code>namespace</code> key set you will get all the object created in their respective namespaces regrardless the project you choose in the web console (all projects or whatever).</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
@@ -701,7 +760,7 @@ Check the settings of the <a href="https://docs.openshift.com/acs/installing/ins
 </div>
 </div>
 <div class="paragraph">
-<p>Or using the web console, in the ACS opertator view, as follows:app-name:</p>
+<p>Or using the web console, in the ACS opertator view, as follows:</p>
 </div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
@@ -722,6 +781,9 @@ Check the settings of the <a href="https://docs.openshift.com/acs/installing/ins
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p>Or as in the previous section, with the <strong>+Add → Import YAML</strong> path.</p>
 </div>
 </li>
 <li>
