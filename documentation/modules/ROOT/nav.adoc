@@ -8,6 +8,7 @@
 ** xref:02-getting_started#deploy_acs_ansible[Deploying ACS with Ansible]
 ** xref:02-getting_started#deploy_acs_gitops[Deploying ACS with Openshift GitOps ]
 ** xref:02-getting_started#deploy_demo_acs[Deploying Demo in ACS]
+** xref:02-getting_started#deploy_apps[Deploying Apps]
 
 * xref:03-overview-acs.adoc[ACS Overview]
 ** xref:03-overview-acs.adoc#acs_architecture[ACS Architecture]

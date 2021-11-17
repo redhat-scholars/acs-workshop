@@ -305,24 +305,30 @@ TODO: Add an image of the bootstrap
 
 IMPORTANT: Independent of which option to install you used, you need to deploy the ACS Demo into your cluster.
 
-Download the repo with the demo:
-
+. Download the repo with the demo:
++
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----
 ansible-galaxy collection install kubernetes.core
+pip install kubernetes jmespath
 git clone https://github.com/rcarrata/rhacs-demo
 cd rhacs-demo
 ----
 
-Apply the ansible demo into the cluster:
+. Apply the ansible demo into the cluster:
++
+WARNING: you must be logged to the OpenShift cluster before you execute the playbook.
++
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----
-ansible-playbook rhacs-demo.yaml
+ansible-playbook rhacs-demo.yaml -e ocp4_workload_stackrox_central_admin_password=[your_pass]<1>
 ----
+<1> The same password you obtained in the step 1 of the ``ACS login`` section.
 
-After the Playbook execution (and if everything worked properly), the output will be the following:
+. After the Playbook execution (and if everything worked properly), the output will be the following:
++
 [.console-output]
 [source,bash,subs="attributes+,+macros"]	
 ----	
@@ -332,3 +338,33 @@ ok: [localhost] => {
 }
 ----
 
+[#deploy_apps] 
+== Deploying Apps - Optional
+
+If you do not plan to follow the remaining sections (which are based on deploying the demo) and prefer to play and make your own findings, simply follow the steps below:
+
+. Create a new project:
++
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc new-project test
+----
+
+. Start some applications with critical vulnerabilities:
++
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc run shell --labels=app=shellshock,team=test-team \
+  --image=vulnerables/cve-2014-6271 -n test
+----
++
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+$ oc run samba --labels=app=rce \
+  --image=vulnerables/cve-2017-7494 -n test
+----
+
+. Navigate to the RHACS portal to view the violations.
