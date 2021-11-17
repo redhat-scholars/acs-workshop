@@ -94,12 +94,6 @@
     <a class="nav-link" href="#config_acs_securedcluster">Configuration of the ACS Secured Cluster </a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#deploy_acs_ansible">Deploying ACS with Ansible</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#deploy_acs_gitops">Deploying ACS with Openshift GitOps </a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#deploy_demo_acs">Deploying Demo in ACS</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -807,64 +801,6 @@ Check the settings of the <a href="https://docs.openshift.com/acs/installing/ins
 </li>
 </ol>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deploy_acs_ansible"><a class="anchor" href="#deploy_acs_ansible"></a>Deploying ACS with Ansible - Option 2</h2>
-<div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Do this step ONLY if you have not installed the Operator manually neither selected the acs-gitops installation.
-</td>
-</tr>
-</table>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ansible-galaxy collection install kubernetes.core
-git clone <a href="https://github.com/rcarrata/rhacs-demo.git" class="bare">https://github.com/rcarrata/rhacs-demo.git</a> rhacs-demo
-cd rhacs-demo</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Follow the <a href="https://github.com/rcarrata/rhacs-demo#rhacs-installyaml-file-example">instructions</a> if you need to customize the ACS installation (change passwords, etc)</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ansible-playbook rhacs-install.yaml</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="deploy_acs_gitops"><a class="anchor" href="#deploy_acs_gitops"></a>Deploying ACS with Openshift GitOps - Option 3</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Install ACS using Openshift GitOps:</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone <a href="https://github.com/rcarrata/acs-gitops.git" class="bare">https://github.com/rcarrata/acs-gitops.git</a>
-cd acs-gitops</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Install bootstrap Openshift GitOps / ArgoCD</p>
-</div>
-<div class="listingblock console-input">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">until oc apply -k bootstrap/base/; do sleep 2; done
-oc apply -k acs-deploy/applications</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>TODO: Add an image of the bootstrap</p>
 </div>
 </div>
 </div>
