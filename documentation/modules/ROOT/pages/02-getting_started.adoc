@@ -256,50 +256,6 @@ oc get pods -n stackrox -w
 +
 image::install/11_verify_cluster_list.png[ACS Operator 11, 800]
 
-[#deploy_acs_ansible]
-== Deploying ACS with Ansible - Option 2
-
-IMPORTANT: Do this step ONLY if you have not installed the Operator manually neither selected the acs-gitops installation.
-
-[.console-input]
-[source,bash,subs="attributes+,+macros"]	
-----
-ansible-galaxy collection install kubernetes.core	
-git clone https://github.com/rcarrata/rhacs-demo.git rhacs-demo
-cd rhacs-demo
-----	
-
-Follow the https://github.com/rcarrata/rhacs-demo#rhacs-installyaml-file-example[instructions] if you need to customize the ACS installation (change passwords, etc)
-
-[.console-input]
-[source,bash,subs="attributes+,+macros"]	
-----
-ansible-playbook rhacs-install.yaml
-----
-
-[#deploy_acs_gitops]
-== Deploying ACS with Openshift GitOps - Option 3
-
-Install ACS using Openshift GitOps:
-
-[.console-input]
-[source,bash,subs="attributes+,+macros"]	
-----
-git clone https://github.com/rcarrata/acs-gitops.git
-cd acs-gitops
-----
-
-Install bootstrap Openshift GitOps / ArgoCD
-
-[.console-input]
-[source,bash,subs="attributes+,+macros"]	
-----
-until oc apply -k bootstrap/base/; do sleep 2; done
-oc apply -k acs-deploy/applications
-----
-
-TODO: Add an image of the bootstrap
-
 [#deploy_demo_acs] 
 == Deploying Demo in ACS - Mandatory
 
