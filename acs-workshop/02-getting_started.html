@@ -102,6 +102,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#deploy_demo_acs">Deploying Demo in ACS</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#deploy_apps">Deploying Apps</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -880,27 +883,49 @@ Independent of which option to install you used, you need to deploy the ACS Demo
 </tr>
 </table>
 </div>
-<div class="paragraph">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
 <p>Download the repo with the demo:</p>
-</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ansible-galaxy collection install kubernetes.core
+pip install kubernetes jmespath
 git clone <a href="https://github.com/rcarrata/rhacs-demo" class="bare">https://github.com/rcarrata/rhacs-demo</a>
 cd rhacs-demo</code></pre>
 </div>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>Apply the ansible demo into the cluster:</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+you must be logged to the OpenShift cluster before you execute the playbook.
+</td>
+</tr>
+</table>
 </div>
 <div class="listingblock console-input">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ansible-playbook rhacs-demo.yaml</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">ansible-playbook rhacs-demo.yaml -e ocp4_workload_stackrox_central_admin_password=[your_pass]<i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
-<div class="paragraph">
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The same password you obtained in the step 1 of the <code>ACS login</code> section.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
 <p>After the Playbook execution (and if everything worked properly), the output will be the following:</p>
-</div>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">TASK [ocp4_workload_stackrox_demo_apps : post_workload tasks complete] ********************************************************
@@ -908,6 +933,47 @@ ok: [localhost] =&gt; {
     "msg": "Post-Workload Tasks completed successfully."
 }</code></pre>
 </div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="deploy_apps"><a class="anchor" href="#deploy_apps"></a>Deploying Apps - Optional</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you do not plan to follow the remaining sections (which are based on deploying the demo) and prefer to play and make your own findings, simply follow the steps below:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Create a new project:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc new-project test</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Start some applications with critical vulnerabilities:</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc run shell --labels=app=shellshock,team=test-team \
+  --image=vulnerables/cve-2014-6271 -n test</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ oc run samba --labels=app=rce \
+  --image=vulnerables/cve-2017-7494 -n test</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Navigate to the RHACS portal to view the violations.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
