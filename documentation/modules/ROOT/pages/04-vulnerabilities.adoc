@@ -14,61 +14,61 @@ image::vulnerabilities/40_vuln.png[ACS Vulnerabilities, 800]
 More important than fixing any one vulnerability is establishing a process to keep container images updated and to prevent the promotion through the pipeline for images that have serious, fixable vulnerabilities.
 
 * In the upper right, you’ll see buttons to link you to all policies, CVEs, and images, and a menu to bring you to reports by cluster, namespace, deployment, and component.
+* Point out the **Top Riskiest Images** panel in the upper right
 
-* Point out the Top Riskiest Images panel in the upper right
+WARNING: For the following sections, please note that the order in which the images appear or the number of components affected may vary depending on the version of the demo app (changes prone).
 
 [#image_overview_image_details]
 == Image overview and image details
 
-In Top Riskiest Images, images are listed here in order of risk, based on the number and severity of the vulnerabilities present in the components in the images.
+In **Top Riskiest Images** panel, click on ``VIEW ALL`` button. 
+Now you will see that the images are listed here in order of risk, based on the number and severity of the vulnerabilities present in the components in the images.
 
 * Lets see it:
-
++
 image::vulnerabilities/top-riskiest-images.png[Top Riskies Images, 600]
-
++
 We can see the images which are more exposed. Not only we can see the number of CVEs affecting the images but which of them are fixable. You can click and get information about the CVEs and the fixable ones.
 
 * In the Top Riskiest Images, click on #4, mastercard-processor:latest.
-
++
 image::vulnerabilities/02-vuln.png[Vuln 2, 800]
-
++
 NOTE: if you don't have the exact image in the Top Riskiest Images, go to "View All" button, and filter by the name of Mastercard processor.
-
++
 ACS’ built-in vulnerability scanner breaks down images into layers and components - where components can be operating-system installed packages, or dependencies installed by programming languages like Python, Javascript, or Java.
-
-The Image Summary provides the important security details of the image overall, with links to the components.
-
-You can also see, at the top, the warning that CVE data is stale - that this image has a base OS version whose distribution has stopped providing security information on, and has likely stopped publishing security fixes for.
-
++
+The Image Summary provides the important security details of the image overall, with links to the components. For example, in the **DETAILS & METADATA → Image OS** panel, the information you see there tells you that this image has a serious security problem - the base image was imported several years ago (Debian 8 - 2015).
++
+You can also see, at the top, the warning that CVE data is stale - that this image has a base OS version whose distribution has stopped providing security information on, and has likely stopped publishing security fixes for. 
++
 At the bottom, the Image Findings section focuses on Fixable vulnerabilities, sorted by CVSS.
 
 * Under the Image Findings section, Click on Dockerfile tab:
-
++
 image::vulnerabilities/03-vuln.png[Vuln 3, 700]
-
-The Dockerfile tab view shows the layer-by-layer view, starting from the base image.
-
-This image shows us a serious security problem - the base image was imported more than three years ago and even the most recent layers are more than two years old.
-
++
+The Dockerfile tab view shows the layer-by-layer view and, as you can see, the most recent layers are also several years old.
++
 Time is not kind to images and components - as vulnerabilities are discovered, ACS will display newly discovered CVEs.
 
 [#review_cve_images]
 == Image CVE Vulnerability Analysis
 
 * Click back to the Fixable CVEs tab.
-
++
 The CVE list for each image focuses on the severe - CVSS >7 - and the “fixable,” where the upstream package maintainers have published a fix. 
 
 * We don’t think it’s practical to ask your teams to fix Linux or Javascript - but we think it’s reasonable to ask them to pick up fixes published by those communities.
-
++
 image::vulnerabilities/04-vuln.png[Vuln 4, 700]
 
 * Click on a Fixable CVE in the list, like CVE-2018-14618
-
++
 image::vulnerabilities/05-vuln.png[Vuln 5, 700]
-
++
 This CVE for example is very serious - scoring 9.8/10 - and fixable. 
-
++
 It’s a vulnerability in curl and libcurl - and these packages are present either because it was part of a base image, or it was deliberately added by a developer in one of the Dockerfile layers.
 
 NOTE: ACS scanner uses to fetch and update the vulnerability definitions from http://definitions.stackrox.io/. On the other hand collector-modules.stackrox.io is the other FQDN that will be used in online mode.
@@ -88,14 +88,14 @@ ACS can use other sources of information in OpenShift to judge the risk that a g
 The first risk factor - is the vulnerable component actually in a running deployment?
 
 * Click on the 6 Deployments button in the Related Entities column on the right.
-
++
 image::vulnerabilities/06-vuln.png[Vuln 6, 700]
-
++
 These are the five deployments running right now with containers that come from images with this vulnerability present.
 “Up and running” is a risk factor - vulnerabilities are only going to be exploited if they’re in a running container somewhere in the cluster.
-
++
 We display the critical information here - so you can see that we have this present in the Production cluster, in Namespaces like Payments, which starts to provide context to the security team.
-
++
 The last column on the right is the Risk priority - which ACS has already determined from configuration and runtime activity in the deployment.
 So - of these five deployments, the visa-processor is most likely to be exploited. How is this determined?
 
