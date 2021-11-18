@@ -388,10 +388,7 @@ Obviously - the first one in the list should be our first focus.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Click on the number 1 deployment, “visa-processor” to bring up the Risk Indicators</p>
-</li>
-</ul>
-</div>
+<p>Click on the number 1 deployment, <strong>visa-processor</strong> to bring up the <code>RISK INDICATORS</code></p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/risks/02-risks.png" alt="ACS Risks 2" width="350">
@@ -406,20 +403,19 @@ Obviously - the first one in the list should be our first focus.</p>
 <div class="paragraph">
 <p>In addition, other configurations like privileged containers mean that a successful attacker has access to the underlying host network and filesystem, including other containers running on that host.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Navigate to the bottom of the Risk Indicators page to the RBAC configuration section</p>
 </li>
-</ul>
-</div>
+<li>
+<p>Navigate to the bottom of the <code>RISK INDICATORS</code> page to the RBAC configuration section</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/risks/03-risks.png" alt="ACS Risks 3" width="400">
 </div>
 </div>
 <div class="paragraph">
-<p>At the bottom, we see another serious problem: the service account associated with this deployment has been given “cluster admin” privileges, which means that a successful attacker gains full control over this entire OpenShift cluster which could result in compromise of the entire cluster.</p>
+<p>At the bottom, we see another serious problem: the service account associated with this deployment has been given <code>cluster admin</code> privileges, which means that a successful attacker gains full control over this entire OpenShift cluster which could result in compromise of the entire cluster.</p>
+</div>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>All of these configurations are gleaned automatically by ACS from OpenShift, and the built-in policies assign a risk score to each, meaning that this Risk report is available as soon as you start running ACS.</p>
@@ -430,8 +426,7 @@ Obviously - the first one in the list should be our first focus.</p>
 <h2 id="risk_process_discovery"><a class="anchor" href="#risk_process_discovery"></a>Process Discovery / Runtime</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Navigate to the Process Discovery tab of the details page
-Of course, we can’t restrict ourselves to build and deploy time configuration.</p>
+<p>Navigate to the <code>PROCESS DISCOVERY</code> tab of the details page.</p>
 </div>
 <div class="paragraph">
 <p>Even a perfectly configured application has the potential for an attacker to gain access and cause havoc.</p>
@@ -442,10 +437,7 @@ Of course, we can’t restrict ourselves to build and deploy time configuration.
 <div class="ulist">
 <ul>
 <li>
-<p>Click on the Header bar in the section for Event Timeline (with View Graph in the labels toward the top</p>
-</li>
-</ul>
-</div>
+<p>Click on the header bar within the <code>Event Timeline</code> section ( in the picture, at any point on the surface covered by the red rectangle )</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/risks/04-risks.png" alt="ACS Risks 4" width="500">
@@ -454,21 +446,27 @@ Of course, we can’t restrict ourselves to build and deploy time configuration.
 <div class="paragraph">
 <p>The event timeline shows us, for each pod, the process activity that has occurred over time.</p>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Click on the squares / circles for process activity</p>
-</li>
-</ul>
-</div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/risks/05-risks.png" alt="ACS Risks 5" width="700">
 </div>
 </div>
 <div class="paragraph">
-<p>We can take advantage of the constrained lifecycle of containers for
-better runtime incident detection and response.</p>
+<p>If you click in the <em>greater than</em> symbol (pointed by the red arrow in the above picture) you can expand the activity and see the containers inside the pod.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/risks/05_1-risks.png" alt="ACS Risks 51" width="700">
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>We can take advantage of the constrained lifecycle of containers for better runtime incident detection and response.</p>
 </div>
 <div class="paragraph">
 <p>Containers should be pretty boring - they’re not general purpose Virtual machines. They typically have a period of startup, with some initialization, and then settle down to a small number of processes running continuously and making or receiving connections.</p>
@@ -488,26 +486,10 @@ better runtime incident detection and response.</p>
 <p>Almost all of the attributes that ACS gathers are filterable</p>
 </div>
 <div class="paragraph">
-<p>It’s really useful here in Risk when you know what you’re looking for - when you want answers to questions like, “what applications have CVE-2020-1008 present,” or “</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Click in the Filters Bar. Start Typing “Process Name” and select the Process Name key. Type java and press enter; click away to get the filters dropdown to clear</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/risks/06-risks.png" alt="ACS Risks 6" width="700">
-</div>
+<p>It’s really useful here in Risk when you know what you’re looking for - when you want answers to questions like “what applications have CVE-2020-1008 present".</p>
 </div>
 <div class="paragraph">
-<p>There’s three deployments that have been “seen” running bash since they started - and all of them in Production.</p>
-</div>
-<div class="paragraph">
-<p>At the upper right there’s a Create Policy button. Now that we’ve searched for interesting criteria, we can create a policy from the
-search filter to automatically identify this criteria going forward:</p>
+<p>For example, let&#8217;s use the following filters:</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -515,6 +497,39 @@ search filter to automatically identify this criteria going forward:</p>
 Process Name - Java
 CVE - CVE-2017-7376 (libxml2)</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p><strong>Translated:</strong> "Finding deployments that are running <code>java</code> processes and are affected by the <code>CVE-2017-7376</code> vulnerability".</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Click in the <code>Filters</code> bar (at the top, red rectangle). Start Typing "Process Name" and select the <code>Process Name</code> key ones it appears / autocompletes. Then type <code>java</code>, press enter and click away to get the filters dropdown to clear.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/risks/06-risks.png" alt="ACS Risks 6" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>Do the same to add the <code>CVE</code> filter (is one of the keys shown by default).</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Now that we’ve searched for interesting criteria, we can create a policy from the search filter to automatically identify our criteria going forward.
+We can do that by clicking the <code>Create Policy</code> button, at the upper right (indicated by the red arrow in the above picture) and following the form steps.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Now let&#8217;s review the Network Graph and the Network Policies in RH ACS!</p>
