@@ -1,6 +1,14 @@
-= Compliance
+= Compliance Operator and Compliance in ACS
 include::_attributes.adoc[]
 :profile: acs
+
+The Compliance Operator lets OpenShift Container Platform administrators describe the required compliance state of a cluster and provides them with an overview of gaps and ways to remediate them. 
+
+The Compliance Operator assesses compliance of both the Kubernetes API resources of OpenShift Container Platform, as well as the nodes running the cluster. The Compliance Operator uses OpenSCAP, a NIST-certified tool, to scan and enforce security policies provided by the content.
+
+Red Hat Advanced Cluster Security for Kubernetes supports OpenShift Container Platform configuration compliance standards through an integration with the OpenShift Container Platform Compliance Operator.
+
+In addition, it allows you to measure and report on configuration security best practices for OpenShift Container Platform.
 
 [#compliance_dashboard]
 == Review Compliance Dashboard
