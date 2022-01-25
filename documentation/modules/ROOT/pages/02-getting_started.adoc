@@ -25,7 +25,7 @@ image::install/00_operator_hub.png[ACS Operator 1, 800]
 +
 image::install/01_select_acs_operator.png[ACS Operator 2, 800]
 
-. Confirm default installation parameters (auto update, latest channel, ``openshift-operators`` namespace).
+. Confirm default installation parameters (auto update, ``latest channel``, ``rhacs-operator`` namespace).
 +
 image::install/02_install_acs_operator.png[ACS Operator 3, 800]
 
@@ -46,7 +46,7 @@ In this section we will deploy the Central component in the lab cluster. The Cen
 
 * The ``scanner`` service, which has the role of scanning the deployed pods images.
 
-Create a new ``stackrox`` namespace (using the web console or the cli as follows). We will install our components here.
+Log in to your OpenShift cluster and create a new ``stackrox`` namespace (using the web console or the cli as follows). We will install our components here.
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
@@ -136,7 +136,7 @@ oc get pods -n stackrox -w
 
 === ACS login
 
-. Once the installation is complete obtain the generated admin password from the ``central-htpasswd`` secret.
+. Once the installation is complete, obtain and copy the generated admin password from the ``central-htpasswd`` secret.
 .. Using the command line:
 +
 [.console-input]
@@ -163,7 +163,7 @@ image::install/05_2_login.png[ACS Operator 62, 800]
 [#config_acs_securedcluster]
 == ACS Secured Cluster Configuration
 
-To join a cluster to ACS it is necessary to generate a cluster init bundle containing TLS secrets for Sensor, Collectors and Admission Controllers.
+To import a cluster into ACS, you need to generate a cluster init bundle containing TLS secrets for Sensor, Collectors, and Admission Controllers.
 
 [#config_acs_securedcluster_init_bundle]
 === Generating an init bundle by using the RHACS portal
