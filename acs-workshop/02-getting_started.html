@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://redhat-scholars.github.io/acs-workshop/acs-workshop/02-getting_started.html">
     <link rel="prev" href="01-setup.html">
     <link rel="next" href="03-overview-acs.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -334,7 +334,7 @@
     <li class="component is-current">
       <span class="title">ACS Workshop</span>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-current">
           <a href="index.html">master</a>
         </li>
       </ul>
@@ -428,7 +428,7 @@ Independently on how you&#8217;re installing, please deploy the deploy in the la
 </div>
 </li>
 <li>
-<p>Confirm default installation parameters (auto update, latest channel, <code>openshift-operators</code> namespace).</p>
+<p>Confirm default installation parameters (auto update, <code>latest channel</code>, <code>rhacs-operator</code> namespace).</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/02_install_acs_operator.png" alt="ACS Operator 3" width="800">
@@ -472,7 +472,7 @@ Independently on how you&#8217;re installing, please deploy the deploy in the la
 </ul>
 </div>
 <div class="paragraph">
-<p>Create a new <code>stackrox</code> namespace (using the web console or the cli as follows). We will install our components here.</p>
+<p>Log in to your OpenShift cluster and create a new <code>stackrox</code> namespace (using the web console or the cli as follows). We will install our components here.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -596,7 +596,7 @@ spec:
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Once the installation is complete obtain the generated admin password from the <code>central-htpasswd</code> secret.</p>
+<p>Once the installation is complete, obtain and copy the generated admin password from the <code>central-htpasswd</code> secret.</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -643,7 +643,7 @@ spec:
 <h2 id="config_acs_securedcluster"><a class="anchor" href="#config_acs_securedcluster"></a>ACS Secured Cluster Configuration</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To join a cluster to ACS it is necessary to generate a cluster init bundle containing TLS secrets for Sensor, Collectors and Admission Controllers.</p>
+<p>To import a cluster into ACS, you need to generate a cluster init bundle containing TLS secrets for Sensor, Collectors, and Admission Controllers.</p>
 </div>
 <div class="sect2">
 <h3 id="config_acs_securedcluster_init_bundle"><a class="anchor" href="#config_acs_securedcluster_init_bundle"></a>Generating an init bundle by using the RHACS portal</h3>
