@@ -12,7 +12,7 @@ The three options depicted are:
 * Option 2 - Deploying ACS with Ansible (if you're in a rush and/or love Ansible)
 * Option 3 - Deploying ACS with Openshift GitOps (the GitOps way!)
 
-IMPORTANT: Independently on how you're installing, please deploy the deploy in the last step of ACS Deploy Demo to complete this module.
+IMPORTANT: Independently on how you're installing, please https://redhat-scholars.github.io/acs-workshop/acs-workshop/02-getting_started.html#deploy_demo_acs[follow the Mandatory deploy step] of ACS Deploy Demo to complete this module.
 
 [#install_acs_operator]
 == ACS Operator Install - Option 1
