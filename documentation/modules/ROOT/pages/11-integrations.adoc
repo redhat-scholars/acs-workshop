@@ -99,7 +99,7 @@ image::integrations/01-oauth.png[OAuth 1, 400]
 
 . From the drop down menu Add auth provider select OpenShift Auth
 +
-image::integrations/02-oauth.png[OAuth 2, 400]
+image::integrations/02-oauth.png[OAuth 2, 200]
 
 . Enter a Name for your provider and select a default role which is assigned to any user who can authenticate.
 It is recommended to select the role None, so new accounts will have no privileges in RHACS.
