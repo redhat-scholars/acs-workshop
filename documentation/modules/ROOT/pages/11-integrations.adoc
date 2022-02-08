@@ -94,49 +94,45 @@ RHACS offers different options for such integration. In this section we will see
 NOTE: It is assumed that RHACS is already installed and login to the Central UI is available. 
 
 . Login to your RHACS and select “Platform Configuration” > “Access Control”
-
++
 image::integrations/01-oauth.png[OAuth 1, 400]
 
 . From the drop down menu Add auth provider select OpenShift Auth
-
++
 image::integrations/02-oauth.png[OAuth 2, 400]
 
 . Enter a Name for your provider and select a default role which is assigned to any user who can authenticate.
-
 It is recommended to select the role None, so new accounts will have no privileges in RHACS.
-
 With Rules you can assign roles to specific users, based on their userid, name, mail address or groups.
-
 For example the user with the name admin gets the role Admin assigned.
-
++
 image::integrations/03-oauth.png[OAuth 3, 800]
-
 On the other hand the user1 will have the role of Continuous Integration.
 
 . After Save the integration will appear as Auth Provider
-
++
 image::integrations/04-oauth.png[OAuth 4, 800]
 
 . In a private windows of your browser login into the RH ACS portal, and check the OpenShift OAuth auth provider that you set up
-
++
 image::integrations/05-oauth.png[OAuth 5, 400]
 
 . Login first with the admin user
-
++
 image::integrations/06-oauth.png[OAuth 6, 400]
 
 . Admin user will have the role Admin in RH ACS, so will have full privileges in the ACS console. Check that you have full view of the Violations or Compliance among others.
-
++
 image::integrations/07-oauth.png[OAuth 7, 700]
 
 . Logout and login again but this time with the user user1 instead
-
++
 image::integrations/08-oauth.png[OAuth 8, 500]
 
 . This user have very limited privileges and for example cannot see the Violations in the cluster neither compliance
-
++
 image::integrations/09-oauth.png[OAuth 9, 800]
 
 . This user only have the role of the Continuous Integration, so will only have access to the CVE analysis in the Vulnerability Management among others, but not other actions like the Violations, Policies, etc
-
-image::integrations/10-oauth.png[OAuth 9, 800]
++
+image::integrations/10-oauth.png[OAuth 10, 800]
