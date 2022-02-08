@@ -276,6 +276,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#integrate_acs_slack">Integrate ACS with Slack</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#integrate_acs_oauth">Integrate ACS with OpenShift OAuth</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -523,6 +526,161 @@ by default all the notifications in the system policies are disabled. If you hav
 <div class="imageblock">
 <div class="content">
 <img src="_images/integrations/09-integrations-slack.png" alt="ACS Integrations Slack 6" width="700">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="integrate_acs_oauth"><a class="anchor" href="#integrate_acs_oauth"></a>Integrate ACS with OpenShift OAuth</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Red Hat Advanced Cluster Security (RHACS) Central is installed with one administrator user by default. Typically, customers request an integration with existing Identity Provider(s) (IDP).</p>
+</div>
+<div class="paragraph">
+<p>RHACS offers different options for such integration. In this section we will see the integration with OpenShift OAuth.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is assumed that RHACS is already installed and login to the Central UI is available.
+</td>
+</tr>
+</table>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Login to your RHACS and select “Platform Configuration” &gt; “Access Control”</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/01-oauth.png" alt="OAuth 1" width="400">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the drop down menu Add auth provider select OpenShift Auth</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/02-oauth.png" alt="OAuth 2" width="400">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Enter a Name for your provider and select a default role which is assigned to any user who can authenticate.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>It is recommended to select the role None, so new accounts will have no privileges in RHACS.</p>
+</div>
+<div class="paragraph">
+<p>With Rules you can assign roles to specific users, based on their userid, name, mail address or groups.</p>
+</div>
+<div class="paragraph">
+<p>For example the user with the name admin gets the role Admin assigned.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/03-oauth.png" alt="OAuth 3" width="800">
+</div>
+</div>
+<div class="paragraph">
+<p>On the other hand the user1 will have the role of Continuous Integration.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>After Save the integration will appear as Auth Provider</p>
+</li>
+</ol>
+</div>
+<div class="imageblock unresolved">
+<div class="content">
+<img src="integrations/04-oauth.png" alt="OAuth 4" width="800">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In a private windows of your browser login into the RH ACS portal, and check the OpenShift OAuth auth provider that you set up</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/05-oauth.png" alt="OAuth 5" width="400">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Login first with the admin user</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/06-oauth.png" alt="OAuth 6" width="400">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Admin user will have the role Admin in RH ACS, so will have full privileges in the ACS console. Check that you have full view of the Violations or Compliance among others.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/07-oauth.png" alt="OAuth 7" width="700">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Logout and login again but this time with the user user1 instead</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/08-oauth.png" alt="OAuth 8" width="500">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>This user have very limited privileges and for example cannot see the Violations in the cluster neither compliance</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/09-oauth.png" alt="OAuth 9" width="800">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>This user only have the role of the Continuous Integration, so will only have access to the CVE analysis in the Vulnerability Management among others, but not other actions like the Violations, Policies, etc</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/10-oauth.png" alt="OAuth 9" width="800">
 </div>
 </div>
 </div>
