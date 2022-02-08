@@ -104,10 +104,9 @@ image::integrations/02-oauth.png[OAuth 2, 200]
 . Enter a Name for your provider and select a default role which is assigned to any user who can authenticate.
 It is recommended to select the role None, so new accounts will have no privileges in RHACS.
 With Rules you can assign roles to specific users, based on their userid, name, mail address or groups.
-For example the user with the name admin gets the role Admin assigned.
+For example the user with the name admin gets the role Admin assigned. On the other hand the user1 will have the role of Continuous Integration.
 +
 image::integrations/03-oauth.png[OAuth 3, 800]
-On the other hand the user1 will have the role of Continuous Integration.
 
 . After Save the integration will appear as Auth Provider
 +
