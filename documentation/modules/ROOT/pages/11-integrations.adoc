@@ -135,3 +135,213 @@ image::integrations/09-oauth.png[OAuth 9, 800]
 . This user only have the role of the Continuous Integration, so will only have access to the CVE analysis in the Vulnerability Management among others, but not other actions like the Violations, Policies, etc
 +
 image::integrations/10-oauth.png[OAuth 10, 800]
+
+[#integrate_acs_sso]
+== Integrate ACS with Red Hat Single Sign On
+
+The following steps will create some basic example objects to an existing RHSSO or Keycloak to test the authentication at RHACS.
+
+. Create the namespace for the single-sign-on
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc new-project single-sign-on
+----
+
+. Create the OperatorGroup for install the RHSSO operator
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    olm.providedAPIs: Keycloak.v1alpha1.keycloak.org,KeycloakBackup.v1alpha1.keycloak.org,KeycloakClient.v1alpha1.keycloak.org,KeycloakRealm.v1alpha1.keycloak.org,KeycloakUser.v1alpha1.keycloak.org
+  generateName: single-sign-on
+  name: single-sign-on
+spec:
+  targetNamespaces:
+    - single-sign-on
+----
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f sso-og.yaml
+----
+
+. Create the Subscription Operator for the RHSSO
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----	
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: rhsso-operator
+spec:
+  channel: alpha
+  installPlanApproval: Manual
+  name: rhsso-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+----
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f sso-subs.yaml
+----
+
+. Create an instance of Keycloak
++
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----
+apiVersion: keycloak.org/v1alpha1
+kind: Keycloak
+metadata:
+  name: rhacs-keycloak
+  namespace: single-sign-on
+spec:
+  externalAccess:
+    enabled: true
+  instances: 1
+----
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+oc apply -f sso-instance.yaml
+----
+
+. Create the Realm for the installation called **Basic**
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+ name: rhacs-keycloakrealm
+ namespace: single-sign-on
+spec:
+ instanceSelector:
+   matchLabels:
+     app: sso
+ realm:
+   displayName: Basic Realm
+   enabled: true
+   id: basic
+   realm: basic
+----
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+oc apply -f sso-realm.yaml
+----
+
+. Login into Red Hat SSO. Get the route to your RHSSO instance and log into the Administration Interface.
+
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+oc get route keycloak -n single-sign-on --template='{{ .spec.host }}'
+----
+
+. Extract the admin password for Keycloak. The secret name is build from "credential"<keycloak-instance-name>
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----
+oc extract secret/credential-rhacs-keycloak -n single-sign-on --to=-
+----
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----
+# ADMIN_PASSWORD
+<you password>
+# ADMIN_USERNAME
+admin
+----
+
+. Be sure to select your Realm (Basic in our case), goto Clients and select a ClientID and enable the option Implicit Flow
+
+image::integrations/01-sso.png[SSO 1, 800]
+
+. Get the Issuer URL from your realm. This is typically your:
+
+image::integrations/02-sso.png[SSO 2, 800]
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----
+https://<KEYCLOAK_URL>/auth/realms/<REALM_NAME>;
+----
+
+. Create Test Users 
+
+. In RHSSO create 2 user accounts to test the authentication later. Goto Users and create the users:
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----
+User: acsadmin
+First Name: acsadmin
+----
+
+image::integrations/04-sso.png[SSO 3, 800]
+
+[.console-output]
+[source,bash,subs="attributes+,+macros"]	
+----
+User: user1
+First Name: user 1
+----
+
+You can set any other values for these users. However, be sure to set a password for both, after they have been created.
+
+. Configure RHACS Authentication: RHSSO 
+
+. Login to your RHACS and select “Platform Configuration” > “Access Control”
+
+image::integrations/03-sso.png[SSO 3, 800]
+
+* Enter a “Name” for your provider i.e. “Single Sign On”
+* Leave the “Callback Mode” to the “Auto-Select” setting
+* Enter your Issuer URL
+* As Client ID enter account (or the ClientID you would like to use)
+* Leave the Client Secret empty and select the checkbox Do not use Client Secret which is good enough for our tests.
+* Remember the two callback URL from the blue box. They must be configured in Keycloak.
+* Select a default role which is assigned to any user who can authenticate.
+* It is recommended to select the role None, so new accounts will have no privileges in RHACS.
+
+. With Rules you can assign roles to specific users, based on their userid, name, mail address or groups.
+
+image::integrations/05-sso.png[SSO 5, 800]
+
+For example the user with the name admin (which have been created previously in our RHSSO) gets the role Admin assigned.
+
+What is left to do is the configuration of redirect URLs. These URLs are shown in the ACS Authentication Provider configuration (see blue field in the image above)
+
+image::integrations/06-sso.png[SSO 6, 800]
+
+* Log back into RHSSO and select “Clients” > “account”
+* Into Valid Redirect URLs enter the two URLs which you saved from the blue box in the RHACS configuration.
+
+image::integrations/07-sso.png[SSO 7, 800]
+
+. Verify Authentication with OpenShift Auth. 
+
+. Logout from the Central UI and reload the browser.
+
+. Select from the drop down Single Sign On
+
+image::integrations/08-sso.png[SSO 8, 800]
+
+Try to login with a valid SSO user.
+Depending on the Rules which have been defined during previous steps the appropriate permissions should be assigned.
+For example: If you login as user acsadmin the role Admin is assigned.
