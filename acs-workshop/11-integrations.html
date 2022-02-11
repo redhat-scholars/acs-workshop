@@ -653,21 +653,14 @@ For example the user with the name admin gets the role Admin assigned. On the ot
 <ol class="arabic">
 <li>
 <p>Create the namespace for the single-sign-on</p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
+<div class="listingblock console-input">
 <div class="content">
-<pre>oc new-project single-sign-on</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc new-project single-sign-on</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Create the OperatorGroup for install the RHSSO operator</p>
-</li>
-</ol>
-</div>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: operators.coreos.com/v1
@@ -687,13 +680,9 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f sso-og.yaml</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Create the Subscription Operator for the RHSSO</p>
-</li>
-</ol>
-</div>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: operators.coreos.com/v1alpha1
@@ -713,8 +702,7 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f sso-subs.yaml</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Create an instance of Keycloak</p>
 <div class="listingblock console-output">
@@ -730,24 +718,17 @@ spec:
   instances: 1</code></pre>
 </div>
 </div>
-</li>
-</ol>
-</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f sso-instance.yaml</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Create the Realm for the installation called <strong>Basic</strong></p>
-</li>
-</ol>
-</div>
-<div class="listingblock">
+<div class="listingblock console-output">
 <div class="content">
-<pre>apiVersion: keycloak.org/v1alpha1
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apiVersion: keycloak.org/v1alpha1
 kind: KeycloakRealm
 metadata:
  name: rhacs-keycloakrealm
@@ -760,7 +741,7 @@ spec:
    displayName: Basic Realm
    enabled: true
    id: basic
-   realm: basic</pre>
+   realm: basic</code></pre>
 </div>
 </div>
 <div class="listingblock console-input">
@@ -768,25 +749,17 @@ spec:
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f sso-realm.yaml</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Login into Red Hat SSO. Get the route to your RHSSO instance and log into the Administration Interface.</p>
-</li>
-</ol>
-</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get route keycloak -n single-sign-on --template='{{ .spec.host }}'</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Extract the admin password for Keycloak. The secret name is build from "credential"&lt;keycloak-instance-name&gt;</p>
-</li>
-</ol>
-</div>
 <div class="listingblock console-input">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc extract secret/credential-rhacs-keycloak -n single-sign-on --to=-</code></pre>
@@ -800,28 +773,20 @@ spec:
 admin</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Be sure to select your Realm (Basic in our case), goto Clients and select a ClientID and enable the option Implicit Flow</p>
-</li>
-</ol>
-</div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="integrations/01-sso.png" alt="SSO 1" width="800">
+<img src="_images/integrations/01-sso.png" alt="SSO 1" width="800">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Get the Issuer URL from your realm. This is typically your:</p>
-</li>
-</ol>
-</div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="integrations/02-sso.png" alt="SSO 2" width="800">
+<img src="_images/integrations/02-sso.png" alt="SSO 2" width="800">
 </div>
 </div>
 <div class="listingblock console-output">
@@ -829,25 +794,19 @@ admin</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"><a href="https://&lt;KEYCLOAK_URL&gt;/auth/realms/&lt;REALM_NAME&gt;" class="bare">https://&lt;KEYCLOAK_URL&gt;/auth/realms/&lt;REALM_NAME&gt;</a>;</code></pre>
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Create Test Users</p>
 </li>
 <li>
-<p>In RHSSO create 2 user accounts to test the authentication later. Goto Users and create the users:</p>
-</li>
-</ol>
-</div>
+<p>It&#8217;s time to Create Test Users to login!
+In RHSSO create 2 user accounts to test the authentication later. Goto Users and create the users:</p>
 <div class="listingblock console-output">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">User: acsadmin
 First Name: acsadmin</code></pre>
 </div>
 </div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="integrations/04-sso.png" alt="SSO 3" width="800">
+<img src="_images/integrations/04-sso.png" alt="SSO 3" width="800">
 </div>
 </div>
 <div class="listingblock console-output">
@@ -859,19 +818,12 @@ First Name: user 1</code></pre>
 <div class="paragraph">
 <p>You can set any other values for these users. However, be sure to set a password for both, after they have been created.</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure RHACS Authentication: RHSSO</p>
 </li>
 <li>
-<p>Login to your RHACS and select “Platform Configuration” &gt; “Access Control”</p>
-</li>
-</ol>
-</div>
-<div class="imageblock unresolved">
+<p>To configure RHACS Authentication: RHSS, login to your RHACS and select “Platform Configuration” &gt; “Access Control”</p>
+<div class="imageblock">
 <div class="content">
-<img src="integrations/03-sso.png" alt="SSO 3" width="800">
+<img src="_images/integrations/03-sso.png" alt="SSO 3" width="800">
 </div>
 </div>
 <div class="ulist">
@@ -899,49 +851,40 @@ First Name: user 1</code></pre>
 </li>
 <li>
 <p>It is recommended to select the role None, so new accounts will have no privileges in RHACS.</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>With Rules you can assign roles to specific users, based on their userid, name, mail address or groups.</p>
-</li>
-</ol>
-</div>
 </li>
 </ul>
 </div>
-<div class="imageblock unresolved">
+</li>
+<li>
+<p>With Rules you can assign roles to specific users, based on their userid, name, mail address or groups.</p>
+<div class="imageblock">
 <div class="content">
-<img src="integrations/05-sso.png" alt="SSO 5" width="800">
+<img src="_images/integrations/05-sso.png" alt="SSO 5" width="800">
 </div>
 </div>
 <div class="paragraph">
 <p>For example the user with the name admin (which have been created previously in our RHSSO) gets the role Admin assigned.</p>
 </div>
-<div class="paragraph">
+</li>
+<li>
 <p>What is left to do is the configuration of redirect URLs. These URLs are shown in the ACS Authentication Provider configuration (see blue field in the image above)</p>
-</div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="integrations/06-sso.png" alt="SSO 6" width="800">
+<img src="_images/integrations/06-sso.png" alt="SSO 6" width="800">
 </div>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Log back into RHSSO and select “Clients” &gt; “account”</p>
 </li>
 <li>
 <p>Into Valid Redirect URLs enter the two URLs which you saved from the blue box in the RHACS configuration.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock unresolved">
+<div class="imageblock">
 <div class="content">
-<img src="integrations/07-sso.png" alt="SSO 7" width="800">
+<img src="_images/integrations/07-sso.png" alt="SSO 7" width="800">
 </div>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+</li>
 <li>
 <p>Verify Authentication with OpenShift Auth.</p>
 </li>
@@ -950,18 +893,20 @@ First Name: user 1</code></pre>
 </li>
 <li>
 <p>Select from the drop down Single Sign On</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/integrations/08-sso.png" alt="SSO 8" width="800">
+</div>
+</div>
+</li>
+<li>
+<p>Try to login with a valid SSO user.
+Depending on the Rules which have been defined during previous steps the appropriate permissions should be assigned.</p>
+<div class="paragraph">
+<p>For example: If you login as user acsadmin the role Admin is assigned.</p>
+</div>
 </li>
 </ol>
-</div>
-<div class="imageblock unresolved">
-<div class="content">
-<img src="integrations/08-sso.png" alt="SSO 8" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>Try to login with a valid SSO user.
-Depending on the Rules which have been defined during previous steps the appropriate permissions should be assigned.
-For example: If you login as user acsadmin the role Admin is assigned.</p>
 </div>
 </div>
 </div>
