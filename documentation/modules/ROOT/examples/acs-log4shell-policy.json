@@ -1,0 +1,62 @@
+{
+    "policies": [
+        {
+            "id": "22514e2d-08dc-4ffa-ab90-98794c4269dc",
+            "name": "Log4Shell - CVE-2021-44228",
+            "description": "Block build and deployment of images affected by CVE-2021-44228.",
+            "rationale": "CVE-2021-44228 is a critical vulnerability impacting log4j from v2.0 to v2.14.1 that allows RCE from a malicious LDAP contacted via Jndi lookup",
+            "remediation": "Disable Jndi lookup on the impacted applications by removing the JndiLookup class or passing the property log4j2.formatMsgNoLookups = true",
+            "disabled": false,
+            "categories": [
+                "Vulnerability Management"
+            ],
+            "fields": null,
+            "lifecycleStages": [
+                "BUILD",
+                "DEPLOY"
+            ],
+            "eventSource": "NOT_APPLICABLE",
+            "whitelists": [],
+            "exclusions": [],
+            "scope": [],
+            "severity": "HIGH_SEVERITY",
+            "enforcementActions": [
+                "FAIL_BUILD_ENFORCEMENT",
+                "SCALE_TO_ZERO_ENFORCEMENT",
+                "UNSATISFIABLE_NODE_CONSTRAINT_ENFORCEMENT"
+            ],
+            "notifiers": [],
+            "lastUpdated": "2021-12-13T15:55:51.052841396Z",
+            "SORTName": "",
+            "SORTLifecycleStage": "",
+            "SORTEnforcement": false,
+            "policyVersion": "1.1",
+            "policySections": [
+                {
+                    "sectionName": "CVEs",
+                    "policyGroups": [
+                        {
+                            "fieldName": "CVE",
+                            "booleanOperator": "OR",
+                            "negate": false,
+                            "values": [
+                                {
+                                    "value": "CVE-2021-44228"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "mitreAttackVectors": [
+                {
+                    "tactic": "TA0002",
+                    "techniques": []
+                }
+            ],
+            "criteriaLocked": false,
+            "mitreVectorsLocked": false,
+            "isDefault": false
+        }
+    ]
+}

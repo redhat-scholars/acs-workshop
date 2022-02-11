@@ -1,0 +1,14 @@
+apiVersion: keycloak.org/v1alpha1
+kind: KeycloakRealm
+metadata:
+ name: rhacs-keycloakrealm
+ namespace: single-sign-on
+spec:
+ instanceSelector:
+   matchLabels:
+     app: keycloak
+ realm:
+   displayName: Basic Realm
+   enabled: true
+   id: basic
+   realm: basic
