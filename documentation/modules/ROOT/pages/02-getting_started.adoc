@@ -2,17 +2,9 @@
 include::_attributes.adoc[]
 :profile: acs
 
-We will install ACS thought three main options and afterwards we will install an small demo that will serve examples to our workshop.
+We will install ACS thought the RHACS Operator and afterwards we will install an small demo that will serve examples to our workshop.
 
 NOTE: You can request in RHPDS the environment already installed (including the demo) - Go to Multi-Product Demo -> Openshift 4 Advanced Cluster Security 3
-
-The three options depicted are:
-
-* Option 1 - ACS Operator Install Manually (recommended to learn the process)
-* Option 2 - Deploying ACS with Ansible (if you're in a rush and/or love Ansible)
-* Option 3 - Deploying ACS with Openshift GitOps (the GitOps way!)
-
-IMPORTANT: Independently on how you're installing, please https://redhat-scholars.github.io/acs-workshop/acs-workshop/02-getting_started.html#deploy_demo_acs[follow the Mandatory deploy step] of ACS Deploy Demo to complete this module.
 
 [#install_acs_operator]
 == ACS Operator Install - Option 1
