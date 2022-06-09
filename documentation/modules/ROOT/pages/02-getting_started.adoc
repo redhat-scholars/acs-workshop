@@ -311,7 +311,7 @@ oc run shell --labels=app=shellshock,team=test-team \
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-$ oc run samba --labels=app=rce \
+oc run samba --labels=app=rce \
   --image=vulnerables/cve-2017-7494 -n test
 ----
 
