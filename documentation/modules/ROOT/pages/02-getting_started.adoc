@@ -260,7 +260,7 @@ IMPORTANT: Independent of which option to install you used, you need to deploy t
 ----
 ansible-galaxy collection install kubernetes.core
 pip install kubernetes jmespath
-git clone https://github.com/rcarrata/rhacs-demo
+git clone https://github.com/rh-mobb/rhacs-demo
 cd rhacs-demo
 ----
 
