@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Network Graph :: ACS Workshop</title>
-    <link rel="canonical" href="https://redhat-scholars.github.io/acs-workshop/acs-workshop/06-network_graph.html">
-    <link rel="prev" href="05-risk.html">
-    <link rel="next" href="07-violations.html">
+    <title>Untitled :: ACS Workshop</title>
+    <link rel="canonical" href="https://redhat-scholars.github.io/acs-workshop/acs-workshop/15-contributors.html">
+    <link rel="prev" href="14-apicli.html">
     <meta name="generator" content="Antora 3.0.0">
     <link rel="stylesheet" href="../_/css/site.css">
 <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
@@ -158,18 +157,18 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="06-network_graph.html">Network Graph</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#network_graph_overview">Network Graph Overview</a>
+    <a class="nav-link" href="06-network_graph.html#network_graph_overview">Network Graph Overview</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#network_graph_views">Network Graph Views</a>
+    <a class="nav-link" href="06-network_graph.html#network_graph_views">Network Graph Views</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#network_policy_simulator">Network Policy Simulator</a>
+    <a class="nav-link" href="06-network_graph.html#network_policy_simulator">Network Policy Simulator</a>
   </li>
 </ul>
   </li>
@@ -326,7 +325,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="15-contributors.html">Contributors</a>
   </li>
 </ul>
@@ -360,151 +359,32 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">ACS Workshop</a></li>
-    <li><a href="06-network_graph.html">Network Graph</a></li>
+    <li><a href="15-contributors.html">Contributors</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/acs-workshop/edit/master/documentation/modules/ROOT/pages/06-network_graph.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/redhat-scholars/acs-workshop/edit/master/documentation/modules/ROOT/pages/15-contributors.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Network Graph</h1>
 <div class="sect1">
-<h2 id="network_graph_overview"><a class="anchor" href="#network_graph_overview"></a>Network Graph Overview</h2>
+<h2 id="_contributors"><a class="anchor" href="#_contributors"></a>Contributors</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Network Graph is a flow diagram, firewall diagram, and firewall rule builder in one.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/network-flow/03-network.png" alt="Network Flow 1" width="800">
-</div>
+<p>This workshop has been developed and is maintained by <a href="https://github.com/rcarrata">Roberto Carratalá</a> and <a href="https://github.com/jadebustos">Jose Angel de Bustos</a>.</p>
 </div>
 <div class="paragraph">
-<p>In the upper left you’ll see the dropdown for clusters so I can easily navigate between any of the clusters that are connected to ACS.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>The default view, Active, shows me actual traffic for the Past Hour between the deployments in all of the namespaces.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/network-flow/00-network.png" alt="Network Flow 1" width="600">
-</div>
+<p>Also, thanks all the <a href="https://github.com/redhat-scholars/acs-workshop/graphs/contributors">contributors</a> that review and contributed to this workshop!!</p>
 </div>
 <div class="paragraph">
-<p>You can change the time frame in the upper right dropdown, and the legend at bottom left</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Zoom in on Payments Namespace</p>
-</li>
-</ul>
+<p>If you have questions or you want to be involved, reach Roberto or Jose Ángel, or open a PR!</p>
 </div>
 <div class="paragraph">
-<p>As we zoom in, the namespace boxes show the individual deployment names</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Click on <code><code>api-server</code></code> deployment.</p>
-</li>
-<li>
-<p>Clicking on a deployment brings up details of the types of traffic observed including source or destination and ports.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/network-flow/01-network.png" alt="Network Flow 1" width="800">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="network_graph_views"><a class="anchor" href="#network_graph_views"></a>Network Graph Views</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In the Network Graph view, you can configure the type of connections you want to see. In the Flows section (upper left), select:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Active</strong> to view only active connections.</p>
-</li>
-<li>
-<p><strong>Allowed</strong> to view only allowed network connections.</p>
-</li>
-<li>
-<p><strong>All</strong> to view both active and allowed network connections.</p>
-</li>
-<li>
-<p>Let’s switch the view from active connections to the firewall view - Allowed.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/network-flow/02-network.png" alt="Network Flow 2" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>This allows us to quickly see the disconnect between what we’ve actually seen happening, versus the wide-open view we see here</p>
-</div>
-<div class="paragraph">
-<p>The red dots indicate an unrestricted deployment that is an open network.</p>
-</div>
-<div class="paragraph">
-<p>The dashed lines indicate a namespace with no restrictions on egress and in conflict with best practices required under several compliance standards.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="network_policy_simulator"><a class="anchor" href="#network_policy_simulator"></a>Network Policy Simulator</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Click on Network Policy Simulator button in the top right</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/network-flow/04-network.png" alt="Network Flow 4" width="400">
-</div>
-</div>
-<div class="paragraph">
-<p>The Network Policy Simulator is designed to help solve this problem by using the history of observed traffic to build firewall rules.
-Click on Generate and Simulate</p>
-</div>
-<div class="paragraph">
-<p>You’ll notice, though, that the firewall rules we’re generating are not proprietary rules, but OpenShift-native Network Policy objects.
-This feature, more than any other, illustrates the philosophy that ACS represents: Security through platform-native features, with fixes supplied as configuration for OpenShift.</p>
-</div>
-<div class="paragraph">
-<p>By implementing stronger security through declarative code we believe this avoids the anti-pattern of having configuration rules in a separate system - this code becomes part of your application, ensuring the consistency of “single source of truth” from your codebase.</p>
-</div>
-<div class="paragraph">
-<p>This approach also reduces operational risk since there is no proprietary firewall in your cluster or in your pods that could fail, causing an application outage.
-ACS is leveraging the firewall that’s already in your OpenShift cluster.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/network-flow/05-network.png" alt="Network Flow 5" width="800">
-</div>
-</div>
-<div class="paragraph">
-<p>You’ll see this approach - “fix it in the code,” “leverage the platform,” - everywhere throughout the product - and we’ll take a look at what those policies look like, with examples of policy violations.</p>
+<p>PR are always welcome :)</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="05-risk.html">Risk</a></span>
-  <span class="next"><a href="07-violations.html">Violations</a></span>
+  <span class="prev"><a href="14-apicli.html">ACS API and CLI</a></span>
 </nav>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
