@@ -80,3 +80,5 @@
 
 * xref:14-apicli.adoc[ACS API and CLI]
 ** xref:14-apicli.adoc#roxctl[ACS RoxCTL]
+
+* xref:15-contributors.adoc[Contributors]

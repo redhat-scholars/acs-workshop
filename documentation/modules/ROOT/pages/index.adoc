@@ -29,3 +29,9 @@ Using Red Hat Advanced Cluster Security for Kubernetes (Red Hat Advanced Cluster
 * **Incident Response**: Take action, from failing builds and blocking deployments to killing pods and thwarting attacks, using Kubernetes for enforcement.
 
 IMPORTANT: This is not an official RH Advanced Cluster Security guide or workshop. Please contact with your RH representative if you want more information about Training or Guidelines about this topic / product.
+
+== Contributors
+
+This workshop has been developed and is maintained by https://github.com/rcarrata[Roberto Carratalá] and https://github.com/jadebustos[Jose Angel de Bustos].
+
+Thanks all the https://github.com/redhat-scholars/acs-workshop/graphs/contributors[contributors] that review and contributed to this workshop!!

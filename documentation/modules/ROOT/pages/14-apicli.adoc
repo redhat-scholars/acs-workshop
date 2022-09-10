@@ -2,15 +2,54 @@
 include::_attributes.adoc[]
 :profile: acs
 
-TBD
+Within RHACS ecosystem, roxctl is a command-line interface (CLI) for running commands on Red Hat Advanced Cluster Security for Kubernetes. 
+
+[#cli]
+== ACS Roxctl
+
+You can install the roxctl CLI to interact with Red Hat Advanced Cluster Security for Kubernetes from a command-line interface. 
+
+You can install roxctl on Linux, Windows, or macOS.
+
+Follow the https://docs.openshift.com/acs/3.70/cli/getting-started-cli.html#install-roxctl-cli-binary[guide] for installing roxtctl in your system
+
+For authentication, you can use an authentication token or your administrator password. 
+
+Red Hat recommends using an authentication token in a production environment because each token is assigned specific access control permissions.
+
+* Navigate to the RHACS portal.
+
+* Go to Platform Configuration → Integrations.
+
+* Scroll down to the Authentication Tokens category, and click API Token.
+
+* Click Generate Token.
+
+* Enter a name for the token and select a role that provides the required level of access (for example, Continuous Integration or Sensor Creator).
+
+* Click Generate.
+
+image::cli/roxctl1.png[ACS ROXCTL 1, 600]
+
+	
+* After you have generated the authentication token, export it as ROX_API_TOKEN variable:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+$ export ROX_API_TOKEN=<api_token>
+$ export ROX_CENTRAL_ADDRESS=<address>:<port_number
+----
+
+* Test the roxctl image check against a well known image to check the system policies and the CVEs that are detected:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+$ roxctl --insecure-skip-tls-verify image check --endpoint $ACS_ROUTE:443 --image quay.io/centos7/httpd-24-centos7:centos7
+----
 
 [#api]
 == ACS API
 
 TBD
-
-[#cli]
-== ACS Roxctl
-
-TBD
-
