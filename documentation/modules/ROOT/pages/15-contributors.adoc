@@ -2,8 +2,8 @@
 
 This workshop has been developed and is maintained by https://github.com/rcarrata[Roberto Carratalá] and https://github.com/jadebustos[Jose Angel de Bustos].
 
-Also, thanks all the https://github.com/redhat-scholars/acs-workshop/graphs/contributors[contributors] that review and contributed to this workshop!!
+Also, thanks all the https://github.com/redhat-scholars/acs-workshop/graphs/contributors[contributors], in special https://github.com/josgonza-rh[Jose Antonio Prada] that review and contributed to this workshop!!
 
-If you have questions or you want to be involved, reach Roberto or Jose Ángel, or open a PR!
+If you have questions or you want to be involved, reach the maintainers, or open a PR!
 
 PR are always welcome :)
