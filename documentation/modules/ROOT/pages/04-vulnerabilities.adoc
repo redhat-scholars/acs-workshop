@@ -36,7 +36,7 @@ image::vulnerabilities/02-vuln.png[Vuln 2, 800]
 +
 NOTE: if you don't have the exact image in the Top Riskiest Images, go to "View All" button, and filter by the name of Mastercard processor.
 +
-ACS’ built-in vulnerability scanner breaks down images into layers and components - where components can be operating-system installed packages, or dependencies installed by programming languages like Python, Javascript, or Java.
+RHACS built-in vulnerability scanner breaks down images into layers and components - where components can be operating-system installed packages, or dependencies installed by programming languages like Python, Javascript, or Java.
 +
 The Image Summary provides the important security details of the image overall, with links to the components. For example, in the **DETAILS & METADATA → Image OS** panel, the information you see there tells you that this image has a serious security problem - the base image was imported several years ago (Debian 8 - 2015).
 +
@@ -50,7 +50,7 @@ image::vulnerabilities/03-vuln.png[Vuln 3, 700]
 +
 The Dockerfile tab view shows the layer-by-layer view and, as you can see, the most recent layers are also several years old.
 +
-Time is not kind to images and components - as vulnerabilities are discovered, ACS will display newly discovered CVEs.
+Time is not kind to images and components - as vulnerabilities are discovered, RHACS will display newly discovered CVEs.
 
 [#review_cve_images]
 == Image CVE Vulnerability Analysis
@@ -71,8 +71,8 @@ This CVE for example is very serious - scoring 9.8/10 - and fixable.
 +
 It’s a vulnerability in curl and libcurl - and these packages are present either because it was part of a base image, or it was deliberately added by a developer in one of the Dockerfile layers.
 
-NOTE: ACS scanner uses to fetch and update the vulnerability definitions from http://definitions.stackrox.io/. On the other hand collector-modules.stackrox.io is the other FQDN that will be used in online mode.
-These two are used by Central in ACS to fetch vulnerability details and collector modules.
+NOTE: RHACS scanner uses to fetch and update the vulnerability definitions from http://definitions.stackrox.io/. On the other hand collector-modules.stackrox.io is the other FQDN that will be used in online mode.
+These two are used by Central in RHACS to fetch vulnerability details and collector modules.
 
 [#image_correlation_deployments]
 == Image CVE correlation with Deployments
@@ -83,7 +83,7 @@ How do we judge the true risk - which vulnerabilities are likely to be exploited
 
 In other words. Which vulnerabilities do we really have to fix first?
 
-ACS can use other sources of information in OpenShift to judge the risk that a given vulnerability would be exploited, and hence to set priorities for fixes.
+RHACS can use other sources of information in OpenShift to judge the risk that a given vulnerability would be exploited, and hence to set priorities for fixes.
 
 The first risk factor - is the vulnerable component actually in a running deployment?
 
@@ -96,7 +96,7 @@ These are the five deployments running right now with containers that come from 
 +
 We display the critical information here - so you can see that we have this present in the Production cluster, in Namespaces like Payments, which starts to provide context to the security team.
 +
-The last column on the right is the Risk priority - which ACS has already determined from configuration and runtime activity in the deployment.
+The last column on the right is the Risk priority - which RHACS has already determined from configuration and runtime activity in the deployment.
 So - of these five deployments, the visa-processor is most likely to be exploited. How is this determined?
 
 Continue to the next section - Risks for find out!

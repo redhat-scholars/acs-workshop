@@ -9,7 +9,7 @@ Red Hat Advanced Cluster Security for Kubernetes allows you to use out-of-the-bo
 
 Configuring these policies enables you to automatically prevent high-risk service deployments in your environment and respond to runtime security incidents.
 
-image::policies/00-policies.png[ACS Policies 0, 800]
+image::policies/00-policies.png[RHACS Policies 0, 800]
 
 All of the policies that ship with the product are designed with the goal of providing targeted remediation that improves security hardening.
 
@@ -22,15 +22,15 @@ These policies come from us at Red Hat - our expertise, our interpretation of in
 
 * Click on the Red Hat Package Manager in Image Policy. Highlight the right-hand side policy details.
 
-image::policies/01-policies.png[ACS Policies 1, 800]
+image::policies/01-policies.png[RHACS Policies 1, 800]
 
-This is what an ACS policy looks like - front and center you can see the Rationale and Remediation designed to give the DevOps team some context about why this issue is important for security, and more importantly, what to do about the issue.
+This is what an RHACS policy looks like - front and center you can see the Rationale and Remediation designed to give the DevOps team some context about why this issue is important for security, and more importantly, what to do about the issue.
 
 You might get the impression that we don’t like Package Managers!
 
 While useful, in a container context they just represent a tool that an attacker can use to install software, and don’t have a legitimate use - a container should ship with all of the dependencies it requires.
 
-image::policies/02-policies.png[ACS Policies 2, 400]
+image::policies/02-policies.png[RHACS Policies 2, 400]
 
 Policy criteria can cross the build, deploy, and runtime lifecycles.
 
@@ -49,9 +49,9 @@ The unified policy engine allows for targeted conditions and targeted enforcemen
 
 * Click on the Fixable Severity at least important policy in the list. (It’s usually 20-30 rows down. You can also filter for it by typing “fixable” in the filters bar.
 
-image::policies/03-policies.png[ACS Policies 3, 400]
+image::policies/03-policies.png[RHACS Policies 3, 400]
 
-As you’ve seen - ACS focuses on empowering and encouraging developers to understand and resolve security issues in their own deployments.
+As you’ve seen - RHACS focuses on empowering and encouraging developers to understand and resolve security issues in their own deployments.
 
 Sometimes we have to balance the carrot with a little stick, because security officers need to know that dangerous misconfigurations won’t be promoted and deployed in certain environments, and that’s where enforcement of policy comes in.
 
@@ -69,6 +69,6 @@ Security gets their enforcement, and DevOps sees a “normal” failure from the
 
 * Click ON for both Build and Deploy enforcement. Click Save.
 
-image::policies/04-policies.png[ACS Policies 4, 400]
+image::policies/04-policies.png[RHACS Policies 4, 400]
 
 NOTE: TODO add new policies section

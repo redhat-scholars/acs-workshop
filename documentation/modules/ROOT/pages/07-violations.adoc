@@ -61,13 +61,13 @@ For example, "Ubuntu Package Manager Execution". If I had an outstanding violati
 [#policy_summary]
 == Policy Summary
 
-ACS has a number of built-in policies to detect activity that’s related to attacker goals: gain a foothold, maintain a presence, move laterally, and exfiltrate data.
+RHACS has a number of built-in policies to detect activity that’s related to attacker goals: gain a foothold, maintain a presence, move laterally, and exfiltrate data.
 The continuous runtime monitoring observes all container activity and will automatically respond to events with appropriate enforcement and notification
 
 * In the right hand side details of the Violation, click on the Policy tab
 
 image::violations/04-violations.png[Violations 4, 500]
 
-But that would be missing out on an opportunity - ACS wants to go one step further, to take advantage of the ephemeral, immutable nature of containers to improve security in a measurable way going forward.
+But that would be missing out on an opportunity - RHACS wants to go one step further, to take advantage of the ephemeral, immutable nature of containers to improve security in a measurable way going forward.
 
 We are, essentially, using runtime incidents as a learning opportunity to improve security going forward by constraining how our containers can act.

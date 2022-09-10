@@ -43,7 +43,7 @@ Fill in the fields as shown in figure 1, giving the integration a unique name th
 
 Press the test button to validate the connection and press “save” when the test is successful.
 
-image::integrations/03-registry_ocp_internal.png[ACS Integrations 1, 800]
+image::integrations/03-registry_ocp_internal.png[RHACS Integrations 1, 800]
 
 TODO: Finish the integration!!
 
@@ -58,34 +58,34 @@ To do this step, follow the https://docs.openshift.com/acs/integration/integrate
 
 On the RHACS portal, navigate to Platform Configuration -> Integrations.
 
-image::integrations/04-integration-slack.png[ACS Integrations Slack 1, 800]
+image::integrations/04-integration-slack.png[RHACS Integrations Slack 1, 800]
 
 Create a new integration in Red Hat Advanced Cluster Security for Kubernetes by using the webhook URL.
 
-image::integrations/05-integrations-slack.png[ACS Integrations Slack 2, 600]
+image::integrations/05-integrations-slack.png[RHACS Integrations Slack 2, 600]
 
 NOTE: the webhook URL will have the format of "https://hooks.slack.com/services/ZZZ/YYY/XXX"
 
 Click Test and check the Slack Channel:
 
-image::integrations/07-integrations-slack.png[ACS Integrations Slack 3, 500]
+image::integrations/07-integrations-slack.png[RHACS Integrations Slack 3, 500]
 
 NOTE: by default all the notifications in the system policies are disabled. If you have not configured any other integrations, you will see No notifiers configured!.
 
 For enable the Policy Notifications, select a System Policy and click on Actions, then Enable Notification:
 
-image::integrations/08-integrations-slack.png[ACS Integrations Slack 4, 700]
+image::integrations/08-integrations-slack.png[RHACS Integrations Slack 4, 700]
 
 Then in the System Policy selected, in the Notification will appear the Slack notification that it's enabled.
 
-image::integrations/06-integrations-slack.png[ACS Integrations Slack 5, 600]
+image::integrations/06-integrations-slack.png[RHACS Integrations Slack 5, 600]
 
 When a System Policy is violated, and appears in Violations, will be sent a Notification to Slack though the Slack integration notifier showing the information of the System Policy violated and more details about that:
 
-image::integrations/09-integrations-slack.png[ACS Integrations Slack 6, 700]
+image::integrations/09-integrations-slack.png[RHACS Integrations Slack 6, 700]
 
 [#integrate_acs_oauth]
-== Integrate ACS with OpenShift OAuth
+== Integrate RHACS with OpenShift OAuth
 
 Red Hat Advanced Cluster Security (RHACS) Central is installed with one administrator user by default. Typically, customers request an integration with existing Identity Provider(s) (IDP). 
 
@@ -112,7 +112,7 @@ image::integrations/03-oauth.png[OAuth 3, 800]
 +
 image::integrations/04-oauth.png[OAuth 4, 800]
 
-. In a private windows of your browser login into the RH ACS portal, and check the OpenShift OAuth auth provider that you set up
+. In a private windows of your browser login into the RHACS portal, and check the OpenShift OAuth auth provider that you set up
 +
 image::integrations/05-oauth.png[OAuth 5, 400]
 
@@ -120,7 +120,7 @@ image::integrations/05-oauth.png[OAuth 5, 400]
 +
 image::integrations/06-oauth.png[OAuth 6, 400]
 
-. Admin user will have the role Admin in RH ACS, so will have full privileges in the ACS console. Check that you have full view of the Violations or Compliance among others.
+. Admin user will have the role Admin in RHACS, so will have full privileges in the RHACS console. Check that you have full view of the Violations or Compliance among others.
 +
 image::integrations/07-oauth.png[OAuth 7, 700]
 
@@ -137,7 +137,7 @@ image::integrations/09-oauth.png[OAuth 9, 800]
 image::integrations/10-oauth.png[OAuth 10, 800]
 
 [#integrate_acs_sso]
-== Integrate ACS with Red Hat Single Sign On
+== Integrate RHACS with Red Hat Single Sign On
 
 The following steps will create some basic example objects to an existing RHSSO or Keycloak to test the authentication at RHACS.
 
@@ -324,7 +324,7 @@ image::integrations/05-sso.png[SSO 5, 800]
 +
 For example the user with the name admin (which have been created previously in our RHSSO) gets the role Admin assigned.
 
-. What is left to do is the configuration of redirect URLs. These URLs are shown in the ACS Authentication Provider configuration (see blue field in the image above)
+. What is left to do is the configuration of redirect URLs. These URLs are shown in the RHACS Authentication Provider configuration (see blue field in the image above)
 +
 image::integrations/06-sso.png[SSO 6, 800]
 

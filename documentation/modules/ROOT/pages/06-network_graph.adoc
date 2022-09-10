@@ -9,7 +9,7 @@ The Network Graph is a flow diagram, firewall diagram, and firewall rule builder
 
 image::network-flow/03-network.png[Network Flow 1, 800]
 
-In the upper left you’ll see the dropdown for clusters so I can easily navigate between any of the clusters that are connected to ACS.
+In the upper left you’ll see the dropdown for clusters so I can easily navigate between any of the clusters that are connected to RHACS.
 
 * The default view, Active, shows me actual traffic for the Past Hour between the deployments in all of the namespaces.
 
@@ -57,12 +57,12 @@ The Network Policy Simulator is designed to help solve this problem by using the
 Click on Generate and Simulate
 
 You’ll notice, though, that the firewall rules we’re generating are not proprietary rules, but OpenShift-native Network Policy objects.
-This feature, more than any other, illustrates the philosophy that ACS represents: Security through platform-native features, with fixes supplied as configuration for OpenShift.
+This feature, more than any other, illustrates the philosophy that RHACS represents: Security through platform-native features, with fixes supplied as configuration for OpenShift.
 
 By implementing stronger security through declarative code we believe this avoids the anti-pattern of having configuration rules in a separate system - this code becomes part of your application, ensuring the consistency of “single source of truth” from your codebase.
 
 This approach also reduces operational risk since there is no proprietary firewall in your cluster or in your pods that could fail, causing an application outage.
-ACS is leveraging the firewall that’s already in your OpenShift cluster.
+RHACS is leveraging the firewall that’s already in your OpenShift cluster.
 
 image::network-flow/05-network.png[Network Flow 5, 800]
 

@@ -7,7 +7,7 @@ We will install ACS thought the RHACS Operator and afterwards we will install an
 NOTE: You can request in RHPDS the environment already installed (including the demo) - Go to Multi-Product Demo -> Openshift 4 Advanced Cluster Security 3
 
 [#install_acs_operator]
-== ACS Operator Installation
+== RHACS Operator Installation
 
 . Find and the Advanced Cluster Security Operator from the Operator Hub.
 +
@@ -30,7 +30,7 @@ image::install/03_wait_for_completion.png[ACS Operator 4, 800]
 image::install/04_operator_ready.png[ACS Operator 5, 800]
 
 [#install_acs_central]
-== ACS Central Cluster Installation
+== RHACS Central Cluster Installation
 
 In this section we will deploy the Central component in the lab cluster. The Central is made up two main deployments:
 
@@ -126,7 +126,7 @@ oc apply -f stackrox-central-services.yaml -n stackrox
 oc get pods -n stackrox -w
 ----
 
-=== ACS login
+=== RHACS login
 
 . Once the installation is complete, obtain and copy the generated admin password from the ``central-htpasswd`` secret.
 .. Using the command line:
@@ -153,7 +153,7 @@ oc get routes/central -n stackrox -o jsonpath='{.spec.host}'
 image::install/05_2_login.png[ACS Operator 62, 800]
 
 [#config_acs_securedcluster]
-== ACS Secured Cluster Configuration
+== RHACS Secured Cluster Configuration
 
 To import a cluster into ACS, you need to generate a cluster init bundle containing TLS secrets for Sensor, Collectors, and Admission Controllers.
 
@@ -249,7 +249,7 @@ oc get pods -n stackrox -w
 image::install/11_verify_cluster_list.png[ACS Operator 11, 800]
 
 [#deploy_demo_acs] 
-== Deploying Demo in ACS - Mandatory
+== Deploying Demo in RHACS - Mandatory
 
 IMPORTANT: Independent of which option to install you used, you need to deploy the ACS Demo into your cluster.
 

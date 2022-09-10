@@ -253,11 +253,11 @@ ocp4-cis   DONE    NON-COMPLIANT
 ----
 
 [#compliance_operator_acs_review]
-=== Review Compliance Scans of the Compliance Operator in ACS
+=== Review Compliance Scans of the Compliance Operator in RHACS
 
-After completing the previous steps, you will be able to find the results from the Compliance Operator compliance reports in ACS.
+After completing the previous steps, you will be able to find the results from the Compliance Operator compliance reports in RHACS.
 
-* If ACS was installed prior to the Compliance Operator, we'll need to restart the ACS sensor in the OpenShift cluster to see these results.
+* If RHACS was installed prior to the Compliance Operator, we'll need to restart the ACS sensor in the OpenShift cluster to see these results.
 
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
@@ -283,18 +283,18 @@ image::compliance/04_co_acs_detail.png[ACS 6, 800]
 For more information check the https://docs.openshift.com/container-platform/4.8/security/compliance_operator/compliance-scans.html[Compliance Operator guide]
 
 [#acs_policy_compliance]
-== Configure Policy in ACS to Invoke Compliance related Controls
+== Configure Policy in RHACS to Invoke Compliance related Controls
 
-The Built-in standards in ACS Compliance provide guidance on required configurations to meet each individual control. Standards like PCI, HIPAA, and NIST 800-190 are focused on workloads visible to ACS, and apply to all workloads running in any Kubernetes cluster that ACS is installed in.
+The Built-in standards in RHACS Compliance provide guidance on required configurations to meet each individual control. Standards like PCI, HIPAA, and NIST 800-190 are focused on workloads visible to RHACS, and apply to all workloads running in any Kubernetes cluster that RHACS is installed in.
 
-Much of the control guidance can be implemented using ACS policies, and providing appropriate policy with enforcement in ACS can change compliance scores.
+Much of the control guidance can be implemented using RHACS policies, and providing appropriate policy with enforcement in RHACS can change compliance scores.
 
 As an example, we'll look at a control in the NIST 800-190 that requires that container images be kept up to date, and to use meaningful version tags: "practices should emphasize accessing images using immutable names that specify discrete versions of images to be used."
 
 WARNING: This configuration will change the behavior of your Kubernetes clusters and possibly result in preventing new deployments from being created. After testing, you can quickly revert the changes using the instructions at the end of this section.
 
 * Inspect the NIST 800-190 Guidance for Control 4.2.2
-* Navigate back to the ACS Compliance page.
+* Navigate back to the RHACS Compliance page.
 * In the section labeled "PASSING STANDARDS ACROSS CLUSTERS", click on NIST 800-190.
 * Scroll down to control 4.2.2 and examine the control guidance on the right.
 
@@ -304,7 +304,7 @@ built-in policies that detects if images with insecure tags are being used or if
 Therefore, the cluster is compliant if there are policies that are being enforced that discourages such images from being
 deployed."
 
-image::compliance/05_nist0.png[ACS 7, 700]
+image::compliance/05_nist0.png[RHACS 7, 700]
 
 [#acs_policy_compliance_nist]
 === Enforce Policies that Meet Guidance for NIST Control 4.2.2
@@ -320,10 +320,10 @@ There are two separate default system policies that, together, meet this control
 * On the enforcement options, click On for both Build and Deploy enforcement. Click Save, and then X to close.
 * At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to enable enforcement and save the policy.
 
-image::compliance/06_nist1.png[ACS 8, 400]
+image::compliance/06_nist1.png[RHACS 8, 400]
 
 [#acs_policy_compliance_nist_view]
-=== View Updated Compliance Scan Results in ACS
+=== View Updated Compliance Scan Results in RHACS
 
 * In order to see the impact on NIST 800-190 scores:
 * Navigate back to the compliance page.
@@ -331,12 +331,12 @@ image::compliance/06_nist1.png[ACS 8, 400]
 * In the section labeled "PASSING STANDARDS ACROSS CLUSTERS", click on NIST 800-190.
 * Scroll down to control 4.2.2 and verify that the control now reports 100% compliance.
 
-image::compliance/07_nist2.png[ACS 9, 700]
+image::compliance/07_nist2.png[RHACS 9, 700]
 
 [#acs_policy_compliance_nist_revert]
 === Revert the Policy Changes
 
-To avoid rejecting any other deployments to the cluster, you should disable the enforcement after viewing the updated ACS results.
+To avoid rejecting any other deployments to the cluster, you should disable the enforcement after viewing the updated RHACS results.
 
 Navigate to Platform Configuration -> System Policies
 Find and click on the policy named, "90-day Image Age" which by default is second in the list. Click Edit to get to the Policy settings.

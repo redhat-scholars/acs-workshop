@@ -1,4 +1,4 @@
-= ACS DevSecOps Pipelines
+= RHACS DevSecOps Pipelines
 include::_attributes.adoc[]
 :profile: acs
 
@@ -10,11 +10,11 @@ https://cloud.redhat.com/blog/using-openshift-pipelines-to-automate-red-hat-adva
 TODO: finish the writing.
 
 [#install_devsecops_pipelines]
-== Installing ACS DevSecOps Pipeline
+== Installing RHACS DevSecOps Pipeline
 
 Based in https://github.com/rcarrata/devsecops-demo[DevSecOps Pipeline Repo] we will deploy in our Openshift cluster a full DevSecOps pipeline example to see the integration of RHACS to a CICD Pipeline.
 
-image::cicd/00-acs_cicd_overview.png[ACS CICD 1, 800]
+image::cicd/00-acs_cicd_overview.png[RHACS CICD 1, 800]
 
 Download the demo and install the prereqs:
 
@@ -55,6 +55,6 @@ Run the demo with:
 
 Go to the namespace of ```cicd``` and check the Pipelines resources with the PipelineRun like the following:
 
-image::cicd/01-devsecops_pipeline.png[ACS CICD 2, 800]
+image::cicd/01-devsecops_pipeline.png[RHACS CICD 2, 800]
 
 For more information check the https://github.com/rcarrata/devsecops-demo[original repo] or the https://github.com/RedHatDemos/SecurityDemos/blob/master/2021Labs/OpenShiftSecurity/documentation/lab4.adoc[Security Lab guide] that have all the details and caveats.

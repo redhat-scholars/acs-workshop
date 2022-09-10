@@ -1,4 +1,4 @@
-= Overview ACS
+= Overview RHACS
 include::_attributes.adoc[]
 :profile: acs
 
@@ -9,11 +9,11 @@ In this section we will face the following:
 * The ACS Dashboard.
 
 [#acs_architecture]
-== ACS Architecture
+== RHACS Architecture
 
 The StackRox Kubernetes Security Platform installs as a set of pods in your Kubernetes or OpenShift cluster and includes the following components:
 
-image::architecture_acs.png[ACS Architecture, 800]
+image::architecture_acs.png[RHACS Architecture, 800]
 
 * https://docs.openshift.com/acs/architecture/acs-architecture.html#centralized-components_acs-architecture[**Central**]: [Centralized components] Central is the main component of Red Hat Advanced Cluster Security for Kubernetes and it is installed as a Kubernetes deployment. It handles data persistence, API interactions, and user interface (Portal) access. You can use the same Central instance to secure multiple OpenShift Container Platform or Kubernetes clusters.
 
@@ -29,13 +29,13 @@ image::architecture_acs.png[ACS Architecture, 800]
 NOTE: Scanner only scans those images that are not already scanned by other integrated vulnerability scanners. It means that if you have integrated Red Hat Advanced Cluster Security for Kubernetes with other vulnerability scanners, Scanner checks and uses the scanning results from the integrated scanner if available.
 
 [#dashboard_acs]
-== ACS Dashboard
+== RHACS Dashboard
 
-When login in ACS we will get the ACS Dashboard:
+When login in RHACS we will get the RHACS Dashboard:
 
 image::dashboard/acs_dashboard.png[ACS Dashboard, 800]
 
-In the ACS Dashboard we have three main sections:
+In the RHACS Dashboard we have three main sections:
 
 * The header.
 * The menu.
@@ -52,7 +52,7 @@ image::dashboard/acs_dashboard_header.png[ACS Dashboard, 800]
 image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 150]
 
 
-In the left part of the dashboard we can see the different sections we can access in ACS to gather information about the security in the clusters we have configured in ACS.
+In the left part of the dashboard we can see the different sections we can access in RHACS to gather information about the security in the clusters we have configured in RHACS.
 
 Later we will go deeper in each of them. For the time being, we will introduce each of these:
 
@@ -68,7 +68,7 @@ Later we will go deeper in each of them. For the time being, we will introduce e
 [#dashboard_acs_information]
 === Dashboard Information
 
-image::dashboard/acs_dashboard_information.png[ACS Dashboard, 800]
+image::dashboard/acs_dashboard_information.png[RHACS Dashboard, 800]
 
 We can get a summary about the security state of the whole environment.
 

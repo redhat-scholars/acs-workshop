@@ -1,10 +1,10 @@
-= ACS Secure Cluster Management
+= RHACS Secure Cluster Management
 include::_attributes.adoc[]
 :profile: acs
 
 
 [#secured_clusters]
-== Install additional ACS Secured Clusters
+== Install additional RHACS Secured Clusters
 
 To monitor a cluster, you must deploy a Sensor. The following steps describe adding a sensor by using the StackRox portal
 
@@ -12,7 +12,7 @@ To monitor a cluster, you must deploy a Sensor. The following steps describe add
 * Select + New Cluster.
 * Specify a name for the cluster - production
 
-image::multicluster/0_multi.png[ACS Multi 0, 800]
+image::multicluster/0_multi.png[RHACS Multi 0, 800]
 
 * Click Next and download the zip:
 
@@ -80,9 +80,9 @@ collector-z2frz                      2/2     Running   0          76s
 sensor-6b4d8447b5-bjhbz              1/1     Running   0          75s
 ----
 
-* Return to the ACS portal and check if the deployment is successful. If it’s successful, a green checkmark appears under section #2.
+* Return to the RHACS portal and check if the deployment is successful. If it’s successful, a green checkmark appears under section #2.
 
-image::multicluster/01_multi.png[ACS Multi 1, 800]
+image::multicluster/01_multi.png[RHACS Multi 1, 800]
 
 For more information check about adding Secured Clusters check https://docs.openshift.com/acs/installing/install-ocp-operator.html#generate-init-bundle[the RHACS Documentation].
 
@@ -102,11 +102,11 @@ oc run couchdb --labels=app=couchdb --image=vulhub/couchdb:1.6.0 -n suspicious
 ----	
 
 [#system_configuration]
-== ACS System Configuration
+== RHACS System Configuration
 
-Check into the https://docs.openshift.com/acs/3.66/configuration/enable-alert-data-retention.html[official documentation] the different configuration tweaks that you can do in the RH ACS cluster:
+Check into the https://docs.openshift.com/acs/3.66/configuration/enable-alert-data-retention.html[official documentation] the different configuration tweaks that you can do in the RHACS cluster:
 
-image::multicluster/03_multi.png[ACS Multi 3, 800]
+image::multicluster/03_multi.png[RHACS Multi 3, 800]
 
 The options are:
 
@@ -117,7 +117,7 @@ The options are:
 * Online Telemetry Data Collection
 
 [#system_health]
-== ACS System Health
+== RHACS System Health
 
 The Red Hat Advanced Cluster Security for Kubernetes system health dashboard provides a single interface for viewing health related information about Red Hat Advanced Cluster Security for Kubernetes components.
 
@@ -125,7 +125,7 @@ To access the health dashboard:
 
 * On the RHACS portal, navigate to Platform Configuration → System Health.
 
-image::multicluster/02_multi.png[ACS Multi 2, 800]
+image::multicluster/02_multi.png[RHACS Multi 2, 800]
 
 The health dashboard organizes information in the following groups:
 
@@ -150,11 +150,11 @@ The Cluster Overview shows information about your Red Hat Advanced Cluster Secur
 4. **Credential Expiration** - It shows if the credentials for Red Hat Advanced Cluster Security for Kubernetes are nearing expiration.
 
 [#access_control]
-== ACS Access Control
+== RHACS Access Control
 
 Red Hat Advanced Cluster Security for Kubernetes (RHACS) comes with role-based access control (RBAC) that you can use to configure roles and grant various levels of access to Red Hat Advanced Cluster Security for Kubernetes for different users.
 
-image::multicluster/04_multi.png[ACS Multi 4, 400]
+image::multicluster/04_multi.png[RHACS Multi 4, 400]
 
 Red Hat Advanced Cluster Security for Kubernetes 3.63 includes a scoped access control feature that enables you to configure fine-grained and specific sets of permissions that define how a given Red Hat Advanced Cluster Security for Kubernetes user or a group of users can interact with Red Hat Advanced Cluster Security for Kubernetes, which resources they can access, and which actions they can perform.
 
@@ -163,7 +163,7 @@ Red Hat Advanced Cluster Security for Kubernetes 3.63 includes a scoped access c
 1. **System roles** that are created by Red Hat and cannot be changed.
 2. **Custom roles**, which Red Hat Advanced Cluster Security for Kubernetes administrators can create and change at any time.
 
-image::multicluster/07_multi.png[ACS Multi 5, 800]
+image::multicluster/07_multi.png[RHACS Multi 5, 800]
 
 * Permission sets are a set of permissions that define what actions a role can perform on a given resource. Resources are the functionalities of Red Hat Advanced Cluster Security for Kubernetes for which you can set view (read) and modify (write) permissions. There are two types of permission sets in Red Hat Advanced Cluster Security for Kubernetes:
 
@@ -171,7 +171,7 @@ image::multicluster/07_multi.png[ACS Multi 5, 800]
 
 2. **Custom permission sets**, which Red Hat Advanced Cluster Security for Kubernetes administrators can create and change at any time.
 
-image::multicluster/08_multi.png[ACS Multi 6, 800]
+image::multicluster/08_multi.png[RHACS Multi 6, 800]
 
 * Access scopes are a set of Kubernetes and OpenShift Container Platform resources that users can access. For example, you can define an access scope that only allows users to access information about pods in a given project. There are two types of access scopes in Red Hat Advanced Cluster Security for Kubernetes:
 

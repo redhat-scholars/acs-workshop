@@ -1,4 +1,4 @@
-= Risk Management in ACS
+= Risk Management in RHACS
 include::_attributes.adoc[]
 :profile: acs
 
@@ -7,21 +7,21 @@ include::_attributes.adoc[]
 
 Let’s take a look at the Risk view, where we go beyond the basics of vulnerabilities to understand how deployment configuration and runtime activity impact the likelihood of an exploit occurring and how successful those exploits will be.
 
-image::risks/01-risks.png[ACS Risks 1, 800]
+image::risks/01-risks.png[RHACS Risks 1, 800]
 
 This list view shows all deployments, in all clusters and namespaces, ordered by Risk priority.
 
 Risk is also influenced by runtime activity - and Deployments that have activity that could indicate a breach in progress have a red dot on the left.
 Obviously - the first one in the list should be our first focus.
 
-The reality of security is that it’s just not possible to tackle all sources of Risk, so organizations end up prioritizing their efforts. We want ACS to help inform that prioritization.  
+The reality of security is that it’s just not possible to tackle all sources of Risk, so organizations end up prioritizing their efforts. We want RHACS to help inform that prioritization.  
 
 [#risk_single_deployment_details]
 == Single Deployment Details
 
 * Click on the number 1 deployment, **visa-processor** to bring up the ``RISK INDICATORS``
 +
-image::risks/02-risks.png[ACS Risks 2, 350]
+image::risks/02-risks.png[RHACS Risks 2, 350]
 +
 The details tab shows why this deployment is considered such a high risk.
 +
@@ -31,11 +31,11 @@ In addition, other configurations like privileged containers mean that a success
 
 * Navigate to the bottom of the ``RISK INDICATORS`` page to the RBAC configuration section
 +
-image::risks/03-risks.png[ACS Risks 3, 400]
+image::risks/03-risks.png[RHACS Risks 3, 400]
 +
 At the bottom, we see another serious problem: the service account associated with this deployment has been given ``cluster admin`` privileges, which means that a successful attacker gains full control over this entire OpenShift cluster which could result in compromise of the entire cluster.
 
-All of these configurations are gleaned automatically by ACS from OpenShift, and the built-in policies assign a risk score to each, meaning that this Risk report is available as soon as you start running ACS.
+All of these configurations are gleaned automatically by RHACS from OpenShift, and the built-in policies assign a risk score to each, meaning that this Risk report is available as soon as you start running RHACS.
 
 [#risk_process_discovery]
 == Process Discovery / Runtime
@@ -44,21 +44,21 @@ Navigate to the ``PROCESS DISCOVERY`` tab of the details page.
 
 Even a perfectly configured application has the potential for an attacker to gain access and cause havoc.
 
-Here we show how ACS continuously monitors runtime activity within pods in the deployment, building a baseline of observed behavior, and tracking deviations from that baseline.
+Here we show how RHACS continuously monitors runtime activity within pods in the deployment, building a baseline of observed behavior, and tracking deviations from that baseline.
 
 * Click on the header bar within the ``Event Timeline`` section ( in the picture, at any point on the surface covered by the red rectangle )
 +
-image::risks/04-risks.png[ACS Risks 4, 500]
+image::risks/04-risks.png[RHACS Risks 4, 500]
 +
 The event timeline shows us, for each pod, the process activity that has occurred over time. 
 
 * Click on the squares / circles for process activity
 +
-image::risks/05-risks.png[ACS Risks 5, 700]
+image::risks/05-risks.png[RHACS Risks 5, 700]
 +
 If you click in the __greater than__ symbol (pointed by the red arrow in the above picture) you can expand the activity and see the containers inside the pod.
 +
-image::risks/05_1-risks.png[ACS Risks 51, 700]
+image::risks/05_1-risks.png[RHACS Risks 51, 700]
 
 We can take advantage of the constrained lifecycle of containers for better runtime incident detection and response.
 
@@ -71,7 +71,7 @@ Deviations from the baseline can be used to take enforcement action and alert te
 
 Most UI pages have a filters section at the top that allows you to narrow the reporting view to matching or non-matching criteria.
 
-Almost all of the attributes that ACS gathers are filterable
+Almost all of the attributes that RHACS gathers are filterable
 
 It’s really useful here in Risk when you know what you’re looking for - when you want answers to questions like “what applications have CVE-2020-1008 present".
 
@@ -88,7 +88,7 @@ CVE - CVE-2017-7376 (libxml2)
 
 * Click in the ``Filters`` bar (at the top, red rectangle). Start Typing "Process Name" and select the ``Process Name`` key ones it appears / autocompletes. Then type ``java``, press enter and click away to get the filters dropdown to clear.
 +
-image::risks/06-risks.png[ACS Risks 6, 800]
+image::risks/06-risks.png[RHACS Risks 6, 800]
 +
 Do the same to add the ``CVE`` filter (is one of the keys shown by default).
 
@@ -98,4 +98,4 @@ Now that we’ve searched for interesting criteria, we can create a policy from 
 We can do that by clicking the ``Create Policy`` button, at the upper right (indicated by the red arrow in the above picture) and following the form steps.
 ====
 
-Now let's review the Network Graph and the Network Policies in RH ACS!
+Now let's review the Network Graph and the Network Policies in RHACS!
