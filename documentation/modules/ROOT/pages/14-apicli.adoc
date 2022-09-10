@@ -45,7 +45,7 @@ $ export ROX_CENTRAL_ADDRESS=<address>:<port_number
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-$ roxctl --insecure-skip-tls-verify image check --endpoint $ACS_ROUTE:443 --image quay.io/centos7/httpd-24-centos7:centos7
+$ roxctl --insecure-skip-tls-verify image check --endpoint $ROX_CENTRAL_ADDRESS:443 --image quay.io/centos7/httpd-24-centos7:centos7
 ----
 
 [#api-overview]
