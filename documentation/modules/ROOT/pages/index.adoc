@@ -32,6 +32,6 @@ IMPORTANT: This is not an official RH Advanced Cluster Security guide or worksho
 
 == Contributors
 
-This workshop has been developed and is maintained by https://github.com/rcarrata[Roberto Carratalá] and https://github.com/jadebustos[Jose Angel de Bustos].
+This workshop has been developed and is maintained by https://github.com/rcarrata[Roberto Carratalá],  https://github.com/jadebustos[Jose Angel de Bustos] and https://github.com/josgonza-rh[Jose Antonio Gonzalez Prada].
 
 Thanks all the https://github.com/redhat-scholars/acs-workshop/graphs/contributors[contributors] that reviewed and contributed to this workshop!!
