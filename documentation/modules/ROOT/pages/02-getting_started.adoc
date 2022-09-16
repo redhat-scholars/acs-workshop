@@ -190,7 +190,7 @@ You can open the yaml file, copy the content and paste it to the web console usi
 
 NOTE: This workshop uses the same cluster as central and secured cluster. In a real time scenario there will be many different secured clusters. Please ensure to install the ACS Operator in all the secured cluster in order to manage the SecuredCluster CR.
 
-The ``SecuredCluster`` custom resource is quite simple. The following example shows the configuration for a ``demo-cluster`` target. Notice the ``collector`` configuration, with the collection method set to ``KernelModule``. The alternative collection approach would be ``eBPF``. The ``TolerateTaints`` lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.
+The ``SecuredCluster`` custom resource is quite simple. The following example shows the configuration for a ``demo-cluster`` target. Notice the ``collector`` configuration, with the collection method set to ``EBPF``. The alternative collection approach would be ``KernelModule``. The ``TolerateTaints`` lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.
 
 [.console-input]
 [source,yaml,subs="attributes+,+macros"]	
@@ -208,7 +208,7 @@ spec:
   clusterName: demo-cluster
   perNode:
     collector:
-      collection: KernelModule
+      collection: EBPF
       imageFlavor: Regular
     taintToleration: TolerateTaints
 ----

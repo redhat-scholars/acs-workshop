@@ -311,14 +311,15 @@ image::compliance/05_nist0.png[RHACS 7, 700]
 
 There are two separate default system policies that, together, meet this control's guidance, "90-day Image Age," and "Latest tag". Both must have enforcement enabled for this control to be satisfied.
 
-* Navigate to Platform Configuration -> System Policies
+* Navigate to Platform Configuration -> Policy Management
 * Find and click on the policy named, "90-day Image Age" which by default is second in the list. We're not going to change this policy other than to enable enforcement.
-* Click Edit to get to the Policy settings.
-* Click Next at the upper right to get to the Policy Criteria page.
-* Click Next at the upper right to get to the Violations Preview page.
-* Click Next at the upper right to get to the Enforcement Options page.
-* On the enforcement options, click On for both Build and Deploy enforcement. Click Save, and then X to close.
-* At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to enable enforcement and save the policy.
+* Click Actions -> Edit Policy to get to the Policy settings.
+* Click Next at the bottom panel to get to the Policy Behavior page.
+* On the response method options, click Inform and Enforce.
+* Click on for both Build and Deploy enforcement. 
+* Click Next at the bottom panel until you get to Review Policy page.
+* Click Save.
+* At the main Policy Management page, find the Policy named, "Latest tag" and repeat steps 3 - 6 to enable enforcement and save the policy.
 
 image::compliance/06_nist1.png[RHACS 8, 400]
 
@@ -338,11 +339,13 @@ image::compliance/07_nist2.png[RHACS 9, 700]
 
 To avoid rejecting any other deployments to the cluster, you should disable the enforcement after viewing the updated RHACS results.
 
-Navigate to Platform Configuration -> System Policies
+Navigate to Platform Configuration -> Policy Management
 Find and click on the policy named, "90-day Image Age" which by default is second in the list. Click Edit to get to the Policy settings.
 
-* Click Next at the upper right to get to the Policy Criteria page.
-* Click Next at the upper right to get to the Violations Preview page.
-* Click Next at the upper right to get to the Enforcement Options page.
-* On the enforcement options, click Off for both Build and Deploy enforcement. Click Save, and then X to close.
-* At the main System Policies page, find the Policy named, "Latest tag" and repeat steps 3 - 7 to disable enforcement and save the policy.
+* Click Actions -> Edit Policy to get to the Policy settings.
+* Click Next at the bottom panel to get to the Policy Behavior page.
+* On the response method options, click Inform.
+* Click Next at the bottom panel until you get to Review Policy page.
+* Click Save.
+* At the main Policy Management page, find the Policy named, "Latest tag" and repeat the steps to disable enforcement and save the policy.
+

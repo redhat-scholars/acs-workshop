@@ -55,10 +55,8 @@ As you’ve seen - RHACS focuses on empowering and encouraging developers to und
 
 Sometimes we have to balance the carrot with a little stick, because security officers need to know that dangerous misconfigurations won’t be promoted and deployed in certain environments, and that’s where enforcement of policy comes in.
 
-* Click Edit in the upper right of the policy
-* Click Next to see Policy Criteria
-* Click Next to see Violations Preview
-* Click Next to see Enforcement
+* Click Action -> Edit Policy in the upper right of the policy
+* Click Next to see Policy Behavior
 
 Enforcement is another demonstration of Kubernetes-native security, leveraging the pipeline process to prevent unacceptable risks.
 
@@ -67,7 +65,9 @@ In the absence of CI/CD integration, or for images that are promoted without goi
 We’re essentially programming OpenShift to prevent security risk
 Security gets their enforcement, and DevOps sees a “normal” failure from the OpenShift API, with clear remediation steps instead of a nebulous error that forces them to go open a ticket or look in another console.
 
-* Click ON for both Build and Deploy enforcement. Click Save.
+* Click ON for both Build and Deploy enforcement.
+* Click Next at the bottom panel until you get to Review Policy page.
+* Click Save.
 
 image::policies/04-policies.png[RHACS Policies 4, 400]
 
