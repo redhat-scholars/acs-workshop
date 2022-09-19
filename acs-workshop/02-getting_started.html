@@ -700,7 +700,7 @@ This workshop uses the same cluster as central and secured cluster. In a real ti
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>SecuredCluster</code> custom resource is quite simple. The following example shows the configuration for a <code>demo-cluster</code> target. Notice the <code>collector</code> configuration, with the collection method set to <code>KernelModule</code>. The alternative collection approach would be <code>eBPF</code>. The <code>TolerateTaints</code> lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.</p>
+<p>The <code>SecuredCluster</code> custom resource is quite simple. The following example shows the configuration for a <code>demo-cluster</code> target. Notice the <code>collector</code> configuration, with the collection method set to <code>EBPF</code>. The alternative collection approach would be <code>KernelModule</code>. The <code>TolerateTaints</code> lets the Collector daemonset be deployed also on nodes with special taints, like the ODF nodes.</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -717,7 +717,7 @@ spec:
   clusterName: demo-cluster
   perNode:
     collector:
-      collection: KernelModule
+      collection: EBPF
       imageFlavor: Regular
     taintToleration: TolerateTaints</code></pre>
 </div>
