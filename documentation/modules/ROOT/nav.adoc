@@ -19,6 +19,7 @@
 ** xref:04-vulnerabilities#image_overview_image_details[Image overview and image details]
 ** xref:04-vulnerabilities#vulnerability_management_panel[Review Vulnerability Management Dashboard]
 ** xref:04-vulnerabilities#scanning_images[Scanning images for vulnerabilities]
+** xref:04-vulnerabilities#filtering_vulnerabilities_scans[Filtering vulnerabilities scans]
 ** xref:04-vulnerabilities#review_cve_images[Image CVE Vulnerability Analysis]
 ** xref:04-vulnerabilities#image_correlation_deployments[Image CVE correlation with Deployments]
 
