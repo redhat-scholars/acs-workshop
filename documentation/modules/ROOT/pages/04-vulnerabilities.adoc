@@ -52,6 +52,24 @@ The Dockerfile tab view shows the layer-by-layer view and, as you can see, the m
 +
 Time is not kind to images and components - as vulnerabilities are discovered, RHACS will display newly discovered CVEs.
 
+[#filtering_images]
+== Scanning images for vulnerabilities
+
+By default information about vulnerabilities is show for all the images:
+
+* Active images, which are those images that are deployed.
+* Inactive images, which are those images that are not deployed.
+
+image::vulnerabilities/active_inactive.png[ActiveInactive, 700]
+
+Only active images will be scanned for vulnerabilities. If we want to scan inactive images we will need to mark the image as watched so you will need to click on **Manage Watches**:
+
+image::vulnerabilities/01-inactive.png[ActiveInactive, 700]
+
+Add the inactive image you want to scan for vulnerabilities:
+
+image::vulnerabilities/02-inactive.png[ActiveInactive, 700]
+
 [#review_cve_images]
 == Image CVE Vulnerability Analysis
 
