@@ -81,7 +81,7 @@ As usual que can use some tags to filter, as **CVE**, **CVE Type**, ...
 
 image::vulnerabilities/02-filter.png[ActiveInactive, 700]
 
-We can use regular expresions as well. For instance, we are not usually interested in inactive images due to there is no deployment using it. For this reason we are not probably interested in check the vulneratilities for the inactive images so we can filter using **Deployment r/.+**. That means to list all the images where the deployment field is not empth, i.e. active images:
+We can use regular expresions as well. For instance, we are not usually interested in inactive images vulnerabilities because there is no deployment using it. For this reason we are not probably interested in checking the vulneratilities for the inactive images. We can filter them using **Deployment r/.+** as filter. That filter means to list all the images where the deployment field is not empty, i.e. active images:
 
 image::vulnerabilities/03-filter.png[ActiveInactive, 700]
 
