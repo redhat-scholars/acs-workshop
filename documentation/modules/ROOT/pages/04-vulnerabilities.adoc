@@ -52,7 +52,7 @@ The Dockerfile tab view shows the layer-by-layer view and, as you can see, the m
 +
 Time is not kind to images and components - as vulnerabilities are discovered, RHACS will display newly discovered CVEs.
 
-[#filtering_images]
+[#scanning_images]
 == Scanning images for vulnerabilities
 
 By default information about vulnerabilities is show for all the images:
