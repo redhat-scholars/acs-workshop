@@ -130,13 +130,22 @@
     <a class="nav-link" href="04-vulnerabilities.html">Vulnerability Management</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#image_overview_image_details">Image overview and image details</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#vulnerability_management_panel">Review Vulnerability Management Dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#scanning_images">Scanning images for vulnerabilities</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#filtering_vulnerabilities_scans">Filtering vulnerabilities scans</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#review_cve_images">Image CVE Vulnerability Analysis</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#image_overview_image_details">Image overview and image details</a>
+    <a class="nav-link" href="#image_correlation_deployments">Image CVE correlation with Deployments</a>
   </li>
 </ul>
   </li>
@@ -482,6 +491,77 @@ if you don&#8217;t have the exact image in the Top Riskiest Images, go to "View 
 </div>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="scanning_images"><a class="anchor" href="#scanning_images"></a>Scanning images for vulnerabilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By default information about vulnerabilities is show for all the images:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Active images, which are those images that are deployed.</p>
+</li>
+<li>
+<p>Inactive images, which are those images that are not deployed.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/vulnerabilities/active_inactive.png" alt="ActiveInactive" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>Only active images will be scanned for vulnerabilities. If we want to scan inactive images we will need to mark the image as watched, so you will need to click on <strong>Manage Watches</strong>:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/vulnerabilities/01-inactive.png" alt="ActiveInactive" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>Add the inactive image you want to scan for vulnerabilities:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/vulnerabilities/02-inactive.png" alt="ActiveInactive" width="700">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="filtering_vulnerabilities_scans"><a class="anchor" href="#filtering_vulnerabilities_scans"></a>Filtering vulnerabilities scans</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Using the search box we can filter the results for the vulnerabilities scan:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/vulnerabilities/01-filter.png" alt="ActiveInactive" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>As usual que can use some tags to filter, as <strong>CVE</strong>, <strong>CVE Type</strong>, &#8230;&#8203;</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/vulnerabilities/02-filter.png" alt="ActiveInactive" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>We can use regular expresions as well. For instance, we are not usually interested in inactive images vulnerabilities because there is no deployment using it. For this reason we are not probably interested in checking the vulneratilities for the inactive images. We can filter them using <strong>Deployment r/.+</strong> as filter. That filter means to list all the images where the deployment field is not empty, i.e. active images:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/vulnerabilities/03-filter.png" alt="ActiveInactive" width="700">
+</div>
+</div>
+<div class="paragraph">
+<p>As you can see only the active images are displayed to check the vulnerabilities.</p>
 </div>
 </div>
 </div>
