@@ -6,9 +6,9 @@ include::_attributes.adoc[]
 [#secured_clusters]
 == Install additional RHACS Secured Clusters
 
-To monitor a cluster, you must deploy a Sensor. The following steps describe adding a sensor by using the StackRox portal
+To monitor a cluster, you must deploy a Sensor. The following steps describe adding a sensor by using the RHACS portal
 
-* On the StackRox portal, navigate to Platform Configuration > Clusters.
+* On the RHACS portal, navigate to Platform Configuration > Clusters.
 * Select + New Cluster.
 * Specify a name for the cluster - production
 
