@@ -415,7 +415,7 @@ In RHACS the Scanner component only scans those images that are not already scan
 <p>In this way, the quality of container images that get to the external registry improves, and triggered activities that result from a new image appearing in the registry only happen for a good reason.</p>
 </div>
 <div class="paragraph">
-<p>Generate a namespace and extract the token name of the</p>
+<p>Generate a namespace and extract the token name of the pipeline serviceaccount</p>
 </div>
 <div class="listingblock console-input">
 <div class="content">
@@ -423,7 +423,7 @@ In RHACS the Scanner component only scans those images that are not already scan
 
 oc new-project $NSINTEGRATION
 
-SECRET_TOKEN_NAME=$(oc get sa -n $NSINTEGRATION default -o jsonpath='{.secrets[*]}' | jq -r .name | grep token)
+SECRET_TOKEN_NAME=$(oc get sa -n $NSINTEGRATION pipeline -o jsonpath='{.secrets[*]}' | jq -r .name | grep token)
 
 PIPELINE_TOKEN=$(oc get secret -n $NSINTEGRATION $SECRET_TOKEN_NAME -o jsonpath='{.data.token}' | base64 -d)
 echo $PIPELINE_TOKEN
