@@ -13,7 +13,7 @@ The RHACS solution offers visibility into the security of your cluster, vulnerab
 
 These security features represent the primary work any developer or administrator faces as they work across a range of environments, including multiple datacenters, private clouds, or public clouds that run Kubernetes clusters.
 
-This workshop is based on RHACS 4.x.
+This workshop is based on RHACS 4.x and at this moment the ACS cloud service it is not covered.
 
 == RHACS Features
 

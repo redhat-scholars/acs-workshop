@@ -87,12 +87,12 @@ You can check the OpenShift version using:
 oc version	
 ----
 
-The output should show oc version >=4.7:	
+The output should show oc version >=4.9:	
 
 [.console-output]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-Client Version: 4.7.0-202102130115.p0-c66c03f	
+Client Version: 4.9.0-...
 Kubernetes Version: {kubernetes-version}	
 ----
 
