@@ -6,6 +6,23 @@ We will install ACS thought the RHACS Operator and afterwards we will install an
 
 NOTE: You can request in RHPDS the environment already installed (including the demo) - Go to Multi-Product Demo -> Openshift 4 Advanced Cluster Security 4
 
+[#rhacs_components]
+== RHACS Components
+
+Red Hat Advanced Cluster Security for Kubernetes (ACS) consists of:
+
+* The ``Central`` service, which exposes api and console and communicates with Sensors on secured clusters.
+
+* The ``Scanner`` service, which has the role of scanning the deployed pods images.
+
+* The ``Sensor``, which monitors your Kubernetes and OpenShift Container Platform clusters.
+
+* The ``Admision Controller`` which prevent users from creating workloads that violate configured security policies.
+
+* The ``Collector`` which moniotrs runtime activity on each node for your secured clusters. It reports to **Sensor**.
+
+NOTE: You should check the specific version for you RHACS version to check memory/storage requirements ACS components and the sizing guidelines as well.
+
 [#install_acs_operator]
 == RHACS Operator Installation
 
@@ -38,14 +55,24 @@ NOTE: This step is not required if you are using the Cloud Service for Red Hat A
 [#install_acs_central]
 == RHACS Central Cluster Installation
 
-Once the operator has been installed we need to deploy the Central component. This component must be deployed in Red Hat OpenShift 4.9 or higher. However, it can be deployed in Kubernetes but you must carefully read Red Hat Advanced Cluster Security for Kubernetes Support Policy
-.[https://access.redhat.com/node/5822721]
+Once the operator has been installed we need to deploy the Central component. This component must be deployed in Red Hat OpenShift 4.9 or higher. However, it can be deployed in Kubernetes but you must carefully read https://access.redhat.com/node/5822721[Red Hat Advanced Cluster Security for Kubernetes Support Policy].
 
 In this section we will deploy the Central component in the lab cluster. The Central is made up two main deployments:
 
 * The ``central`` service, which exposes api and console and communicates with Sensors on secured clusters.
 
 * The ``scanner`` service, which has the role of scanning the deployed pods images.
+
+=== RHACS Central requirements
+
+Central uses a database referred as Central DB (PostgreSQL 13) and both Central and PostgreSQL require persistent storage. SSD storage is recommended for best performance but different storage can be used as well.
+
+RHACS requires external access to:
+
+. https://definitions.stackrox.io[definitions.stackrox.io] for downloading updated vulnerability definitions.
+. https://collector-modules.stacrox.io[collector-modules.stackrox.io] to download updated kernel support packages.
+
+=== RHACS Central deployment
 
 Log in to your OpenShift cluster and create a new ``stackrox`` namespace (using the web console or the cli as follows). We will install our components here.
 

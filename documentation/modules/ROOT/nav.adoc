@@ -2,6 +2,7 @@
 ** xref:01-setup.adoc#prerequisite[Prerequisites]
 
 * xref:02-getting_started.adoc[Getting Started]
+** xref:02-getting_started#rhacs_components[RHACS Components]
 ** xref:02-getting_started#install_acs_operator[Install RHACS Operator]
 ** xref:02-getting_started#install_acs_central[Install RHACS Central Cluster]
 ** xref:02-getting_started#config_acs_securedcluster[Configuration of the RHACS Secured Cluster ]
