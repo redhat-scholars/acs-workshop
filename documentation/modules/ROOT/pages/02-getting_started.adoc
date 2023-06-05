@@ -25,7 +25,7 @@ image::install/02_install_acs_operator.png[ACS Operator 3, 800]
 +
 image::install/03_wait_for_completion.png[ACS Operator 4, 800]
 
-. When the installation finishes:
+. When the installation finishes.
 +
 image::install/04_operator_ready.png[ACS Operator 5, 800]
 
