@@ -25,9 +25,13 @@ image::install/02_install_acs_operator.png[ACS Operator 3, 800]
 +
 image::install/03_wait_for_completion.png[ACS Operator 4, 800]
 
-. Access the now ready operator by clicking on the ``View Operator`` button.
+. When the installation finishes:
 +
 image::install/04_operator_ready.png[ACS Operator 5, 800]
+
+. Access the now ready operator by clicking on the ``View Operator`` button.
++
+image::install/04_operator_installed.png[ACS Operator 5, 800]
 
 [#install_acs_central]
 == RHACS Central Cluster Installation
