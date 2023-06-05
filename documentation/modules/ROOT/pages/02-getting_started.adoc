@@ -33,8 +33,13 @@ image::install/04_operator_ready.png[ACS Operator 5, 800]
 +
 image::install/04_operator_installed.png[ACS Operator 6]
 
+NOTE: This step is not required if you are using the Cloud Service for Red Hat Advanced Cluster Security for Kubernetes (ACS).
+
 [#install_acs_central]
 == RHACS Central Cluster Installation
+
+Once the operator has been installed we need to deploy the Central component. This component must be deployed in Red Hat OpenShift 4.9 or higher. However, it can be deployed in Kubernetes but you must carefully read Red Hat Advanced Cluster Security for Kubernetes Support Policy
+.[https://access.redhat.com/node/5822721]
 
 In this section we will deploy the Central component in the lab cluster. The Central is made up two main deployments:
 
@@ -84,6 +89,8 @@ spec:
         replicas: 3
     scannerComponent: Enabled	
 ----
+
+NOTE: This step is not required if you are using the Cloud Service for Red Hat Advanced Cluster Security for Kubernetes (ACS).
 
 [#install_acs_central_web_console]
 === With Web Console
