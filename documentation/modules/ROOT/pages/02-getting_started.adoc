@@ -4,7 +4,24 @@ include::_attributes.adoc[]
 
 We will install ACS thought the RHACS Operator and afterwards we will install an small demo that will serve examples to our workshop.
 
-NOTE: You can request in RHPDS the environment already installed (including the demo) - Go to Multi-Product Demo -> Openshift 4 Advanced Cluster Security 3
+NOTE: You can request in RHPDS the environment already installed (including the demo) - Go to Multi-Product Demo -> Openshift 4 Advanced Cluster Security 4
+
+[#rhacs_components]
+== RHACS Components
+
+Red Hat Advanced Cluster Security for Kubernetes (ACS) consists of:
+
+* The ``Central`` service, which exposes api and console and communicates with Sensors on secured clusters.
+
+* The ``Scanner`` service, which has the role of scanning the deployed pods images.
+
+* The ``Sensor``, which monitors your Kubernetes and OpenShift Container Platform clusters.
+
+* The ``Admision Controller`` which prevent users from creating workloads that violate configured security policies.
+
+* The ``Collector`` which moniotrs runtime activity on each node for your secured clusters. It reports to **Sensor**.
+
+NOTE: You should check the specific version for you RHACS version to check memory/storage requirements ACS components and the sizing guidelines as well.
 
 [#install_acs_operator]
 == RHACS Operator Installation
@@ -25,18 +42,80 @@ image::install/02_install_acs_operator.png[ACS Operator 3, 800]
 +
 image::install/03_wait_for_completion.png[ACS Operator 4, 800]
 
-. Access the now ready operator by clicking on the ``View Operator`` button.
+. When the installation finishes.
 +
 image::install/04_operator_ready.png[ACS Operator 5, 800]
 
+. Access the now ready operator by clicking on the ``View Operator`` button.
++
+image::install/04_operator_installed.png[ACS Operator 6]
+
+NOTE: This step is not required if you are using the Cloud Service for Red Hat Advanced Cluster Security for Kubernetes (ACS).
+
 [#install_acs_central]
 == RHACS Central Cluster Installation
+
+Once the operator has been installed we need to deploy the Central component. This component must be deployed in Red Hat OpenShift 4.9 or higher. However, it can be deployed in Kubernetes but you must carefully read https://access.redhat.com/node/5822721[Red Hat Advanced Cluster Security for Kubernetes Support Policy].
 
 In this section we will deploy the Central component in the lab cluster. The Central is made up two main deployments:
 
 * The ``central`` service, which exposes api and console and communicates with Sensors on secured clusters.
 
 * The ``scanner`` service, which has the role of scanning the deployed pods images.
+
+=== RHACS Central requirements
+
+Central uses a database referred as Central DB (PostgreSQL 13) and both Central and PostgreSQL require persistent storage. SSD storage is recommended for best performance but different storage can be used as well.
+
+NOTE: Using an external database is currently a Technology Preview and will not be covered in this workshop.
+
+RHACS requires external access to:
+
+. https://definitions.stackrox.io[definitions.stackrox.io] for downloading updated vulnerability definitions.
+. https://collector-modules.stacrox.io[collector-modules.stackrox.io] to download updated kernel support packages.
+
+=== RHACS Central deployment
+
+RHACS Central deployment can be performed in several ways:
+
+* <<install_acs_central_web_console>>
+* <<install_acs_central_oc_client>>
+* Using roxctl (CLI)
+* Using Helm Charts
+
+NOTE: This step is not required if you are using the Cloud Service for Red Hat Advanced Cluster Security for Kubernetes (ACS).
+
+[#install_acs_central_web_console]
+=== Deploying Central using the ACS Operator (Web Console)
+
+. From the operator _ready screen_ by clicking on ``View Operator`` or navigating to the **Operators → Installed Operators** page. Then, under the **Provided APIs** section, select ``Create Central`` on the ``Central`` API:
++
+image::install/04_1_create_central_resource.png[ACS Operator 51, 800]
+
+. Check the ``YAML`` radio button and paste the ``Central`` CR you see below and click on the ``Create`` button.
++
+image::install/04_2_create_central_resource.png[ACS Operator 52, 800]
+
+. You can check the progress by switching to the `Developer` perspective, in the `Topology` menu.
++
+image::install/04_3_create_central_resource.png[ACS Operator 53, 800]
+
+You can also do the same using the ``Developer`` perspective:
++
+image::install/04_3_create_central_resource.png[ACS Operator 53, 800]
+
+You can also do the same using the ``Developer`` perspective:
+
+. Within the ``stackrock`` project selected, **+Add → Import YAML**
++
+image::install/04_11_create_central_resource.png[ACS Operator 511, 800]
+
+. Paste the YAML content and click on the ``Create`` button:
++
+image::install/04_22_create_central_resource.png[ACS Operator 512, 800]
+
+[#install_acs_central_oc_client]
+=== Deploying Central using the oc client (CLI)
 
 Log in to your OpenShift cluster and create a new ``stackrox`` namespace (using the web console or the cli as follows). We will install our components here.
 
@@ -80,35 +159,6 @@ spec:
         replicas: 3
     scannerComponent: Enabled	
 ----
-
-[#install_acs_central_web_console]
-=== With Web Console
-
-. From the operator _ready screen_ by clicking on ``View Operator`` or navigating to the **Operators → Installed Operators** page. Then, under the **Provided APIs** section, select ``Create Central`` on the ``Central`` API:
-+
-image::install/04_1_create_central_resource.png[ACS Operator 51, 800]
-
-. Check the ``YAML`` radio button and paste the ``Central`` CR you see below and click on the ``Create`` button.
-+
-image::install/04_2_create_central_resource.png[ACS Operator 52, 800]
-
-. You can check the progress by switching to the `Developer` perspective, in the `Topology` menu.
-+
-image::install/04_3_create_central_resource.png[ACS Operator 53, 800]
-
-You can also do the same using the ``Developer`` perspective:
-
-. Within the ``stackrock`` project selected, **+Add → Import YAML**
-+
-image::install/04_11_create_central_resource.png[ACS Operator 511, 800]
-
-. Paste the YAML content and click on the ``Create`` button:
-+
-image::install/04_22_create_central_resource.png[ACS Operator 512, 800]
-
-
-[#install_acs_central_oc_client]
-=== With OC client
 
 . Create the ``central`` custom resource using the template file provided in this repository.
 +
