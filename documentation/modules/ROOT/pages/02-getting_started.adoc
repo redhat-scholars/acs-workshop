@@ -79,7 +79,7 @@ RHACS requires external access to:
 RHACS Central deployment can be performed in several ways:
 
 * <<install_acs_central_web_console>>
-* Using oc client (CLI)
+* <<install_acs_central_oc_client>>
 * Using roxctl (CLI)
 * Using Helm Charts
 
