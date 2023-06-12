@@ -447,7 +447,7 @@ We use the _roxctl_ to create the init bundle:
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-roxctl -e <ACS CONSOLE URL>:443 central init-bundles generate acsdemo --insecure-skip-tls-verify --output-secrets /tmp/acsdemo.yaml --password <ACS ADMIN PASSWORD>
+roxctl -e <ACS CONSOLE URL>:443 central init-bundles generate demo-cluster --insecure-skip-tls-verify --output-secrets /tmp/demo-cluster.yaml --password <ACS ADMIN PASSWORD>
 ----
 
 Apply the init bundle:
@@ -455,7 +455,7 @@ Apply the init bundle:
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
 ----	
-oc -n stackrox apply -f /tmp/acsdemo.yaml
+oc -n stackrox apply -f /tmp/demo-cluster.yaml
 ----
 
 The secured cluster resource yaml file:
@@ -473,7 +473,7 @@ spec:
     listenOnCreates: true
     listenOnEvents: true
     listenOnUpdates: true
-  clusterName: acsdemo
+  clusterName: demo-cluster
   perNode:
     collector:
       collection: EBPF
