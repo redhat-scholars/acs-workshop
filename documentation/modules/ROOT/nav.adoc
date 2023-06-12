@@ -6,6 +6,7 @@
 ** xref:02-getting_started#install_acs_operator[Install RHACS Operator]
 ** xref:02-getting_started#install_acs_central[Install RHACS Central Cluster]
 ** xref:02-getting_started#config_acs_securedcluster[Configuration of the RHACS Secured Cluster ]
+** xref:02-getting_started#deploy_acs_manually[Deploying ACS manually]
 ** xref:02-getting_started#deploy_demo_acs[Deploying Demo in RHACS]
 ** xref:02-getting_started#deploy_apps[Deploying Apps]
 
