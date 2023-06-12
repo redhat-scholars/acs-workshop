@@ -298,6 +298,197 @@ oc get pods -n stackrox -w
 +
 image::install/11_verify_cluster_list.png[ACS Operator 11, 800]
 
+[#deploy_acs_manually]
+=== Deploying ACS manually
+
+We have seen how to deploy ACS using the web user interface but, sometimes it is necessary to automate the deployment using tools such ansible for instance.
+
+Let's see how to manually, using the CLI, we can deploy ACS so we will be able to automate it with any tool.
+
+First we need to create a namespace to deploy the ACS operator:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc new-project rhacs-operator
+----
+
+We need to create the operator group creating the following yaml file:
+
+[.console-input]
+[source,yaml,subs="attributes+,+macros"]	
+----	
+  apiVersion: operators.coreos.com/v1
+  kind: OperatorGroup
+  metadata:
+    name: rhacs-operator
+    namespace: rhacs-operator
+----
+
+Apply the file to create the operator group:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f acs-operator-group.yaml -n rhacs-operator
+----
+
+Create the subscription yaml file:
+
+[.console-input]
+[source,yaml,subs="attributes+,+macros"]	
+----	
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: rhacs-operator
+  namespace: rhacs-operator
+  labels:
+    operators.coreos.com/rhacs-operator.rhacs-operator: ''
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: stable
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+----
+
+Apply the subscription file:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f subscription.yaml
+----
+
+At this moment the ACS operator will be installing. It will take sometime to install, not much a few seconds.
+
+Now we need to deploy central, so the first thing is to create the namespace:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc new-project stackrox
+----
+
+The following is an example of the central custom resource:
+
+[.console-input]
+[source,yaml,subs="attributes+,+macros"]	
+----	
+apiVersion: platform.stackrox.io/v1alpha1
+kind: Central
+metadata:
+  name: stackrox-central-services
+  namespace: stackrox
+spec:
+  central:
+    exposure:
+      loadBalancer:
+        enabled: false
+        port: 443
+      nodePort:
+        enabled: false
+      route:
+        enabled: true
+    persistence:
+      persistentVolumeClaim:
+        claimName: stackrox-db
+  egress:
+    connectivityPolicy: Online
+  scanner:
+    analyzer:
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 5
+        minReplicas: 2
+        replicas: 3
+    scannerComponent: Enabled
+----
+
+Create the custom resource:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc apply -f stackrox-central-services.yaml -n stackrox
+----
+
+Central will be deployed. You can check it:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc get pods -n stackrox -w
+----
+
+Now you will need to get the ACS admin password:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc -n stackrox get secret central-htpasswd -o jsonpath="{.data['password']}" | base64 -d
+----
+
+and the ACS Central console URL:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc -n stackrox get routes/central -o jsonpath='{.spec.host}'
+----
+
+Once the ACS Central is deployed we will need to add clusters to ACS. To add the cluster where we have deployed Central to ACS we need to download the https://mirror.openshift.com/pub/rhacs/assets/4.0.2/bin/Linux/roxctl[roxctl command.
+
+NOTE: You will need to download the version matching the ACS version you have deployed. You can also use a containerized version, but in this workshop we will use the command line tool.
+
+We use the _roxctl_ to create the init bundle:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+roxctl -e <ACS CONSOLE URL>:443 central init-bundles generate acsdemo --insecure-skip-tls-verify --output-secrets /tmp/acsdemo.yaml --password <ACS ADMIN PASSWORD>
+----
+
+Apply the init bundle:
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+oc -n stackrox apply -f /tmp/acsdemo.yaml
+----
+
+The secured cluster resource yaml file:
+
+[.console-input]
+[source,yaml,subs="attributes+,+macros"]	
+----	
+apiVersion: platform.stackrox.io/v1alpha1
+kind: SecuredCluster
+metadata:
+  name: acs-secured-cluster-services
+  namespace: stackrox
+spec:
+  admissionControl:
+    listenOnCreates: true
+    listenOnEvents: true
+    listenOnUpdates: true
+  clusterName: acsdemo
+  perNode:
+    collector:
+      collection: EBPF
+      imageFlavor: Regular
+    taintToleration: TolerateTaints
+----
+
+[.console-input]
+[source,bash,subs="attributes+,+macros"]	
+----	
+ oc -n stackrox apply -f secured-cluster.yaml
+----
+
+After that the cluster will have been included in ACS.
+
 [#deploy_demo_acs] 
 == Deploying Demo in RHACS - Mandatory
 
