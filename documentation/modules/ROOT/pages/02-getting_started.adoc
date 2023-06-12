@@ -438,7 +438,7 @@ and the ACS Central console URL:
 oc -n stackrox get routes/central -o jsonpath='{.spec.host}'
 ----
 
-Once the ACS Central is deployed we will need to add clusters to ACS. To add the cluster where we have deployed Central to ACS we need to download the https://mirror.openshift.com/pub/rhacs/assets/4.0.2/bin/Linux/roxctl[roxctl command.
+Once the ACS Central is deployed we will need to add clusters to ACS. To add the cluster where we have deployed Central to ACS we need to download the https://mirror.openshift.com/pub/rhacs/assets/4.0.2/bin/Linux/roxctl[roxctl] command.
 
 NOTE: You will need to download the version matching the ACS version you have deployed. You can also use a containerized version, but in this workshop we will use the command line tool.
 
