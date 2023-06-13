@@ -557,3 +557,6 @@ oc run samba --labels=app=rce \
 ----
 
 . Navigate to the RHACS portal to view the violations.
++
+image::violations/00-test-example.png[ACS Operator 7, 800]
+
