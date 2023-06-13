@@ -51,6 +51,7 @@ image::dashboard/acs_dashboard_header.png[ACS Dashboard, 800]
 
 image::dashboard/acs_dashboard_menu.png[ACS Dashboard, 150]
 
+NOTE: **Network Graph (1.0)** will be deprecated and will be replaced by the **Network Graph 2.0** version which is included as a https://access.redhat.com/support/offerings/techpreview[Technology Preview].
 
 In the left part of the dashboard we can see the different sections we can access in RHACS to gather information about the security in the clusters we have configured in RHACS.
 
