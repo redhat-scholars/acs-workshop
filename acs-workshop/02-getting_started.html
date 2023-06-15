@@ -85,6 +85,9 @@
     <a class="nav-link" href="02-getting_started.html">Getting Started</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#rhacs_components">RHACS Components</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#install_acs_operator">Install RHACS Operator</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -92,6 +95,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#config_acs_securedcluster">Configuration of the RHACS Secured Cluster </a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#deploy_acs_manually">Deploying ACS manually</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="#deploy_demo_acs">Deploying Demo in RHACS</a>
@@ -179,6 +185,21 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="06-network_graph.html#network_policy_simulator">Network Policy Simulator</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="06-network_graph-2.0.html">Network Graph 2.0</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-network_graph-2.0.html#network_graph_overview-2">Network Graph Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-network_graph-2.0.html#network_graph_views-2">Network Graph Views</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="06-network_graph-2.0.html#network_policy_simulator-2">Network Policy Simulator</a>
   </li>
 </ul>
   </li>
@@ -395,7 +416,46 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You can request in RHPDS the environment already installed (including the demo) - Go to Multi-Product Demo &#8594; Openshift 4 Advanced Cluster Security 3
+You can request in RHPDS the environment already installed (including the demo) - Go to Multi-Product Demo &#8594; Openshift 4 Advanced Cluster Security 4
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rhacs_components"><a class="anchor" href="#rhacs_components"></a>RHACS Components</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Red Hat Advanced Cluster Security for Kubernetes (ACS) consists of:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>Central</code> service, which exposes api and console and communicates with Sensors on secured clusters.</p>
+</li>
+<li>
+<p>The <code>Scanner</code> service, which has the role of scanning the deployed pods images.</p>
+</li>
+<li>
+<p>The <code>Sensor</code>, which monitors your Kubernetes and OpenShift Container Platform clusters.</p>
+</li>
+<li>
+<p>The <code>Admision Controller</code> which prevent users from creating workloads that violate configured security policies.</p>
+</li>
+<li>
+<p>The <code>Collector</code> which moniotrs runtime activity on each node for your secured clusters. It reports to <strong>Sensor</strong>.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You should check the specific version for you RHACS version to check memory/storage requirements ACS components and the sizing guidelines as well.
 </td>
 </tr>
 </table>
@@ -440,20 +500,43 @@ You can request in RHPDS the environment already installed (including the demo) 
 </div>
 </li>
 <li>
-<p>Access the now ready operator by clicking on the <code>View Operator</code> button.</p>
+<p>When the installation finishes.</p>
 <div class="imageblock">
 <div class="content">
 <img src="_images/install/04_operator_ready.png" alt="ACS Operator 5" width="800">
 </div>
 </div>
 </li>
+<li>
+<p>Access the now ready operator by clicking on the <code>View Operator</code> button.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_operator_installed.png" alt="ACS Operator 6">
+</div>
+</div>
+</li>
 </ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This step is not required if you are using the Cloud Service for Red Hat Advanced Cluster Security for Kubernetes (ACS).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="install_acs_central"><a class="anchor" href="#install_acs_central"></a>RHACS Central Cluster Installation</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Once the operator has been installed we need to deploy the Central component. This component must be deployed in Red Hat OpenShift 4.9 or higher. However, it can be deployed in Kubernetes but you must carefully read <a href="https://access.redhat.com/node/5822721">Red Hat Advanced Cluster Security for Kubernetes Support Policy</a>.</p>
+</div>
 <div class="paragraph">
 <p>In this section we will deploy the Central component in the lab cluster. The Central is made up two main deployments:</p>
 </div>
@@ -467,6 +550,134 @@ You can request in RHPDS the environment already installed (including the demo) 
 </li>
 </ul>
 </div>
+<div class="sect2">
+<h3 id="_rhacs_central_requirements"><a class="anchor" href="#_rhacs_central_requirements"></a>RHACS Central requirements</h3>
+<div class="paragraph">
+<p>Central uses a database referred as Central DB (PostgreSQL 13) and both Central and PostgreSQL require persistent storage. SSD storage is recommended for best performance but different storage can be used as well.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Using an external database is currently a Technology Preview and will not be covered in this workshop.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>RHACS requires external access to:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><a href="https://definitions.stackrox.io">definitions.stackrox.io</a> for downloading updated vulnerability definitions.</p>
+</li>
+<li>
+<p><a href="https://collector-modules.stacrox.io">collector-modules.stackrox.io</a> to download updated kernel support packages.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_rhacs_central_deployment"><a class="anchor" href="#_rhacs_central_deployment"></a>RHACS Central deployment</h3>
+<div class="paragraph">
+<p>RHACS Central deployment can be performed in several ways:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#install_acs_central_web_console">Deploying Central using the ACS Operator (Web Console)</a></p>
+</li>
+<li>
+<p><a href="#install_acs_central_oc_client">Deploying Central using the oc client (CLI)</a></p>
+</li>
+<li>
+<p>Using roxctl (CLI)</p>
+</li>
+<li>
+<p>Using Helm Charts</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This step is not required if you are using the Cloud Service for Red Hat Advanced Cluster Security for Kubernetes (ACS).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="install_acs_central_web_console"><a class="anchor" href="#install_acs_central_web_console"></a>Deploying Central using the ACS Operator (Web Console)</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>From the operator <em>ready screen</em> by clicking on <code>View Operator</code> or navigating to the <strong>Operators → Installed Operators</strong> page. Then, under the <strong>Provided APIs</strong> section, select <code>Create Central</code> on the <code>Central</code> API:</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_1_create_central_resource.png" alt="ACS Operator 51" width="800">
+</div>
+</div>
+</li>
+<li>
+<p>Check the <code>YAML</code> radio button and paste the <code>Central</code> CR you see below and click on the <code>Create</code> button.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_2_create_central_resource.png" alt="ACS Operator 52" width="800">
+</div>
+</div>
+</li>
+<li>
+<p>You can check the progress by switching to the <code>Developer</code> perspective, in the <code>Topology</code> menu.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_3_create_central_resource.png" alt="ACS Operator 53" width="800">
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>You can also do the same using the <code>Developer</code> perspective:</p>
+</div>
+<div class="paragraph">
+<p>+
+image::install/04_3_create_central_resource.png[ACS Operator 53, 800]</p>
+</div>
+<div class="paragraph">
+<p>You can also do the same using the <code>Developer</code> perspective:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Within the <code>stackrock</code> project selected, <strong>+Add → Import YAML</strong></p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_11_create_central_resource.png" alt="ACS Operator 511" width="800">
+</div>
+</div>
+</li>
+<li>
+<p>Paste the YAML content and click on the <code>Create</code> button:</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/install/04_22_create_central_resource.png" alt="ACS Operator 512" width="800">
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="install_acs_central_oc_client"><a class="anchor" href="#install_acs_central_oc_client"></a>Deploying Central using the oc client (CLI)</h3>
 <div class="paragraph">
 <p>Log in to your OpenShift cluster and create a new <code>stackrox</code> namespace (using the web console or the cli as follows). We will install our components here.</p>
 </div>
@@ -510,62 +721,6 @@ spec:
     scannerComponent: Enabled</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="install_acs_central_web_console"><a class="anchor" href="#install_acs_central_web_console"></a>With Web Console</h3>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>From the operator <em>ready screen</em> by clicking on <code>View Operator</code> or navigating to the <strong>Operators → Installed Operators</strong> page. Then, under the <strong>Provided APIs</strong> section, select <code>Create Central</code> on the <code>Central</code> API:</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/install/04_1_create_central_resource.png" alt="ACS Operator 51" width="800">
-</div>
-</div>
-</li>
-<li>
-<p>Check the <code>YAML</code> radio button and paste the <code>Central</code> CR you see below and click on the <code>Create</code> button.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/install/04_2_create_central_resource.png" alt="ACS Operator 52" width="800">
-</div>
-</div>
-</li>
-<li>
-<p>You can check the progress by switching to the <code>Developer</code> perspective, in the <code>Topology</code> menu.</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/install/04_3_create_central_resource.png" alt="ACS Operator 53" width="800">
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>You can also do the same using the <code>Developer</code> perspective:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Within the <code>stackrock</code> project selected, <strong>+Add → Import YAML</strong></p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/install/04_11_create_central_resource.png" alt="ACS Operator 511" width="800">
-</div>
-</div>
-</li>
-<li>
-<p>Paste the YAML content and click on the <code>Create</code> button:</p>
-<div class="imageblock">
-<div class="content">
-<img src="_images/install/04_22_create_central_resource.png" alt="ACS Operator 512" width="800">
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="install_acs_central_oc_client"><a class="anchor" href="#install_acs_central_oc_client"></a>With OC client</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -798,6 +953,211 @@ Check the settings of the <a href="https://docs.openshift.com/acs/installing/ins
 </ol>
 </div>
 </div>
+<div class="sect2">
+<h3 id="deploy_acs_manually"><a class="anchor" href="#deploy_acs_manually"></a>Deploying ACS manually</h3>
+<div class="paragraph">
+<p>We have seen how to deploy ACS using the web user interface but, sometimes it is necessary to automate the deployment using tools such ansible for instance.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s see how to manually, using the CLI, we can deploy ACS so we will be able to automate it with any tool.</p>
+</div>
+<div class="paragraph">
+<p>First we need to create a namespace to deploy the ACS operator:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc new-project rhacs-operator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>We need to create the operator group creating the following yaml file:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  apiVersion: operators.coreos.com/v1
+  kind: OperatorGroup
+  metadata:
+    name: rhacs-operator
+    namespace: rhacs-operator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apply the file to create the operator group:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f acs-operator-group.yaml -n rhacs-operator</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the subscription yaml file:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: rhacs-operator
+  namespace: rhacs-operator
+  labels:
+    operators.coreos.com/rhacs-operator.rhacs-operator: ''
+spec:
+  channel: stable
+  installPlanApproval: Automatic
+  name: stable
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apply the subscription file:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f subscription.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At this moment the ACS operator will be installing. It will take sometime to install. Not much, just a few seconds.</p>
+</div>
+<div class="paragraph">
+<p>Now we need to deploy central.  So the first thing is to create the namespace where Central will be deployed:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc new-project stackrox</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following is an example of the central custom resource:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: platform.stackrox.io/v1alpha1
+kind: Central
+metadata:
+  name: stackrox-central-services
+  namespace: stackrox
+spec:
+  central:
+    exposure:
+      loadBalancer:
+        enabled: false
+        port: 443
+      nodePort:
+        enabled: false
+      route:
+        enabled: true
+    persistence:
+      persistentVolumeClaim:
+        claimName: stackrox-db
+  egress:
+    connectivityPolicy: Online
+  scanner:
+    analyzer:
+      scaling:
+        autoScaling: Enabled
+        maxReplicas: 5
+        minReplicas: 2
+        replicas: 3
+    scannerComponent: Enabled</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create the custom resource:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc apply -f stackrox-central-services.yaml -n stackrox</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Central will be deployed. You can check it:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc get pods -n stackrox -w</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you will need to get the ACS admin password:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n stackrox get secret central-htpasswd -o jsonpath="{.data['password']}" | base64 -d</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and the ACS Central console URL:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n stackrox get routes/central -o jsonpath='{.spec.host}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once the ACS Central is deployed we will need to add clusters into ACS. To add the cluster where we have deployed Central to ACS we need to download the <a href="https://mirror.openshift.com/pub/rhacs/assets/4.0.2/bin/Linux/roxctl">roxctl</a> command.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You will need to download the version matching the ACS version you have deployed. You can also use a containerized version, but in this workshop we will use the command line tool.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>We use the <em>roxctl</em> to create the init bundle:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">roxctl -e &lt;ACS CONSOLE URL&gt;:443 central init-bundles generate demo-cluster --insecure-skip-tls-verify --output-secrets /tmp/demo-cluster.yaml --password &lt;ACS ADMIN PASSWORD&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Apply the init bundle:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">oc -n stackrox apply -f /tmp/demo-cluster.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The secured cluster resource yaml file:</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: platform.stackrox.io/v1alpha1
+kind: SecuredCluster
+metadata:
+  name: acs-secured-cluster-services
+  namespace: stackrox
+spec:
+  admissionControl:
+    listenOnCreates: true
+    listenOnEvents: true
+    listenOnUpdates: true
+  clusterName: demo-cluster
+  perNode:
+    collector:
+      collection: EBPF
+      imageFlavor: Regular
+    taintToleration: TolerateTaints</code></pre>
+</div>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"> oc -n stackrox apply -f secured-cluster.yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After that the cluster will have been included in ACS.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -904,6 +1264,11 @@ ok: [localhost] =&gt; {
 </li>
 <li>
 <p>Navigate to the RHACS portal to view the violations.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/violations/00-test-example.png" alt="ACS Operator 7" width="800">
+</div>
+</div>
 </li>
 </ol>
 </div>
