@@ -1,9 +1,11 @@
-= Network Graph 2.0
+= Network Graph 2.0 (TP)
 include::_attributes.adoc[]
 :profile: acs
 
 [#network_graph_overview-2]
 == Network Graph Overview
+
+IMPORTANT: **Network Graph 2.0** is in Technology Preview and will replace xref:06-network_graph.adoc[Network Graph].
 
 The Network Graph is a flow diagram, firewall diagram, and firewall rule builder in one.
 
