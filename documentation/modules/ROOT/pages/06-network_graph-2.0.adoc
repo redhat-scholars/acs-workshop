@@ -1,4 +1,4 @@
-= Network Graph
+= Network Graph 2.0
 include::_attributes.adoc[]
 :profile: acs
 

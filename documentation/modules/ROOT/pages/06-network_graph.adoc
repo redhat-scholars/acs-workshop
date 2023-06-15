@@ -5,6 +5,8 @@ include::_attributes.adoc[]
 [#network_graph_overview]
 == Network Graph Overview
 
+IMPORTANT: **Network Graph 1.0** will be deprecated and will be replaced by xref:06-network_graph-2.0.adoc[Network Graph 2.0].
+
 The Network Graph is a flow diagram, firewall diagram, and firewall rule builder in one.
 
 image::network-flow/03-network.png[Network Flow 1, 800]
