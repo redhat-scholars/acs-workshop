@@ -1,11 +1,11 @@
-= Network Graph
+= Network Graph 2.0 (TP)
 include::_attributes.adoc[]
 :profile: acs
 
-[#network_graph_overview]
+[#network_graph_overview-2]
 == Network Graph Overview
 
-IMPORTANT: **Network Graph 1.0** will be deprecated and will be replaced by xref:06-network_graph-2.0.adoc[Network Graph 2.0].
+IMPORTANT: **Network Graph 2.0** is in Technology Preview and will replace xref:06-network_graph.adoc[Network Graph].
 
 The Network Graph is a flow diagram, firewall diagram, and firewall rule builder in one.
 
@@ -29,7 +29,7 @@ As we zoom in, the namespace boxes show the individual deployment names
 
 image::network-flow/01-network.png[Network Flow 1, 800]
 
-[#network_graph_views]
+[#network_graph_views-2]
 == Network Graph Views
 
 In the Network Graph view, you can configure the type of connections you want to see. In the Flows section (upper left), select:
@@ -48,7 +48,7 @@ The red dots indicate an unrestricted deployment that is an open network.
 
 The dashed lines indicate a namespace with no restrictions on egress and in conflict with best practices required under several compliance standards.
 
-[#network_policy_simulator]
+[#network_policy_simulator-2]
 == Network Policy Simulator
 
 * Click on Network Policy Simulator button in the top right
