@@ -19,9 +19,9 @@ Red Hat Advanced Cluster Security for Kubernetes (ACS) consists of:
 
 * The ``Admision Controller`` which prevent users from creating workloads that violate configured security policies.
 
-* The ``Collector`` which moniotrs runtime activity on each node for your secured clusters. It reports to **Sensor**.
+* The ``Collector`` which monitors runtime activity on each node for your secured clusters. It reports to **Sensor**.
 
-NOTE: You should check the specific version for you RHACS version to check memory/storage requirements ACS components and the sizing guidelines as well.
+NOTE: You should check the specific version for your RHACS version to check memory/storage requirements ACS components and the sizing guidelines as well.
 
 [#install_acs_operator]
 == RHACS Operator Installation
@@ -265,7 +265,7 @@ spec:
 
 NOTE: Check the settings of the https://docs.openshift.com/acs/installing/install-ocp-operator.html#addmission-controller-settings_install-ocp-operator[SecuredCluster operator documentation] for more information.
 
-. Create the Secured Cluster custom Resource using (and optionally custumizing) the example provided in the repository.
+. Create the Secured Cluster custom Resource using (and optionally customizing) the example provided in the repository.
 +
 [.console-input]
 [source,bash,subs="attributes+,+macros"]	
@@ -273,7 +273,7 @@ NOTE: Check the settings of the https://docs.openshift.com/acs/installing/instal
 oc apply -f stackrox-secured-cluster-services.yaml -n stackrox
 ----
 +
-Or using the web console, in the ACS opertator view, as follows:
+Or using the web console, in the ACS operator view, as follows:
 +
 .. Under the Provided APIs section, select Create instance on the Secured Cluster API
 +
